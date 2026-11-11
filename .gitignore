@@ -1,0 +1,10 @@
+node_modules/
+build/
+.docusaurus/
+.generated/
+resource-*_versions.json
+resource-*_versioned_docs/
+resource-*_versioned_sidebars/
+.env
+.env.*
+*.log

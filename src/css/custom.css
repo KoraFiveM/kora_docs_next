@@ -1,0 +1,36 @@
+/* Kora palette from kora_docs. Keep customisation here; use stock docs components. */
+:root {
+  --ifm-color-primary: #287000;
+  --ifm-color-primary-dark: #246500;
+  --ifm-color-primary-darker: #225f00;
+  --ifm-color-primary-darkest: #1c4e00;
+  --ifm-color-primary-light: #2c7b00;
+  --ifm-color-primary-lighter: #2e8100;
+  --ifm-color-primary-lightest: #349200;
+  --ifm-font-family-base: Inter, 'Segoe UI', Arial, sans-serif;
+  --ifm-font-family-monospace: Consolas, monospace;
+  --ifm-code-font-size: 95%;
+}
+[data-theme='dark'] {
+  --ifm-color-primary: #95ff00;
+  --ifm-color-primary-dark: #86e600;
+  --ifm-color-primary-darker: #7fd900;
+  --ifm-color-primary-darkest: #68b300;
+  --ifm-color-primary-light: #a0ff1a;
+  --ifm-color-primary-lighter: #a5ff26;
+  --ifm-color-primary-lightest: #b5ff4d;
+  --ifm-background-color: #0f0f0f;
+  --ifm-background-surface-color: #151515;
+  --ifm-navbar-background-color: #0a0a0a;
+  --ifm-footer-background-color: #0a0a0a;
+  --ifm-link-color: #4ade80;
+}
+.navbar__title {font-weight: 800; letter-spacing: .03em;}
+.kora-intro {padding: 4rem 0 2rem; max-width: 48rem;}
+.kora-intro h1 {font-size: clamp(2.5rem, 6vw, 4rem);}
+.resource-list {display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));}
+.resource-card {padding: 1.5rem; border: 1px solid var(--ifm-color-emphasis-300); border-radius: 8px;}
+.resource-card ul {margin-bottom: 0;}
+
+.resource-version-picker {display: block; margin: .75rem 0 1.5rem;}
+.resource-version-picker select {font: inherit; color: var(--ifm-font-color-base); background: var(--ifm-background-surface-color); padding: .25rem .5rem; border: 1px solid var(--ifm-color-emphasis-400); border-radius: 4px;}
