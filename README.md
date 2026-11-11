@@ -11,7 +11,7 @@ npm ci
 npm start
 ```
 
-`npm start` imports the registered resource docs, then starts Docusaurus. With the initial empty catalog, it works without resource GitHub access. Stop and restart after changing the catalog.
+`npm start` prepares site metadata from committed documentation snapshots, then starts Docusaurus. It works without resource GitHub access.
 
 ```sh
 npm test             # Offline importer tests with temporary local Git repositories
@@ -24,6 +24,7 @@ npm run serve        # Serve build/ locally
 
 - Resource repositories own `docs/`, code, `fxmanifest.lua`, and release tags.
 - `catalog/resources.json` pins the released resource documentation included here.
+- `resource-*_versioned_docs/`, `resource-*_versioned_sidebars/`, and `resource-*_versions.json` are checked-in snapshots of published documentation so public Pages builds do not need access to private resource repositories.
 - `docs/` contains shared, unversioned contributor and publishing guides.
 - `src/css/custom.css` contains the minimal Kora theme: neutral dark surfaces, lime `#95FF00`, green `#22C55E`/`#4ADE80`, and system fonts.
 - `src/pages/` contains the landing page and resource/version directory.
@@ -34,7 +35,7 @@ The favicon is a simple K monogram, not an official logo asset. Branding colours
 
 ## Register a resource release
 
-The catalog starts empty deliberately. Add real versions only after the resource has committed Markdown docs and a matching manifest version.
+The catalog lists every Kora resource at `v0.1.0`. Resources without Markdown get a clearly labelled placeholder until documentation is added.
 
 Example structure (replace the placeholder SHA with the real release commit):
 
@@ -71,13 +72,13 @@ List versions newest first; `latest` explicitly selects a stable release. Each r
 
 `entryPage` is the Markdown document ID, normally `index`, without an extension. Use filename-based document IDs; do not override `id` in front matter. Relative Markdown and image links are resolved by Docusaurus. Keep assets inside the resource's `docsPath`.
 
-The importer fetches release tags into temporary Git repositories and verifies each tag against its full pinned commit and `fxmanifest.lua` version. It copies committed regular files only; it rejects symlinks and submodules. It never executes resource install/build scripts or changes local resource checkouts. Only GitHub HTTPS source URLs are accepted by the CLI; tests explicitly allow temporary local repositories.
+The sync importer fetches release tags into temporary Git repositories and verifies each tag against its full pinned commit and `fxmanifest.lua` version. It copies committed regular files only; it rejects symlinks and submodules. It never executes resource install/build scripts or changes local resource checkouts. Only GitHub HTTPS source URLs are accepted by the CLI. The versioned Markdown snapshots are checked in so CI builds are self-contained.
 
 MDX is executable build input: catalog changes are trusted-code changes and require review. Public repositories work without credentials. Private repositories require CI Git credentials with access to those repositories; the docs repository's default token alone usually cannot read other private repos. Never put tokens in the catalog or clone URLs.
 
 ## Publication
 
-CI runs offline tests, the multi-resource fixture build, and the actual site build. It uploads `documentation-site` as an artifact. No hosting or custom domain is enabled automatically.
+CI runs offline tests, the multi-resource fixture build, and the actual site build. GitHub Pages deploys the built site on pushes to `main`. The site and source repository are public.
 
 Publish `build/` to your preferred static host. Set `DOCS_URL` to the real origin and `DOCS_BASE_URL` to the hosting path before building. For GitHub project Pages, use `DOCS_BASE_URL=/kora_docs_next/`. The default `https://docs.koraframe.work` is configuration, not a provisioned domain.
 

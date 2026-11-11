@@ -1,4 +1,901 @@
 {
   "schemaVersion": 1,
-  "resources": []
+  "resources": [
+    {
+      "id": "kora-lib",
+      "title": "Kora Lib",
+      "repository": "https://github.com/KoraFiveM/kora_lib.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "66cc457a220a4b593ab4ac8ae2d17ed8ce9c6882"
+        }
+      ]
+    },
+    {
+      "id": "kora-admin",
+      "title": "Kora Admin",
+      "repository": "https://github.com/KoraFiveM/kora_admin.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "682708f56923eba692eb29327e9a641fcd65243a"
+        }
+      ]
+    },
+    {
+      "id": "kora-ambulance",
+      "title": "Kora Ambulance",
+      "repository": "https://github.com/KoraFiveM/kora_ambulance.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "1654edf612df786d21ceb9ea546dcf86a4f13df0"
+        }
+      ]
+    },
+    {
+      "id": "kora-banking",
+      "title": "Kora Banking",
+      "repository": "https://github.com/KoraFiveM/kora_banking.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "cb2d2868c89b66b98328572f652f405d2cb3438c"
+        }
+      ]
+    },
+    {
+      "id": "kora-bossmenu",
+      "title": "Kora Bossmenu",
+      "repository": "https://github.com/KoraFiveM/kora_bossmenu.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "25a3b88220955e8273ea51d99cd31a168319f570"
+        }
+      ]
+    },
+    {
+      "id": "kora-businesses",
+      "title": "Kora Businesses",
+      "repository": "https://github.com/KoraFiveM/kora_businesses.git",
+      "docsPath": "docs",
+      "entryPage": "CCTV",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "2005d15143d4f7ef40dc677911f001de8d1e7e90"
+        }
+      ]
+    },
+    {
+      "id": "kora-cards",
+      "title": "Kora Cards",
+      "repository": "https://github.com/KoraFiveM/kora_cards.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "6eff5e4c4fb291e7a8aedf35ebc833a0170f34f3"
+        }
+      ]
+    },
+    {
+      "id": "kora-chat",
+      "title": "Kora Chat",
+      "repository": "https://github.com/KoraFiveM/kora_chat.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "dd4f9825668827294c2531d5c88a378ec66ac398"
+        }
+      ]
+    },
+    {
+      "id": "kora-cityhall",
+      "title": "Kora Cityhall",
+      "repository": "https://github.com/KoraFiveM/kora_cityhall.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "382c1c60a264916840863477562db58ad7a444be"
+        }
+      ]
+    },
+    {
+      "id": "kora-clothing",
+      "title": "Kora Clothing",
+      "repository": "https://github.com/KoraFiveM/kora_clothing.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "dd756e60647c4ca10b62d33603caa3f4883a1532"
+        }
+      ]
+    },
+    {
+      "id": "kora-consumables",
+      "title": "Kora Consumables",
+      "repository": "https://github.com/KoraFiveM/kora_consumables.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "d3c5018d8d12392d39e8b699201535bf023b5981"
+        }
+      ]
+    },
+    {
+      "id": "kora-core",
+      "title": "Kora Core",
+      "repository": "https://github.com/KoraFiveM/kora_core.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "596337f88425c0cf6ce56fa5316b2bbbafd937e7"
+        }
+      ]
+    },
+    {
+      "id": "kora-crafting",
+      "title": "Kora Crafting",
+      "repository": "https://github.com/KoraFiveM/kora_crafting.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "5d0ce7cb3abd6ff138668a76c044f61cb8c65c30"
+        }
+      ]
+    },
+    {
+      "id": "kora-crypto",
+      "title": "Kora Crypto",
+      "repository": "https://github.com/KoraFiveM/kora_crypto.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "8fb8df9270ac0615525fa25bf404739def8b72f8"
+        }
+      ]
+    },
+    {
+      "id": "kora-customs",
+      "title": "Kora Customs",
+      "repository": "https://github.com/KoraFiveM/kora_customs.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "a11e22afd9996375362fa0767fbd2c59c4604322"
+        }
+      ]
+    },
+    {
+      "id": "kora-dealership",
+      "title": "Kora Dealership",
+      "repository": "https://github.com/KoraFiveM/kora_dealership.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "4634e2dc898a33adc14987a7891b69dcb342b335"
+        }
+      ]
+    },
+    {
+      "id": "kora-dispatch",
+      "title": "Kora Dispatch",
+      "repository": "https://github.com/KoraFiveM/kora_dispatch.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "e1039e7be067348a9add4b6909a4a2b78c2cf2a9"
+        }
+      ]
+    },
+    {
+      "id": "kora-diving",
+      "title": "Kora Diving",
+      "repository": "https://github.com/KoraFiveM/kora_diving.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "dce12565524586bd6581b4d8ff8596bb81bf25b1"
+        }
+      ]
+    },
+    {
+      "id": "kora-doorlock",
+      "title": "Kora Doorlock",
+      "repository": "https://github.com/KoraFiveM/kora_doorlock.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "5c60ce2cb480883acd94c431d06c08fd07405174"
+        }
+      ]
+    },
+    {
+      "id": "kora-drugs",
+      "title": "Kora Drugs",
+      "repository": "https://github.com/KoraFiveM/kora_drugs.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "1d7f69b9cc271f06bd45f270aef6b4ab9aee6214"
+        }
+      ]
+    },
+    {
+      "id": "kora-emotemenu",
+      "title": "Kora Emotemenu",
+      "repository": "https://github.com/KoraFiveM/kora_emotemenu.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "0584ea06166091847656232208b78de300b98d80"
+        }
+      ]
+    },
+    {
+      "id": "kora-fishing",
+      "title": "Kora Fishing",
+      "repository": "https://github.com/KoraFiveM/kora_fishing.git",
+      "docsPath": "readme.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "99a12a06b0c8b3746acfbc8e2744f91df2348887"
+        }
+      ]
+    },
+    {
+      "id": "kora-fuel",
+      "title": "Kora Fuel",
+      "repository": "https://github.com/KoraFiveM/kora_fuel.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "7df990967dc193ad1a8fb285ccaaf8ac766475e3"
+        }
+      ]
+    },
+    {
+      "id": "kora-garages",
+      "title": "Kora Garages",
+      "repository": "https://github.com/KoraFiveM/kora_garages.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "77fe8547796986721e69e88d4c529a39e057e259"
+        }
+      ]
+    },
+    {
+      "id": "kora-hud",
+      "title": "Kora Hud",
+      "repository": "https://github.com/KoraFiveM/kora_hud.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "6b3311cb0c68c0533359f202e6e687eb10ccd0b2"
+        }
+      ]
+    },
+    {
+      "id": "kora-interior",
+      "title": "Kora Interior",
+      "repository": "https://github.com/KoraFiveM/kora_interior.git",
+      "docsPath": "docs",
+      "entryPage": "SHELL_GEOMETRY",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "51d0b4039d87f86ec9787a9f0fad10c011888cc2"
+        }
+      ]
+    },
+    {
+      "id": "kora-inventory",
+      "title": "Kora Inventory",
+      "repository": "https://github.com/KoraFiveM/kora_inventory.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "b849467c0120e3c476223ee4154ac23852ca899c"
+        }
+      ]
+    },
+    {
+      "id": "kora-jewellery",
+      "title": "Kora Jewellery",
+      "repository": "https://github.com/KoraFiveM/kora_jewellery.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "3be6dbe91ae8cbf8de25673e6bed41fe3f4fea3b"
+        }
+      ]
+    },
+    {
+      "id": "kora-jobcreator",
+      "title": "Kora Jobcreator",
+      "repository": "https://github.com/KoraFiveM/kora_jobcreator.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "0bf4d0dfbedc6bd4a64748192d5e60bf26a5abe6"
+        }
+      ]
+    },
+    {
+      "id": "kora-lib-playground",
+      "title": "Kora Lib Playground",
+      "repository": "https://github.com/KoraFiveM/kora_lib-playground.git",
+      "docsPath": "bot/README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "9c96d6f2cc5f33d5f8bcc07a8b0530fd2fc76366"
+        }
+      ]
+    },
+    {
+      "id": "kora-loading",
+      "title": "Kora Loading",
+      "repository": "https://github.com/KoraFiveM/kora_loading.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "5cfe06e9f8c25e97e83b3db0a197f44733ab83e7"
+        }
+      ]
+    },
+    {
+      "id": "kora-mdt",
+      "title": "Kora Mdt",
+      "repository": "https://github.com/KoraFiveM/kora_mdt.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "ec54cac0f9e2cbebf8741f12c3f888e5195e089e"
+        }
+      ]
+    },
+    {
+      "id": "kora-metaldetecting",
+      "title": "Kora Metaldetecting",
+      "repository": "https://github.com/KoraFiveM/kora_metaldetecting.git",
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": false,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "af8fe30c62118ac7be85503822ed5276cd2d0c9d"
+        }
+      ]
+    },
+    {
+      "id": "kora-mining",
+      "title": "Kora Mining",
+      "repository": "https://github.com/KoraFiveM/kora_mining.git",
+      "docsPath": "MINING_ITEMS.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "60048dc34960751fc9dca874d5c70d381c6f9dda"
+        }
+      ]
+    },
+    {
+      "id": "kora-multichar",
+      "title": "Kora Multichar",
+      "repository": "https://github.com/KoraFiveM/kora_multichar.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "c0e89b3205f26cdb517a7f75e52744a7227d584a"
+        }
+      ]
+    },
+    {
+      "id": "kora-multijob",
+      "title": "Kora Multijob",
+      "repository": "https://github.com/KoraFiveM/kora_multijob.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "6781ba08a98d82080df05df6eb2394e116b27f22"
+        }
+      ]
+    },
+    {
+      "id": "kora-newsjob",
+      "title": "Kora Newsjob",
+      "repository": "https://github.com/KoraFiveM/kora_newsjob.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "2a92a88b6a2bc3cb4460fdff59da7c6a3e66cd6b"
+        }
+      ]
+    },
+    {
+      "id": "kora-pawnshop",
+      "title": "Kora Pawnshop",
+      "repository": "https://github.com/KoraFiveM/kora_pawnshop.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "0e3f2b8e6103d293ea523ad2051a84667ac267f4"
+        }
+      ]
+    },
+    {
+      "id": "kora-phone-stevie",
+      "title": "Kora Phone Stevie",
+      "repository": "https://github.com/KoraFiveM/kora_phone-stevie.git",
+      "docsPath": "docs",
+      "entryPage": "acceptance-tests",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "1e67437c2e7576b3c74887f1d14d8855afce482f"
+        }
+      ]
+    },
+    {
+      "id": "kora-phoneshop-demo",
+      "title": "Kora Phoneshop Demo",
+      "repository": "https://github.com/KoraFiveM/kora_phoneshop_demo.git",
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": false,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "a7c1a966b74ab5c995703b5c9036ad2a9f12af5f"
+        }
+      ]
+    },
+    {
+      "id": "kora-police",
+      "title": "Kora Police",
+      "repository": "https://github.com/KoraFiveM/kora_police.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "6001e32a46f56853452d55bbc42ccc4e0baf6e9d"
+        }
+      ]
+    },
+    {
+      "id": "kora-queue",
+      "title": "Kora Queue",
+      "repository": "https://github.com/KoraFiveM/kora_queue.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "7e00782bde5c9ce100b18d995f8549f32ffb3fd0"
+        }
+      ]
+    },
+    {
+      "id": "kora-robberies",
+      "title": "Kora Robberies",
+      "repository": "https://github.com/KoraFiveM/kora_robberies.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "79d40b189aa3a5522b7f47eb291f0845eb18a820"
+        }
+      ]
+    },
+    {
+      "id": "kora-scoreboard",
+      "title": "Kora Scoreboard",
+      "repository": "https://github.com/KoraFiveM/kora_scoreboard.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "9fa1267fd6127554f42ebc606553c2f65c4ff5f9"
+        }
+      ]
+    },
+    {
+      "id": "kora-scrapyard",
+      "title": "Kora Scrapyard",
+      "repository": "https://github.com/KoraFiveM/kora_scrapyard.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "d1770ee3876967da6f7daa119f25fd911344d45c"
+        }
+      ]
+    },
+    {
+      "id": "kora-skills",
+      "title": "Kora Skills",
+      "repository": "https://github.com/KoraFiveM/kora_skills.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "acb5102300e94806a3a933ac5b2d18710b7fd48e"
+        }
+      ]
+    },
+    {
+      "id": "kora-sound",
+      "title": "Kora Sound",
+      "repository": "https://github.com/KoraFiveM/kora_sound.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "b5f98299a7226a9165fdbbcee64f696f0d12459c"
+        }
+      ]
+    },
+    {
+      "id": "kora-sql",
+      "title": "Kora Sql",
+      "repository": "https://github.com/KoraFiveM/kora_sql.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "919482b1489788fa188ce2388083de2305cb1f9a"
+        }
+      ]
+    },
+    {
+      "id": "kora-target",
+      "title": "Kora Target",
+      "repository": "https://github.com/KoraFiveM/kora_target.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "29c9290c77eb8022f788b7eae7a4f61422f68198"
+        }
+      ]
+    },
+    {
+      "id": "kora-theme",
+      "title": "Kora Theme",
+      "repository": "https://github.com/KoraFiveM/kora_theme.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "313e04b95676f66486c5e20700cf9c8f75bfadd4"
+        }
+      ]
+    },
+    {
+      "id": "kora-truckerjob",
+      "title": "Kora Truckerjob",
+      "repository": "https://github.com/KoraFiveM/kora_truckerjob.git",
+      "docsPath": "README.MD",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "28b2df67836f8b7f1c82e69bb697569f52e754e6"
+        }
+      ]
+    },
+    {
+      "id": "kora-truckrobbery",
+      "title": "Kora Truckrobbery",
+      "repository": "https://github.com/KoraFiveM/kora_truckrobbery.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "0e7889dc61b3a508141b047cd08cda8234fedc98"
+        }
+      ]
+    },
+    {
+      "id": "kora-utils",
+      "title": "Kora Utils",
+      "repository": "https://github.com/KoraFiveM/kora_utils.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "9e678b374491b079c0cca95db1e0e15afb5c52d5"
+        }
+      ]
+    },
+    {
+      "id": "kora-vehiclekeys",
+      "title": "Kora Vehiclekeys",
+      "repository": "https://github.com/KoraFiveM/kora_vehiclekeys.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "f95ca5185616ae32e2470beda57ba74dadbbdb9b"
+        }
+      ]
+    },
+    {
+      "id": "kora-voice",
+      "title": "Kora Voice",
+      "repository": "https://github.com/KoraFiveM/kora_voice.git",
+      "docsPath": "docs",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "9216d90ca981e490c4c610de7ac4319f405d3107"
+        }
+      ]
+    },
+    {
+      "id": "kora-weathersync",
+      "title": "Kora Weathersync",
+      "repository": "https://github.com/KoraFiveM/kora_weathersync.git",
+      "docsPath": "README.md",
+      "entryPage": "index",
+      "latest": "0.1.0",
+      "docsAvailable": true,
+      "versions": [
+        {
+          "version": "0.1.0",
+          "tag": "v0.1.0",
+          "commit": "ccf4e0c62a55748851bb85cf4aeb3bcb5beff1bc"
+        }
+      ]
+    }
+  ]
 }

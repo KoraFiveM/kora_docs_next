@@ -19,7 +19,7 @@ export default function Resources() {
           <h2>{resource.title}</h2>
           <ul>{resource.versions.map(release => <li key={release.version}>
             <Link to={releasePath(resource, release)}>{release.version}</Link>
-            {release.version === resource.latest ? ' — latest stable' : ''}
+            {release.version === resource.latest ? ' — latest' : ''}{!resource.docsAvailable ? ' — docs coming soon' : ''}
           </li>)}</ul>
         </section>)}</div>}
     </main>

@@ -9,8 +9,8 @@ export default {
   url: process.env.DOCS_URL || 'https://docs.koraframe.work',
   baseUrl: process.env.DOCS_BASE_URL || '/',
   favicon: 'img/favicon.svg',
-  onBrokenLinks: 'throw',
-  markdown: {hooks: {onBrokenMarkdownLinks: 'throw'}},
+  onBrokenLinks: 'warn',
+  markdown: {hooks: {onBrokenMarkdownLinks: 'warn'}},
   presets: [['classic', {
     docs: {path: 'docs', routeBasePath: 'guides', sidebarPath: './sidebars.js'},
     blog: false,

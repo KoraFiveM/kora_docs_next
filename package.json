@@ -12,7 +12,8 @@
     "docs:import": "node scripts/import-docs.mjs",
     "test": "node --test tests/*.test.mjs",
     "clear": "docusaurus clear",
-    "test:build": "node scripts/test-versioned-build.mjs"
+    "test:build": "node scripts/test-versioned-build.mjs",
+    "docs:sync": "node scripts/import-docs.mjs --sync"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
