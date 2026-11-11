@@ -34,3 +34,7 @@
 
 .resource-version-picker {display: block; margin: .75rem 0 1.5rem;}
 .resource-version-picker select {font: inherit; color: var(--ifm-font-color-base); background: var(--ifm-background-surface-color); padding: .25rem .5rem; border: 1px solid var(--ifm-color-emphasis-400); border-radius: 4px;}
+
+.resource-tree details > summary {cursor: pointer; padding: .4rem .75rem; border-radius: var(--ifm-menu-link-border-radius);}
+.resource-tree details > summary:hover {background: var(--ifm-menu-color-background-hover);}
+.resource-tree .menu__link {overflow-wrap: anywhere;}

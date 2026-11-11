@@ -19,7 +19,7 @@ test('imports independent versions, assets and exact committed content; cleans r
     const archived = path.join(siteDir, 'resource-kora_inventory_versioned_docs/version-1.0.0');
     assert.match(await fs.readFile(path.join(archived, 'index.md'), 'utf8'), /1\.0\.0/);
     assert.match(await fs.readFile(path.join(archived, 'images/mark.svg'), 'utf8'), /<svg/);
-    await importDocs({siteDir, catalog: {schemaVersion: 1, resources: []}});
+    await importDocs({siteDir, catalog: {schemaVersion: 1, resources: []}, sync: true});
     await assert.rejects(fs.access(archived));
   } finally {await fs.rm(directory, {recursive: true, force: true});}
 });
