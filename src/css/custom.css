@@ -38,3 +38,11 @@
 .resource-tree details > summary {cursor: pointer; padding: .4rem .75rem; border-radius: var(--ifm-menu-link-border-radius);}
 .resource-tree details > summary:hover {background: var(--ifm-menu-color-background-hover);}
 .resource-tree .menu__link {overflow-wrap: anywhere;}
+
+.resource-directory {display: flex; min-height: calc(100vh - var(--ifm-navbar-height));}
+.resource-directory-sidebar {width: 300px; flex: 0 0 300px; border-right: 1px solid var(--ifm-color-emphasis-200); padding: 1rem; max-height: calc(100vh - var(--ifm-navbar-height)); overflow-y: auto; position: sticky; top: var(--ifm-navbar-height);}
+.resource-directory-sidebar h2 {font-size: 1rem; margin: .5rem .75rem;}
+.resource-directory-main {flex: 1; min-width: 0; padding: 2rem;}
+.resource-card h2 {font-size: 1.15rem; margin-bottom: .6rem;}
+.resource-card p {margin-bottom: .7rem;}
+@media (max-width: 996px) {.resource-directory {display: block;} .resource-directory-sidebar {position: static; width: auto; max-height: 18rem; border-right: 0; border-bottom: 1px solid var(--ifm-color-emphasis-200);} .resource-directory-main {padding: 1.25rem;}}
