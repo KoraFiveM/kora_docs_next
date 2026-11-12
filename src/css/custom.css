@@ -7,11 +7,13 @@
   --ifm-color-primary-light: #2c7b00;
   --ifm-color-primary-lighter: #2e8100;
   --ifm-color-primary-lightest: #349200;
-  --ifm-font-family-base: Inter, 'Segoe UI', Arial, sans-serif;
-  --ifm-font-family-monospace: Consolas, monospace;
+  --cosmos-brand: #287000;
+  --cosmos-brand-rgb: 40, 112, 0;
   --ifm-code-font-size: 95%;
 }
 [data-theme='dark'] {
+  --cosmos-brand-light: #95ff00;
+  --cosmos-brand-light-rgb: 149, 255, 0;
   --ifm-color-primary: #95ff00;
   --ifm-color-primary-dark: #86e600;
   --ifm-color-primary-darker: #7fd900;
@@ -46,3 +48,7 @@
 .resource-card h2 {font-size: 1.15rem; margin-bottom: .6rem;}
 .resource-card p {margin-bottom: .7rem;}
 @media (max-width: 996px) {.resource-directory {display: block;} .resource-directory-sidebar {position: static; width: auto; max-height: 18rem; border-right: 0; border-bottom: 1px solid var(--ifm-color-emphasis-200);} .resource-directory-main {padding: 1.25rem;}}
+
+/* Dark text maintains contrast on Kora's lime primary buttons. */
+[data-theme='dark'] .button--primary { color: #0a1204 !important; }
+.btn-primary:hover { background: #1c4e00; border-color: #1c4e00; }
