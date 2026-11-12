@@ -11,4 +11,9 @@ Choose a resource from [Resources](/resources), then select the version installe
 
 Resource reference pages will appear as releases are registered. This new site does not yet contain the existing resource reference content.
 
-To contribute, read [Writing documentation](./writing-documentation.md). Maintainers can follow [Publishing resources](./publishing-resources.md).
+To contribute, read [Contributing to Kora Framework](./contributing.md),
+[Lua style and local tooling](./lua-tooling.md), and
+[Architecture and ownership](./architecture-standards.md).
+For documentation changes, follow [Writing documentation](./writing-documentation.md). Maintainers can follow [Publishing resources](./publishing-resources.md).
+
+Copyright © 2026 Kora Framework (new contribution guidance).
