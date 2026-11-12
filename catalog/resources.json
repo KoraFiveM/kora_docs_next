@@ -24,9 +24,15 @@
       "repository": "https://github.com/KoraFiveM/kora_admin.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "df205b4333abb505c48f5e7fbde0c9ccabb3c3b9",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -41,9 +47,15 @@
       "repository": "https://github.com/KoraFiveM/kora_ambulance.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "c444d5df324cc7c32c598d8a25d6f98172aea616",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -58,9 +70,15 @@
       "repository": "https://github.com/KoraFiveM/kora_banking.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "4491145dc734fe7b0424561ab1150e5337393061",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -75,9 +93,15 @@
       "repository": "https://github.com/KoraFiveM/kora_bossmenu.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "da2c2efcb45bd867af0ab5f20f2111e0c9a4888f",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -92,9 +116,15 @@
       "repository": "https://github.com/KoraFiveM/kora_businesses.git",
       "docsPath": "docs",
       "entryPage": "CCTV",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "aef8213a074ddf53779fc91534c30f857da1db3a",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -109,9 +139,15 @@
       "repository": "https://github.com/KoraFiveM/kora_cards.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "e06d8a829aca6f7b42dd5748ba45e88f09558558",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -143,9 +179,15 @@
       "repository": "https://github.com/KoraFiveM/kora_cityhall.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "abde59762431805661cd327df5c4d4a8bfcaecaa",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -160,9 +202,15 @@
       "repository": "https://github.com/KoraFiveM/kora_clothing.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "a875836dbca52e7c37582853342523630c0e2acb",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -177,9 +225,15 @@
       "repository": "https://github.com/KoraFiveM/kora_consumables.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "5b53b8148175bf190b436f592b8b669ca84806bf",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -194,9 +248,15 @@
       "repository": "https://github.com/KoraFiveM/kora_core.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.1",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "6d79ebed6cd06083a7d84313086fa95800783ebb",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.1",
           "tag": "v0.1.1",
@@ -216,9 +276,15 @@
       "repository": "https://github.com/KoraFiveM/kora_crafting.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "14302cd5843d75e7d35ce0effb6cc5761d2b60b2",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -386,9 +452,15 @@
       "repository": "https://github.com/KoraFiveM/kora_fuel.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "ede70a9a57ba24b23747288dab7531fee9bfb39d",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -616,7 +688,7 @@
           "commit": "6781ba08a98d82080df05df6eb2394e116b27f22"
         }
       ],
-      "description": "Management of players’ multiple jobs."
+      "description": "Management of players\u2019 multiple jobs."
     },
     {
       "id": "kora-newsjob",
@@ -641,9 +713,15 @@
       "repository": "https://github.com/KoraFiveM/kora_pawnshop.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "419585fc17decbb26e309c0909f3ed0e1bea19e3",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -828,9 +906,15 @@
       "repository": "https://github.com/KoraFiveM/kora_target.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.1",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "881749f4872072a23e49a53986c9306812067102",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.1",
           "tag": "v0.1.1",
