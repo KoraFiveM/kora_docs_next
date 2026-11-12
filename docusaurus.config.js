@@ -19,7 +19,7 @@ export default {
     blog: false,
     theme: {customCss: './src/css/custom.css'},
   }]],
-  themes: [['@easyops-cn/docusaurus-search-local', {
+  themes: [['cosmos-docusaurus-theme', {injectFavicon: false}], ['@easyops-cn/docusaurus-search-local', {
     hashed: true, indexBlog: false, docsRouteBasePath: ['guides', 'resources'],
     docsDir: ['docs', ...resources.flatMap(resource => resource.versions.map(release => `resource-${resource.id}_versioned_docs/version-${release.version}`))],
   }]],
