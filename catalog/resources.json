@@ -194,9 +194,14 @@
       "repository": "https://github.com/KoraFiveM/kora_core.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.1.1",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "a4016183ac0993e051abc2bdfcea6c8477990182"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -823,9 +828,14 @@
       "repository": "https://github.com/KoraFiveM/kora_target.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.1.1",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.1.1",
+          "tag": "v0.1.1",
+          "commit": "46b2c04450a2320cd2f7b2b59d455641774deacd"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
