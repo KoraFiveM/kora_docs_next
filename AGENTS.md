@@ -7,3 +7,10 @@ Resource Markdown belongs in the owning resource repository. Register released d
 Keep styling in src/css/custom.css and presentational pages. Prefer stock Docusaurus behaviour and plain Markdown. The only theme wrapper provides an active-resource version dropdown. Keep importer and catalog changes independent of cosmetic work.
 
 Run npm test and npm run build. Importer tests use temporary local Git repositories and must not fetch or modify real resource repositories. Do not enable hosting, change resource repositories, or publish releases merely to validate the site.
+
+## Shared contributor guides
+
+Read docs/contributing.md, docs/lua-tooling.md and docs/architecture-standards.md
+for the shared human/agent standards. The Docker setup repository owns the canonical
+CONTRIBUTING.md and tooling templates; keep these explanatory guides consistent.
+Do not change released resource snapshots to publish shared contributor guidance.

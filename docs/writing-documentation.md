@@ -19,3 +19,8 @@ Use `fxmanifest.lua`'s `version` field for the resource version. Its `fx_version
 Prefer Markdown to MDX. MDX executes code during the trusted site build; register only repositories and commits reviewed by the maintainers. No resource install scripts or frontend builds run during import.
 
 Keep assets under `docs/`, and use relative links so old releases remain self-contained. Avoid root-relative links into a different resource version.
+
+Code and documentation contributors follow [the shared contribution standards](./contributing.md).
+Document public API realms, units, returns, yielding/failure behavior and ownership;
+use the [architecture guide](./architecture-standards.md) and
+[Lua tooling guide](./lua-tooling.md) when changing code examples.
