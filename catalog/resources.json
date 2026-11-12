@@ -7,9 +7,16 @@
       "repository": "https://github.com/KoraFiveM/kora_lib.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "66ef017668adef3f55448d33cfc371df67ef9830",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -418,9 +425,16 @@
       "repository": "https://github.com/KoraFiveM/kora_emotemenu.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "dc1387a4ad08d139dcce39428e575f6fdcade101",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -526,9 +540,16 @@
       "repository": "https://github.com/KoraFiveM/kora_inventory.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "a599003d5b51ed75c38eacdc8e09407e01624b4b",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -577,9 +598,16 @@
       "repository": "https://github.com/KoraFiveM/kora_lib-playground.git",
       "docsPath": "bot/README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "4427e6d13c6cf067813aa56f30125055cc6022bf",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -753,9 +781,16 @@
       "repository": "https://github.com/KoraFiveM/kora_phoneshop_demo.git",
       "docsPath": null,
       "entryPage": "index",
-      "latest": "0.1.0",
-      "docsAvailable": false,
+      "latest": "0.2.0",
+      "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "596e7ccc3a2ca73517ac4f08b28edac1e28a02eb",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -787,9 +822,16 @@
       "repository": "https://github.com/KoraFiveM/kora_queue.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "32b65a4daf4a4cbc36b170851468e08b3f9a3e8e",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -889,9 +931,16 @@
       "repository": "https://github.com/KoraFiveM/kora_sql.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "c2a75efe5ccea9e305d5a91e97bf058211bab23c",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -934,9 +983,16 @@
       "repository": "https://github.com/KoraFiveM/kora_theme.git",
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "4461f33139889e54f3970476dac401edcb6dc5cc",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
@@ -1019,9 +1075,16 @@
       "repository": "https://github.com/KoraFiveM/kora_voice.git",
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.1.0",
+      "latest": "0.2.0",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.0",
+          "tag": "v0.2.0",
+          "commit": "f699d3ffae9f5562a59eabd0a41f12b29311cd00",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.1.0",
           "tag": "v0.1.0",
