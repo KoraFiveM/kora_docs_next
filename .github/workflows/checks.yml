@@ -7,8 +7,9 @@ permissions:
   contents: read
 jobs:
   build:
-    # Fork PRs stay on GitHub-hosted runners: this machine also serves the site.
-    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || 'kora-vps' }}
+    # Fork PRs are skipped so nothing untrusted runs on the self-hosted runner (and no hosted minutes are used).
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: kora-vps
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
