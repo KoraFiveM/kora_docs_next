@@ -28,8 +28,8 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          DOCS_URL: https://korafivem.github.io
-          DOCS_BASE_URL: /kora_docs_next/
+          DOCS_URL: https://docs.koraframe.work
+          DOCS_BASE_URL: /
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: build/
