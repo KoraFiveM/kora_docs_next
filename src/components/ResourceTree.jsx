@@ -18,7 +18,8 @@ export default function ResourceTree() {
         return pathname === prefix || pathname.startsWith(`${prefix}/`);
       })) || versions.find(item => item.name === resource.latest);
       if (!version) return null;
-      const entry = version.docs.find(doc => doc.id === resource.entryPage) ?? version.docs.find(doc => doc.id === version.mainDocId);
+      const release = resource.versions.find(item => item.version === version.name);
+      const entry = version.docs.find(doc => doc.id === (release?.entryPage ?? resource.entryPage)) ?? version.docs.find(doc => doc.id === version.mainDocId);
       if (!entry) return null;
       return <li className="menu__list-item" key={resource.id}>
         <details open={active || undefined}>

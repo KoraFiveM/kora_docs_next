@@ -49,6 +49,9 @@ test('rejects unsafe paths, duplicate resources and unsupported repositories', (
     assert.throws(() => validateCatalog({schemaVersion: 1, resources: [{...resource, ...changes}]}));
   }
   assert.throws(() => validateCatalog({schemaVersion: 1, resources: [resource, resource]}));
+  const firstDocs = {...resource, docsPath: null, docsAvailable: true, versions: [{...resource.versions[0], docsPath: 'docs'}]};
+  assert.doesNotThrow(() => validateCatalog({schemaVersion: 1, resources: [firstDocs]}));
+  assert.throws(() => validateCatalog({schemaVersion: 1, resources: [{...firstDocs, versions: resource.versions}]}));
 });
 
 test('rejects symlinks in resource documentation', async () => {

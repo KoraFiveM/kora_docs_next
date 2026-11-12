@@ -95,3 +95,5 @@ Next integrations can propose catalog-update PRs when resources release, and add
 Docusaurus and direct dependencies are pinned in package.json, with a committed npm lockfile. Explicit overrides select patched `tinypool`, `serialize-javascript`, and `sockjs`'s `uuid`; remove them when upstream constraints adopt patched versions. Run the fixture build when updating these dependencies.
 
 `npm audit` may still report the upstream `deepmerge` prototype-poisoning advisory through Docusaurus's SVG tooling; there is no patched published version in the current dependency line. Only reviewed repository content participates in builds. Recheck upstream fixes during dependency updates.
+
+Automatic documentation patch releases are configured in `docs/publishing-resources.md`. They are disabled until the GitHub App secrets and repository variable are configured.

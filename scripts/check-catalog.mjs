@@ -18,7 +18,7 @@ try {
         }
         for (const release of resource.versions) {
           const match = next.versions.find(item => item.version === release.version);
-          if (!match || match.tag !== release.tag || match.commit !== release.commit) throw new Error(`Cannot replace published ${resource.id} ${release.version}`);
+          if (!match || match.tag !== release.tag || match.commit !== release.commit || match.docsPath !== release.docsPath || match.entryPage !== release.entryPage) throw new Error(`Cannot replace published ${resource.id} ${release.version}`);
         }
       }
     }

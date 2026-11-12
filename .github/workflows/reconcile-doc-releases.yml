@@ -1,0 +1,56 @@
+name: Reconcile resource documentation releases
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: resource-docs-releases
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    if: vars.DOCS_RELEASE_AUTOMATION_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
+        id: app
+        with:
+          app-id: ${{ secrets.KORA_DOCS_APP_ID }}
+          private-key: ${{ secrets.KORA_DOCS_APP_PRIVATE_KEY }}
+          owner: KoraFiveM
+          permission-contents: write
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          token: ${{ steps.app.outputs.token }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+      - name: Prepare GitHub authentication
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: gh auth setup-git
+      - name: Create patch releases and import snapshots
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: node scripts/reconcile-doc-releases.mjs
+      - name: Publish successful snapshots
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: |
+          git config user.name 'Kora Docs Automation'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- catalog/resources.json resource-*_versions.json resource-*_versioned_docs resource-*_versioned_sidebars
+          if ! git diff --cached --quiet; then
+            git commit -m 'docs: publish resource releases'
+            git push origin HEAD:main
+          fi
+      - name: Report resources needing attention
+        if: always()
+        run: |
+          if [ -s docs-reconcile-errors.txt ]; then
+            cat docs-reconcile-errors.txt
+            exit 1
+          fi

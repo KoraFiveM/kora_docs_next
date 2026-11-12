@@ -28,6 +28,7 @@ test('CI permits new versions but rejects replacing published versions', async (
       value => {value.resources[0].docsPath = 'other';},
       value => {value.resources[0].versions = [];},
       value => {value.resources[0].versions[0].commit = 'b'.repeat(40);},
+      value => {value.resources[0].versions[0].docsPath = 'other';},
     ]) {
       const changed = structuredClone(previous); mutate(changed);
       await fs.writeFile(catalogFile, JSON.stringify(changed));

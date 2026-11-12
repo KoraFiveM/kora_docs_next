@@ -9,6 +9,17 @@ const semver = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z.-]+)?$/;
 const safePath = value => typeof value === 'string' && value.length > 0 &&
   !value.startsWith('/') && !value.includes('\\') &&
   value.split('/').every(part => part !== '' && part !== '.' && part !== '..');
+async function hasEntry(directory, entryPage) {
+  const target = path.join(directory, entryPage);
+  try {
+    const basename = path.basename(target);
+    const files = await fs.readdir(path.dirname(target));
+    return files.some(file => file.startsWith(`${basename}.`) && /^\.mdx?$/i.test(file.slice(basename.length)));
+  } catch (error) {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  }
+}
 const git = (directory, args, encoding = 'utf8') => execFileSync('git', ['-C', directory, ...args], {
   encoding, maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'],
   env: {...process.env, GIT_TERMINAL_PROMPT: '0'},
@@ -51,7 +62,7 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
     if (typeof resource.title !== 'string' || !resource.title.trim()) throw new Error(`Missing title: ${resource.id}`);
     const github = /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\.git$/;
     if (!github.test(resource.repository ?? '') && !(allowLocal && path.isAbsolute(resource.repository ?? ''))) throw new Error('Repository must be a GitHub HTTPS .git URL');
-    if ((resource.docsPath !== null && !safePath(resource.docsPath)) || (!resource.docsPath && resource.docsAvailable !== false) || !safePath(resource.entryPage) || /[?#\s]/.test(resource.entryPage)) throw new Error('Unsafe docsPath or entryPage');
+    if ((resource.docsPath !== null && !safePath(resource.docsPath)) || !safePath(resource.entryPage) || /[?#\s]/.test(resource.entryPage)) throw new Error('Unsafe docsPath or entryPage');
     if (!Array.isArray(resource.versions) || resource.versions.length === 0) throw new Error('Resource needs at least one version');
     const versions = new Set();
     for (const release of resource.versions) {
@@ -59,8 +70,13 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
       versions.add(release.version);
       if (!/^[a-f0-9]{40}$/.test(release.commit ?? '')) throw new Error('Commit must be a full lowercase SHA');
       if (release.tag !== `v${release.version}`) throw new Error('Tag must match v<version>');
+      if (Object.hasOwn(release, 'docsPath') && release.docsPath !== null && !safePath(release.docsPath)) throw new Error('Unsafe release docsPath');
+      if (Object.hasOwn(release, 'entryPage') && (!safePath(release.entryPage) || /[?#\s]/.test(release.entryPage))) throw new Error('Unsafe release entryPage');
     }
     if (!versions.has(resource.latest) || resource.latest.includes('-')) throw new Error('latest must name a registered stable version');
+    const latestRelease = resource.versions.find(item => item.version === resource.latest);
+    const latestPath = Object.hasOwn(latestRelease, 'docsPath') ? latestRelease.docsPath : resource.docsPath;
+    if (!latestPath && resource.docsAvailable !== false) throw new Error('Available docs require a source path');
   }
   return catalog;
 }
@@ -71,7 +87,8 @@ export async function importDocs({siteDir = root, catalog, allowLocal = false, s
   if (!sync) {
     for (const resource of catalog.resources) for (const release of resource.versions) {
       const snapshot = path.join(siteDir, `resource-${resource.id}_versioned_docs`, `version-${release.version}`);
-      await fs.access(path.join(snapshot, `${resource.entryPage}.md`)).catch(() => fs.access(path.join(snapshot, `${resource.entryPage}.mdx`)));
+      const entryPage = release.entryPage ?? resource.entryPage;
+      if (!await hasEntry(snapshot, entryPage)) throw new Error(`Entry page missing: ${entryPage}`);
     }
     await fs.mkdir(path.join(siteDir, '.generated'), {recursive: true});
     await fs.writeFile(path.join(siteDir, '.generated/catalog.json'), JSON.stringify(catalog, null, 2) + '\n');
@@ -90,6 +107,8 @@ export async function importDocs({siteDir = root, catalog, allowLocal = false, s
       const plugin = `resource-${resource.id}`;
       await fs.mkdir(path.join(staged, '.generated/current', resource.id), {recursive: true});
       for (const release of resource.versions) {
+        const docsPath = Object.hasOwn(release, 'docsPath') ? release.docsPath : resource.docsPath;
+        const entryPage = release.entryPage ?? resource.entryPage;
         git(repository, ['fetch', '--quiet', '--depth=1', 'origin', `refs/tags/${release.tag}:refs/tags/${release.tag}`]);
         const resolved = git(repository, ['rev-parse', `refs/tags/${release.tag}^{commit}`]).trim();
         if (resolved !== release.commit) throw new Error(`Tag/commit mismatch: ${resource.id} ${release.version}`);
@@ -99,16 +118,16 @@ export async function importDocs({siteDir = root, catalog, allowLocal = false, s
         const output = path.join(staged, `${plugin}_versioned_docs`, `version-${release.version}`);
         await fs.mkdir(output, {recursive: true});
         let markdownCount = 0;
-        if (resource.docsPath === null) {
+        if (docsPath === null) {
           const title = resource.title.replaceAll('\\', '\\\\').replaceAll('"', '\\"');
           await fs.writeFile(path.join(output, 'index.md'), `---\ntitle: ${title}\n---\n\n# ${title}\n\nDocumentation for this resource is coming soon. This page records the v${release.version} release.\n`);
           markdownCount = 1;
-        } else if (/\.mdx?$/i.test(resource.docsPath)) {
-          const bytes = git(repository, ['show', `${resolved}:${resource.docsPath}`], null);
+        } else if (/\.mdx?$/i.test(docsPath)) {
+          const bytes = git(repository, ['show', `${resolved}:${docsPath}`], null);
           await fs.writeFile(path.join(output, 'index.md'), normalizeMarkdown(bytes.toString('utf8')));
           markdownCount = 1;
         } else {
-          const entries = git(repository, ['ls-tree', '-rz', `${resolved}:${resource.docsPath}`]).split('\0').filter(Boolean);
+          const entries = git(repository, ['ls-tree', '-rz', `${resolved}:${docsPath}`]).split('\0').filter(Boolean);
           for (const entry of entries) {
             const match = /^(\d+) (\w+) ([a-f0-9]+)\t([\s\S]+)$/.exec(entry);
             if (!match || !['100644', '100755'].includes(match[1]) || match[2] !== 'blob' || !safePath(match[4])) throw new Error('Docs must contain only regular files; symlinks and submodules are rejected');
@@ -121,8 +140,7 @@ export async function importDocs({siteDir = root, catalog, allowLocal = false, s
           }
         }
         if (!markdownCount) throw new Error(`No Markdown found: ${resource.id} ${release.version}`);
-        const entryExists = await Promise.all(['.md', '.mdx'].map(extension => fs.access(path.join(output, resource.entryPage + extension)).then(() => true, () => false)));
-        if (!entryExists.some(Boolean)) throw new Error(`Entry page missing: ${resource.entryPage}`);
+        if (!await hasEntry(output, entryPage)) throw new Error(`Entry page missing: ${entryPage}`);
         const sidebarDirectory = path.join(staged, `${plugin}_versioned_sidebars`);
         await fs.mkdir(sidebarDirectory, {recursive: true});
         await fs.writeFile(path.join(sidebarDirectory, `version-${release.version}-sidebars.json`), JSON.stringify({docs: [{type: 'autogenerated', dirName: '.'}]}, null, 2));

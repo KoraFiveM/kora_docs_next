@@ -18,7 +18,8 @@ export default function Resources() {
         <p>Explore the latest documentation for each Kora resource.</p>
         <div className="resource-list">{resources.map(resource => {
           const version = docs[`resource-${resource.id}`]?.versions.find(item => item.name === resource.latest);
-          const entry = version?.docs.find(doc => doc.id === resource.entryPage) ?? version?.docs.find(doc => doc.id === version.mainDocId);
+          const release = resource.versions.find(item => item.version === version?.name);
+          const entry = version?.docs.find(doc => doc.id === (release?.entryPage ?? resource.entryPage)) ?? version?.docs.find(doc => doc.id === version.mainDocId);
           return <section className="resource-card" key={resource.id}>
             <h2>{entry ? <Link to={entry.path}>{resource.title}</Link> : resource.title}</h2>
             <p>{resource.description}</p>

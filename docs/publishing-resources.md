@@ -5,13 +5,14 @@ sidebar_position: 3
 
 # Publishing resources
 
-1. Release the resource in its owning repository. The release commit should contain the code, `docs/`, and matching `fxmanifest.lua` version.
-2. Open a pull request updating `catalog/resources.json` in this repository. Record the full commit SHA, readable tag, version, docs directory, and entry page.
-3. Run `npm ci`, `npm test`, and `npm run build`. CI checks the tag resolves to the recorded commit, the manifest version matches, and the docs build with valid links.
-4. Merge the catalog update. Publish the generated `build/` directory through the chosen static host.
+Resource documentation is published from tagged commits. The automatic reconciler checks `dev` every ten minutes and can also be run manually. When only documentation and contributor instructions have changed since the latest release, it increments the resource patch version, commits `fxmanifest.lua`, creates the matching tag, and adds a new docs snapshot. The Pages workflow then publishes it.
 
-See the repository README for the exact catalog format. Resource releases do not modify this repository automatically yet. A future notification workflow can propose catalog PRs through the same checks.
+If code changes are mixed in with documentation changes, the reconciler reports the resource for a deliberate release instead of guessing that a patch bump is safe. Existing released snapshots and tags stay pinned. A version commit to `dev` triggers the existing shared-dev deployment workflow.
 
-Version routes contain explicit versions, including the latest release. The Resources page marks the selected latest stable release. Old published version entries are append-only: keep their pinned commits and source tags unchanged.
+For manual publication, release the resource in its own repository, add the new version and commit to `catalog/resources.json`, run `npm run docs:sync` with access to the resource repos, and submit the resulting snapshot through the usual docs repository workflow.
 
-Publishing a resource or deploying the game server does not automatically deploy this docs site. A Kora-wide release selector is planned separately; this site currently selects versions per resource.
+## Enable automatic releases
+
+An organisation administrator must install a GitHub App on the docs repository and the Kora resource repositories with **Contents: read and write** permission. Store its app ID as `KORA_DOCS_APP_ID` and private key as `KORA_DOCS_APP_PRIVATE_KEY` in the docs repository’s Actions secrets. Permit the app to push to the resources’ `dev` branches and the docs repository’s `main` branch under any branch rules. Set the repository Actions variable `DOCS_RELEASE_AUTOMATION_ENABLED` to `true`, then run **Reconcile resource documentation releases** once using Actions. Until then, the workflow is disabled.
+
+The app token is scoped to Contents permission. GitHub App commits to this repository trigger the existing Pages workflow. A failed push is retried on the next reconciliation; successfully created tags are imported on the next run if publication was interrupted.
