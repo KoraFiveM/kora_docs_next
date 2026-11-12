@@ -206,8 +206,11 @@ kbd {border: 1px solid var(--kora-border-strong); border-bottom-width: 2px; bord
 .button {border-radius: var(--kora-radius); font-weight: 600; transition: transform .15s, box-shadow .15s, background .15s;}
 .button:hover {transform: translateY(-1px);}
 .button--primary {box-shadow: 0 0 0 1px rgba(149, 255, 0, .5), 0 6px 20px rgba(149, 255, 0, .18);}
-.button--secondary {background: transparent; color: var(--ifm-font-color-base); border: 1px solid var(--kora-border-strong);}
-.button--secondary:hover {border-color: var(--kora-primary); color: var(--kora-primary); background: transparent;}
+/* Infima sets `.button.button--secondary { color: gray-900 }` (two classes), which beat a one-class rule and left
+   dark text on the dark page. Match its specificity so the outline button is readable in both themes. */
+.button.button--secondary {background: transparent; color: var(--kora-primary, var(--ifm-color-primary)); border: 1px solid var(--kora-primary, var(--ifm-color-primary));}
+.button.button--secondary:hover {background: rgba(149, 255, 0, .1); border-color: var(--kora-primary, var(--ifm-color-primary)); color: var(--kora-primary, var(--ifm-color-primary));}
+html:not([data-theme='dark']) .button.button--secondary:hover {background: rgba(40, 112, 0, .08);}
 
 /* Resource cards. */
 .resource-card {
