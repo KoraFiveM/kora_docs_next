@@ -7,7 +7,7 @@ import catalog from '../../.generated/catalog.json';
 export default function ResourceTree() {
   const docs = useAllDocsData();
   const {pathname} = useLocation();
-  const label = doc => doc.id.split('/').pop().replace(/[-_]+/g, ' ');
+  const label = doc => doc.id.replace(/[-_]+/g, ' ').replace(/\//g, ' / ');
   const resources = [...catalog.resources].sort((a, b) => a.title.localeCompare(b.title));
   return <ul className="menu__list resource-tree">
     {resources.map(resource => {
@@ -24,7 +24,7 @@ export default function ResourceTree() {
         <details open={active || undefined}>
           <summary>{resource.title}</summary>
           <ul className="menu__list">
-            <li className="menu__list-item"><Link className="menu__link" to={entry.path}>Overview <small>({version.label})</small></Link></li>
+            <li className="menu__list-item"><Link className="menu__link" to={entry.path}>Overview</Link></li>
             {[...version.docs].filter(doc => doc.id !== entry.id).sort((a, b) => label(a).localeCompare(label(b))).map(doc =>
               <li className="menu__list-item" key={doc.id}><Link className="menu__link" to={doc.path}>{label(doc)}</Link></li>)}
           </ul>
