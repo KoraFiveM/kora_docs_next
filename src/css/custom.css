@@ -17,8 +17,17 @@
   --ifm-code-font-size: 95%;
 }
 html[data-theme='dark'] {
-  --ifm-font-color-base: #ededed;
-  --ifm-font-color-secondary: #b5b5b5;
+  /* kora_theme "Kora green": background, surface, raised, border, foreground, muted, primary. */
+  --kora-bg: #101010;
+  --kora-surface: #171717;
+  --kora-popover: #1b1b1b;
+  --kora-raised: #242424;
+  --kora-hover: #2a2a2a;
+  --kora-border: #343434;
+  --kora-border-strong: #444444;
+  --kora-fg: #f5f5f5;
+  --kora-muted: #949494;
+  --kora-primary: #95ff00;
   --cosmos-brand-light: #95ff00;
   --cosmos-brand-light-rgb: 149, 255, 0;
   --ifm-color-primary: #95ff00;
@@ -28,18 +37,60 @@ html[data-theme='dark'] {
   --ifm-color-primary-light: #a0ff1a;
   --ifm-color-primary-lighter: #a5ff26;
   --ifm-color-primary-lightest: #b5ff4d;
-  --ifm-background-color: #0f0f0f;
-  --ifm-background-surface-color: #151515;
-  --ifm-navbar-background-color: #0a0a0a;
-  --ifm-footer-background-color: #0a0a0a;
-  --ifm-link-color: #4ade80;
-  --ifm-link-hover-color: #95ff00;
+  --ifm-font-color-base: var(--kora-fg);
+  --ifm-font-color-secondary: var(--kora-muted);
+  --ifm-background-color: var(--kora-bg);
+  --ifm-background-surface-color: var(--kora-surface);
+  --ifm-navbar-background-color: rgba(16, 16, 16, .82);
+  --ifm-footer-background-color: #0b0b0b;
+  --ifm-link-color: var(--kora-primary);
+  --ifm-link-hover-color: #b5ff4d;
+  --ifm-toc-border-color: var(--kora-border);
+  --ifm-color-emphasis-200: var(--kora-raised);
+  --ifm-color-emphasis-300: var(--kora-border);
+  --ifm-color-emphasis-400: var(--kora-border-strong);
+  --ifm-menu-color-background-hover: var(--kora-raised);
+  --ifm-menu-color-background-active: var(--kora-raised);
+  --ifm-code-background: var(--kora-raised);
+  --ifm-table-stripe-background: var(--kora-surface);
+  --ifm-table-border-color: var(--kora-border);
+  --ifm-hr-background-color: var(--kora-border);
+  --ifm-table-head-background: var(--kora-raised);
+  --ifm-card-background-color: var(--kora-surface);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-link-hover-color: var(--kora-primary);
+  --ifm-navbar-link-active-color: var(--kora-primary);
+  --ifm-navbar-search-input-background-color: var(--kora-raised);
+  --search-local-modal-background: var(--kora-surface);
+  --search-local-hit-background: var(--kora-raised);
+  --docsearch-modal-background: var(--kora-surface);
+  --docsearch-searchbox-background: var(--kora-bg);
+  --docsearch-searchbox-focus-background: var(--kora-bg);
+  --docsearch-hit-background: var(--kora-raised);
+  --docsearch-footer-background: var(--kora-bg);
 }
-.navbar__title {font-weight: 800; letter-spacing: .03em;}
-.kora-intro {padding: 4rem 0 2rem; max-width: 48rem;}
-.kora-intro h1 {font-size: clamp(2.5rem, 6vw, 4rem);}
+html[data-theme='light'] {
+  --kora-bg: #ffffff;
+  --kora-surface: #f6f7f4;
+  --kora-raised: #eef0ea;
+  --kora-border: #dfe2d9;
+  --kora-border-strong: #c9cdc0;
+  --kora-muted: #5f665a;
+  --kora-primary: #287000;
+  --ifm-background-surface-color: var(--kora-surface);
+  --ifm-navbar-background-color: rgba(255, 255, 255, .85);
+  --ifm-code-background: var(--kora-raised);
+}
+:root {
+  --kora-radius: 8px;
+  --kora-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 8px 24px rgba(0, 0, 0, .18);
+  --ifm-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
+  --ifm-font-family-monospace: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --ifm-global-radius: var(--kora-radius);
+  --ifm-code-border-radius: 6px;
+}
 .resource-list {display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));}
-.resource-card {padding: 1.5rem; border: 1px solid var(--ifm-color-emphasis-300); border-radius: 8px;}
 .resource-card ul {margin-bottom: 0;}
 
 .resource-version-picker {display: block; margin: .75rem 0 1.5rem;}
@@ -59,7 +110,6 @@ html[data-theme='dark'] {
 
 /* Dark text maintains contrast on Kora's lime primary buttons. */
 [data-theme='dark'] .button--primary { color: #0a1204 !important; }
-.btn-primary:hover { background: #1c4e00; border-color: #1c4e00; }
 
 /* Cosmos embeds its default indigo in these disclosure icons. */
 details > summary::before {
@@ -68,3 +118,152 @@ details > summary::before {
 [data-theme='dark'] details > summary::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2395ff00' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
 }
+
+/* ===== Kora styling =====
+   Palette and shapes follow kora_theme ("Kora green"): near-black layered surfaces,
+   one lime accent, 8px radius, soft shadows. Stock Docusaurus components only. */
+::selection {background: rgba(149, 255, 0, .28);}
+:focus-visible {outline: 2px solid var(--kora-primary); outline-offset: 2px; border-radius: 4px;}
+html {scroll-behavior: smooth;}
+@media (prefers-reduced-motion: reduce) {html {scroll-behavior: auto;} * {transition: none !important;}}
+
+/* Navbar: translucent bar, hairline border, lime brand mark. */
+.navbar {
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--kora-border);
+  box-shadow: none;
+}
+.navbar__title {font-weight: 800; letter-spacing: .06em; text-transform: uppercase;}
+.navbar__brand::before {
+  content: ''; width: .7rem; height: .7rem; margin-right: .55rem; border-radius: 3px;
+  background: var(--kora-primary); box-shadow: 0 0 14px rgba(149, 255, 0, .55);
+}
+.navbar__link {font-weight: 500;}
+.navbar__link--active, .navbar__link:hover {color: var(--kora-primary);}
+
+/* Sidebar and table of contents: lime marker on the active entry. */
+.menu__link {border-radius: 6px; transition: background .15s, color .15s;}
+.menu__link--active:not(.menu__link--sublist) {
+  color: var(--kora-primary); font-weight: 600; background: rgba(149, 255, 0, .08);
+  box-shadow: inset 2px 0 0 var(--kora-primary);
+}
+.table-of-contents__link--active {color: var(--kora-primary); font-weight: 600;}
+.theme-doc-sidebar-container {border-right: 1px solid var(--kora-border) !important;}
+
+/* Content. */
+.markdown h1 {font-weight: 800; letter-spacing: -.02em;}
+.markdown h2 {
+  font-weight: 700; letter-spacing: -.01em; margin-top: 2.5rem; padding-bottom: .4rem;
+  border-bottom: 1px solid var(--kora-border);
+}
+.markdown a {text-underline-offset: 3px;}
+.breadcrumbs__link {border-radius: 6px; background: transparent; font-weight: 500;}
+.breadcrumbs__item--active .breadcrumbs__link {color: var(--kora-primary); background: rgba(149, 255, 0, .08);}
+.pagination-nav__link {border: 1px solid var(--kora-border); border-radius: var(--kora-radius); transition: border-color .15s, transform .15s;}
+.pagination-nav__link:hover {border-color: var(--kora-primary); transform: translateY(-1px);}
+.pagination-nav__sublabel {color: var(--kora-muted);}
+.pagination-nav__label {color: var(--kora-primary);}
+
+/* Code. */
+code {border: 1px solid var(--kora-border); border-radius: 6px; padding: .1rem .35rem; font-size: 88%;}
+pre code, .theme-code-block code {border: 0; padding: 0;}
+.theme-code-block {
+  border: 1px solid var(--kora-border); border-radius: var(--kora-radius);
+  box-shadow: var(--kora-shadow); overflow: hidden;
+}
+[data-theme='dark'] .theme-code-block, [data-theme='dark'] pre {background: var(--kora-surface) !important;}
+[data-theme='dark'] .theme-code-block [class*='codeBlockTitle'] {background: var(--kora-raised); border-bottom: 1px solid var(--kora-border);}
+kbd {border: 1px solid var(--kora-border-strong); border-bottom-width: 2px; border-radius: 5px; background: var(--kora-raised); color: var(--ifm-font-color-base);}
+
+/* Tables. */
+.markdown table {display: table; width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--kora-border); border-radius: var(--kora-radius); overflow: hidden;}
+.markdown table th {background: var(--kora-raised); font-weight: 700; text-transform: uppercase; font-size: .72rem; letter-spacing: .06em; color: var(--kora-muted);}
+.markdown table th, .markdown table td {border: 0; border-bottom: 1px solid var(--kora-border);}
+.markdown table tr:last-child td {border-bottom: 0;}
+.markdown table tr:nth-child(2n) {background: transparent;}
+.markdown table tbody tr:hover {background: var(--kora-surface);}
+
+/* Admonitions. */
+.theme-admonition {border: 1px solid var(--kora-border); border-left-width: 3px; border-radius: var(--kora-radius); box-shadow: none; background: var(--kora-surface);}
+
+/* Home. */
+.kora-home {overflow-x: clip;}
+.kora-intro {position: relative; padding: 5rem 0 3rem; max-width: 52rem;}
+.kora-intro::before {
+  content: ''; position: absolute; z-index: -1; inset: -6rem -12rem auto -12rem; height: 28rem;
+  background: radial-gradient(ellipse at 20% 30%, rgba(149, 255, 0, .16), transparent 60%);
+  pointer-events: none;
+}
+[data-theme='light'] .kora-intro::before {background: radial-gradient(ellipse at 20% 30%, rgba(40, 112, 0, .1), transparent 60%);}
+.kora-eyebrow {
+  display: inline-block; margin-bottom: 1rem; padding: .25rem .7rem; border-radius: 999px;
+  border: 1px solid rgba(149, 255, 0, .4); background: rgba(149, 255, 0, .08); color: var(--kora-primary);
+  font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+}
+.kora-intro h1 {font-size: clamp(2.75rem, 7vw, 4.5rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.02;}
+.kora-intro .hero__subtitle {color: var(--kora-muted); font-size: 1.25rem; max-width: 38rem; margin-bottom: 2rem;}
+.button {border-radius: var(--kora-radius); font-weight: 600; transition: transform .15s, box-shadow .15s, background .15s;}
+.button:hover {transform: translateY(-1px);}
+.button--primary {box-shadow: 0 0 0 1px rgba(149, 255, 0, .5), 0 6px 20px rgba(149, 255, 0, .18);}
+.button--secondary {background: transparent; color: var(--ifm-font-color-base); border: 1px solid var(--kora-border-strong);}
+.button--secondary:hover {border-color: var(--kora-primary); color: var(--kora-primary); background: transparent;}
+
+/* Resource cards. */
+.resource-card {
+  padding: 1.25rem 1.5rem; background: var(--kora-surface); border: 1px solid var(--kora-border);
+  border-radius: var(--kora-radius); transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.resource-card:hover {border-color: var(--kora-primary); transform: translateY(-2px); box-shadow: var(--kora-shadow);}
+.resource-card h2 a {color: var(--ifm-font-color-base);}
+.resource-card:hover h2 a {color: var(--kora-primary);}
+.resource-card small {
+  display: inline-block; padding: .1rem .5rem; border-radius: 999px; border: 1px solid var(--kora-border-strong);
+  color: var(--kora-muted); font-family: var(--ifm-font-family-monospace); font-size: .72rem;
+}
+.resource-directory-sidebar {background: var(--kora-surface);}
+
+/* Footer. */
+.footer {border-top: 1px solid var(--kora-border);}
+.footer__copyright {color: var(--kora-muted); font-size: .85rem;}
+
+/* Scrollbars. */
+* {scrollbar-width: thin; scrollbar-color: var(--kora-border-strong) transparent;}
+
+/* ===== Dark mode: remap the Cosmos Tailwind grays onto kora_theme tokens =====
+   Cosmos hardcodes gray-950/900/800/700 (#030712/#111827/#1f2937/#374151) in many
+   selectors, so these overrides are prefixed with `html` for higher specificity (the CSS minifier
+   can otherwise hoist merged declarations above Cosmos's later rules).
+   gray-950 -> background, gray-900 -> surface, gray-800 -> border, gray-700 -> strong border. */
+html[data-theme='dark'] .main-wrapper {background-color: var(--kora-bg);}
+html[data-theme='dark'] .navbar {background-color: rgba(16, 16, 16, .82); border-bottom-color: var(--kora-border);}
+html[data-theme='dark'] .navbar__brand::after {background: var(--kora-border);}
+html[data-theme='dark'] .navbar__search-input {background-color: var(--kora-raised) !important;}
+html[data-theme='dark'] .navbar__search-input:focus {background-color: var(--kora-surface) !important;}
+html[data-theme='dark'] .theme-doc-sidebar-container {background: var(--kora-surface); border-right-color: var(--kora-border) !important;}
+html[data-theme='dark'] [class*='sidebarViewport']::after {background: var(--kora-surface); border-top-color: var(--kora-border);}
+html[data-theme='dark'] .menu__list > .menu__list-item > .menu__list {border-left-color: var(--kora-border-strong);}
+html[data-theme='dark'] table {border-color: var(--kora-border);}
+html[data-theme='dark'] th, html[data-theme='dark'] thead tr {background-color: var(--kora-raised);}
+html[data-theme='dark'] td, html[data-theme='dark'] th {border-color: var(--kora-border);}
+html[data-theme='dark'] .card {background-color: var(--kora-surface); border-color: var(--kora-border);}
+html[data-theme='dark'] details {background: var(--kora-surface); border-color: var(--kora-border);}
+html[data-theme='dark'] details > :not(summary) {border-top-color: var(--kora-border);}
+html[data-theme='dark'] .footer {background-color: #0b0b0b; border-top-color: var(--kora-border);}
+html[data-theme='dark'] .footer__copyright {border-top-color: var(--kora-border) !important;}
+html[data-theme='dark'] kbd {background: var(--kora-raised); border-color: var(--kora-border-strong);}
+html[data-theme='dark'] ::-webkit-scrollbar-thumb {background: var(--kora-border-strong);}
+html[data-theme='dark'] .DocSearch {
+  --docsearch-modal-background: var(--kora-surface);
+  --docsearch-searchbox-background: var(--kora-bg);
+  --docsearch-searchbox-focus-background: var(--kora-bg);
+  --docsearch-hit-background: var(--kora-raised);
+  --docsearch-footer-background: var(--kora-bg);
+  --docsearch-key-gradient: linear-gradient(-26.5deg, var(--kora-raised) 0%, var(--kora-surface) 100%);
+}
+
+/* Light mode: Kora backgrounds and a Kora-dark footer instead of Cosmos slate. */
+html[data-theme='light'] .main-wrapper {background-color: var(--kora-bg);}
+html[data-theme='light'] .footer {background-color: #101010; border-top: 1px solid var(--kora-border);}
+html[data-theme='light'] .footer__copyright {color: #949494;}
+html[data-theme='light'] .navbar {border-bottom-color: var(--kora-border);}
