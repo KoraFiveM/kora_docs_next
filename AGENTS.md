@@ -14,3 +14,5 @@ Read docs/contributing.md, docs/lua-tooling.md and docs/architecture-standards.m
 for the shared human/agent standards. The Docker setup repository owns the canonical
 CONTRIBUTING.md and tooling templates; keep these explanatory guides consistent.
 Do not change released resource snapshots to publish shared contributor guidance.
+
+Copyright © 2026 Kora Framework (new contribution guidance).

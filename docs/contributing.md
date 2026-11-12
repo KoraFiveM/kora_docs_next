@@ -1,14 +1,14 @@
 ---
-title: Contributing to Kora
+title: Contributing to Kora Framework
 sidebar_position: 4
 ---
 
-# Contributing to Kora
+# Contributing to Kora Framework
 
 Humans and coding agents follow the same standards. The
 [canonical CONTRIBUTING.md](https://github.com/KoraFiveM/kora_docker_dev/blob/main/CONTRIBUTING.md)
 and each resource's local CONTRIBUTING.md describe the review contract.
-This guide accompanies standards revision **2026-11-12.1**.
+This guide accompanies standards revision **2026-11-12.2**.
 
 Before editing, read the resource's README, AGENTS.md and relevant module guides.
 Trace the existing API, callers and tests. Identify the owner of the behavior and
@@ -54,7 +54,7 @@ active costs. Offline tests cannot stand in for an in-game check that was not ru
 
 ## Adoption
 
-First-wave adoption covers Kora feature resources, core/lib/sql, target, theme and
+First-wave adoption covers Kora Framework feature resources, core/lib/sql, target, theme and
 utils. Inventory, voice, chat, queue, emotemenu, sound, phone-stevie and imported/demo
 assets remain outside this wave. The setup repository's
 [rollout inventory](https://github.com/KoraFiveM/kora_docker_dev/blob/main/standards/rollout.json)
@@ -64,3 +64,7 @@ Each adopted resource carries its own tooling snapshot and revision. A standalon
 checkout needs no Docker setup checkout. Shared templates live in the setup repo;
 resource-specific source inventories, local type declarations and test commands
 remain owned by their resource. Agents use the same commands and review bar as humans.
+
+---
+
+Copyright © 2026 Kora Framework.

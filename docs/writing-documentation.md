@@ -24,3 +24,5 @@ Code and documentation contributors follow [the shared contribution standards](.
 Document public API realms, units, returns, yielding/failure behavior and ownership;
 use the [architecture guide](./architecture-standards.md) and
 [Lua tooling guide](./lua-tooling.md) when changing code examples.
+
+Copyright © 2026 Kora Framework (new contribution guidance).

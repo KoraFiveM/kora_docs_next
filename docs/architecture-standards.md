@@ -1,11 +1,11 @@
 ---
-title: Architecture and ownership
+title: Kora Framework architecture and ownership
 sidebar_position: 6
 ---
 
-# Architecture and ownership
+# Kora Framework architecture and ownership
 
-Kora-first features call native Kora APIs. Thin adapters translate genuine external
+New features use Kora Framework APIs. Thin adapters translate genuine external
 or legacy contracts into one owning implementation. Do not require every feature
 to support interchangeable frameworks.
 
@@ -80,7 +80,7 @@ compensation when several resource operations cannot form one transaction.
 
 Core's single player mutation funnel, target's registration ownership and
 jobcreator's single validator/write path are existing examples to preserve. Native
-target filtering remains framework-agnostic; Kora-first does not override that
+target filtering remains framework-agnostic; Kora Framework-first does not override that
 resource's documented contract.
 
 Every timer, entity, registration, subscription and UI focus needs an owner and
@@ -88,3 +88,7 @@ idempotent cleanup. Disabled features should register no work. Prefer events and
 existing schedulers, bound retries, and measure idle/active cost for hot-loop changes.
 Use assertions for programmer misuse, explicit failures for ordinary runtime
 rejection, and the existing audit/logging facilities without sensitive payloads.
+
+---
+
+Copyright © 2026 Kora Framework.

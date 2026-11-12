@@ -1,9 +1,9 @@
 ---
-title: Lua style and local tooling
+title: Kora Framework Lua style and local tooling
 sidebar_position: 5
 ---
 
-# Lua style and local tooling
+# Kora Framework Lua style and local tooling
 
 Use **StyLua 2.6.0**, **LuaLS 3.19.2**, and Python 3.10+.
 Install the appropriate official release assets:
@@ -81,7 +81,7 @@ files and consumer includes also need an inventory entry.
 
 The CLI isolates client/server contexts, analyzes shared code separately, and keeps
 manifest globals and test mocks out of runtime checks. FiveM definitions retain
-native realm markers; Kora API fields are filtered by their documented realm.
+native realm markers; Kora Framework API fields are filtered by their documented realm.
 Generated/browser/vendor/runtime files are excluded. Runtime build loaders are
 included. Resource-specific declarations may extend the appropriate
 `.standards/definitions-<realm>/` directory without wildcard globals.
@@ -93,3 +93,7 @@ resource to claim success. Behavior tests still need to verify authority and lif
 Use the StyLua and LuaLS editor extensions, with the committed formatter config.
 An editor indexing both realms together cannot enforce the CLI's isolation. Avoid
 workspace-wide native allowlists and keep CLI results authoritative.
+
+---
+
+Copyright © 2026 Kora Framework.
