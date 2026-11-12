@@ -80,7 +80,7 @@ MDX is executable build input: catalog changes are trusted-code changes and requ
 
 CI runs offline tests, the multi-resource fixture build, and the actual site build. GitHub Pages deploys the built site on pushes to `main`. The site and source repository are public.
 
-Publish `build/` to your preferred static host. Set `DOCS_URL` to the real origin and `DOCS_BASE_URL` to the hosting path before building. For GitHub project Pages, use `DOCS_BASE_URL=/kora_docs_next/`. The default `https://docs.koraframe.work` is configuration, not a provisioned domain.
+Publish `build/` to your preferred static host. Set `DOCS_URL` to the real origin and `DOCS_BASE_URL` to the hosting path before building. The production site is served from the custom domain `https://docs.koraframe.work` at the root path, which is the default and what the deploy workflow sets (`DOCS_URL=https://docs.koraframe.work`, `DOCS_BASE_URL=/`). Only use `DOCS_BASE_URL=/kora_docs_next/` when publishing to a GitHub project Pages URL without the custom domain.
 
 CI enforces append-only published catalog entries: old releases cannot be removed or repinned, and their repository/docs path stays fixed. Protect release tags upstream too. Correct released documentation through the owning resource's release policy. Establish an archive policy before retaining large numbers of versions; every retained page participates in the site build.
 
