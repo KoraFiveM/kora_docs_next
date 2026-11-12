@@ -1,3 +1,5 @@
+@import 'cosmos-docusaurus-theme/css/theme.css';
+
 /* Kora palette from kora_docs. Keep customisation here; use stock docs components. */
 :root {
   --ifm-color-primary: #287000;
@@ -9,9 +11,14 @@
   --ifm-color-primary-lightest: #349200;
   --cosmos-brand: #287000;
   --cosmos-brand-rgb: 40, 112, 0;
+  --cosmos-brand-light: #287000;
+  --cosmos-brand-light-rgb: 40, 112, 0;
+  --ifm-link-hover-color: #1c4e00;
   --ifm-code-font-size: 95%;
 }
-[data-theme='dark'] {
+html[data-theme='dark'] {
+  --ifm-font-color-base: #ededed;
+  --ifm-font-color-secondary: #b5b5b5;
   --cosmos-brand-light: #95ff00;
   --cosmos-brand-light-rgb: 149, 255, 0;
   --ifm-color-primary: #95ff00;
@@ -26,6 +33,7 @@
   --ifm-navbar-background-color: #0a0a0a;
   --ifm-footer-background-color: #0a0a0a;
   --ifm-link-color: #4ade80;
+  --ifm-link-hover-color: #95ff00;
 }
 .navbar__title {font-weight: 800; letter-spacing: .03em;}
 .kora-intro {padding: 4rem 0 2rem; max-width: 48rem;}
@@ -52,3 +60,11 @@
 /* Dark text maintains contrast on Kora's lime primary buttons. */
 [data-theme='dark'] .button--primary { color: #0a1204 !important; }
 .btn-primary:hover { background: #1c4e00; border-color: #1c4e00; }
+
+/* Cosmos embeds its default indigo in these disclosure icons. */
+details > summary::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23287000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+}
+[data-theme='dark'] details > summary::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2395ff00' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+}
