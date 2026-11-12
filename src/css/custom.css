@@ -167,7 +167,7 @@ html {scroll-behavior: smooth;}
 
 /* Code. */
 code {border: 1px solid var(--kora-border); border-radius: 6px; padding: .1rem .35rem; font-size: 88%;}
-pre code, .theme-code-block code {border: 0; padding: 0;}
+pre code, .theme-code-block code {border: 0; border-radius: 0; padding: var(--ifm-pre-padding);}
 .theme-code-block {
   border: 1px solid var(--kora-border); border-radius: var(--kora-radius);
   box-shadow: var(--kora-shadow); overflow: hidden;
