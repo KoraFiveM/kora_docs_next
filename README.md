@@ -90,6 +90,12 @@ This repository imports already released resource versions. Automated version bu
 
 Next integrations can propose catalog-update PRs when resources release, and add a Kora-wide selector using the central deployment manifest. Neither requires reimplementing resource versioning. Existing hash URLs and JavaScript content from the original site need a separate migration and redirect map before replacing it.
 
+## Site integrations
+
+Local search indexes the guides and resource documentation. The graph links guides and the latest release of each resource. Markdown versions of pages and `llms.txt` are generated at build time.
+
+Structured data is generated before `start` and `build`. The structured-data plugin currently supplies generic website and page metadata; its automatic front-matter discovery does not cover the versioned resource routes.
+
 ## Dependency maintenance
 
 Docusaurus and direct dependencies are pinned in package.json, with a committed npm lockfile. Explicit overrides select patched `tinypool`, `serialize-javascript`, and `sockjs`'s `uuid`; remove them when upstream constraints adopt patched versions. Run the fixture build when updating these dependencies.
