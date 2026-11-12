@@ -77,7 +77,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "4491145dc734fe7b0424561ab1150e5337393061",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",
@@ -100,7 +101,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "da2c2efcb45bd867af0ab5f20f2111e0c9a4888f",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",
@@ -146,7 +148,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "e06d8a829aca6f7b42dd5748ba45e88f09558558",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",
@@ -186,7 +189,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "abde59762431805661cd327df5c4d4a8bfcaecaa",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",
@@ -232,7 +236,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "5b53b8148175bf190b436f592b8b669ca84806bf",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",
@@ -283,7 +288,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "14302cd5843d75e7d35ce0effb6cc5761d2b60b2",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",
@@ -459,7 +465,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "ede70a9a57ba24b23747288dab7531fee9bfb39d",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",
@@ -720,7 +727,8 @@
           "version": "0.2.0",
           "tag": "v0.2.0",
           "commit": "419585fc17decbb26e309c0909f3ed0e1bea19e3",
-          "entryPage": "index"
+          "entryPage": "index",
+          "docsPath": "docs"
         },
         {
           "version": "0.1.0",

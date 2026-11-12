@@ -1,74 +1,96 @@
+---
+title: Kora Cards
+sidebar_position: 1
+---
+
 # Kora Cards
 
-Kora Cards is the first-party **City Legends** photography job, serialized card
-collection, shop, deck builder, and server-officiated casual/ranked TCG.
+Kora Cards adds **City Legends** to a Kora server: a Card Studio photography job at the Lifeinvader building, a collection of uniquely serialized trading cards, a binder and deck builder, a card shop, and a server-run trading card game with Casual and Ranked matches, Elo ratings and seasons. Every action the player takes is checked on the server. The client only shows server snapshots and sends requests.
 
-## Interface architecture
+## Features
 
-Binder, Decks, Play, Shop, Studio, and Ranked run inside kora_lib's shared
-AppShell, so they inherit the standard Kora navigation, focus lifecycle, forms,
-and kora_theme presentation. The resource-owned NUI is intentionally limited to
-the full card viewer, live portrait editor, and real-time match board; those
-overlays consume kora_theme's semantic tokens rather than defining a second
-palette.
+- **Card Studio job (`cardstudio`).** Employees clock in at the studio, buy supplies, check out a studio camera, take in-game portraits with `screenshot-basic`, edit them into card designs, activate them (the server rolls a permanent rarity) and print serialized cards. See [Card Studio job](./features/studio.md).
+- **Serialized prints.** Every printed, bought or starter card is one database row with its own serial number. Lifetime print caps depend on rarity. See [Collection and decks](./features/collection.md).
+- **Binder and physical cards.** Cards can be stored in the account binder or held as `trading_card` inventory items, which players can trade through `kora_inventory`. Deposit and withdraw move one exact print between the two.
+- **Starter decks.** Each character can claim one 60-card, account-bound starter deck, either Street Circuit or Harbor Guard. Bound cards can never leave the binder.
+- **Deck builder.** Build 60-card decks from your exact binder prints. Decks follow copy and rarity-point limits.
+- **Shop.** Buy catalog designs with bank money. Each purchase creates a new print in the binder.
+- **Card viewer.** View any card full-screen and show it to players within 5 metres.
+- **Match engine.** Two-player, turn-based matches with units, evolutions, resources, items, tactics, gear, venues, special conditions, prizes, a turn timer and disconnect grace. The server owns hidden information. See [Matches and game rules](./features/matches.md).
+- **Ranked play and seasons.** Elo ratings, a top-50 leaderboard, capped daily win payouts, season placement rewards and an admin season rollover. See [Ranked and seasons](./features/ranked.md).
+- **Database-authored catalog.** Card designs live in `kora_cards_designs`. The server validates them, then reloads the catalog atomically. After the first print, a design's content is locked by a hash. See [Catalog authoring](./features/catalog.md).
+- **Crash-safe transactions.** Prints, deposits, withdrawals, shop purchases and reward payouts are logged in an operations journal. Unfinished operations are recovered when the player next loads in. See [Database](./database.md).
 
-## Start order
+## Requirements
 
-Start `kora_theme`, `kora_sql`, `kora_lib`, `kora_core`, `kora_target`, `kora_inventory`, and
-`kora_bossmenu` first. `server.cfg` already starts `kora_cards` in that position.
+Declared in `fxmanifest.lua` and used at runtime:
 
-For live photography, install `screenshot-basic` and start it before `kora_cards`.
-It is runtime-optional on purpose: when it is absent or capture storage fails,
-the shutter fails without consuming film while binders, shops, and matches stay
-available.
+| Resource | Purpose |
+| --- | --- |
+| [kora_theme](https://github.com/KoraFiveM/kora_theme) | Theme tokens and the client theme bridge for the private overlays |
+| [kora_lib](https://github.com/KoraFiveM/kora_lib) | AppShell UI, callbacks, commands, notifications, config adoption, instructional buttons |
+| [kora_sql](https://github.com/KoraFiveM/kora_sql) | Database access and the declarative schema (`Kora.sql.ensureTables`) |
+| [kora_core](https://github.com/KoraFiveM/kora_core) | Player data, jobs and duty, money, shared item and job registration |
+| [kora_target](https://github.com/KoraFiveM/kora_target) | Interaction zones at the studio |
+| [kora_inventory](https://github.com/KoraFiveM/kora_inventory) | Items, usable items and the camera swap hook |
 
-## Operator workflow
+Optional: [screenshot-basic](https://github.com/citizenfx/screenshot-basic) for live photography. The server checks for it at runtime. Without it (or when saving a capture fails), the shutter fails and no film is used. The binder, shop and matches still work.
 
-- `/cards` opens the binder and game.
-- `/kora_cards_reload` validates the complete catalog in a staging cache and swaps
-  it only when every row, rule, evolution link, content lock, and artwork file
-  is valid. It requires the Kora admin permission.
-- `/kora_cards_season preview` shows the eligible top three. Run
-  `/kora_cards_season close` within 60 seconds to settle rewards and open the next
-  season.
+The leaderboard query joins the `players` table owned by kora_core so it can show character names.
 
-To author an official database card, place a WebP file (maximum 2.5 MiB) at a
-safe generated name under `storage/catalog/`, insert a complete
-`kora_cards_designs` row using only the effect vocabulary in `shared/rules.lua`,
-then run `/kora_cards_reload`. Once any tradable print succeeds, the row's content
-hash is locked. Revisions must be inserted as a new design/version.
+The resource has **no exports**. Other resources talk to it through the net events and actions described in [Events and callbacks](./events.md).
 
-The media handler is GET-only and serves opaque keys. Set
-`Config.capture.publicBaseUrl` when media is routed through a reverse proxy.
+## Installation
 
-Back up the SQL database and the complete `kora_cards/storage` directory together.
+1. Put `kora_cards` in your resources folder and start it after its dependencies:
+
+   ```cfg
+   ensure kora_theme
+   ensure kora_sql
+   ensure kora_lib
+   ensure kora_core
+   ensure kora_target
+   ensure kora_inventory
+   ensure screenshot-basic
+   ensure kora_cards
+   ```
+
+   `screenshot-basic` is optional, but it must start before `kora_cards` if you use photography.
+
+2. **Database.** You don't need to import any SQL. On start, the resource creates or updates its tables with `Kora.sql.ensureTables` (changes are only ever added), seeds the 27-design City Legends launch catalog once, and seeds `Launch Season` as the active season. See [Database](./database.md).
+
+3. **Items and job.** At start, the resource registers the items `card_camera`, `card_film`, `blank_card`, `card_ink` and `trading_card`, plus the `cardstudio` job, with kora_core's shared registry. It skips any entry that already exists. You don't need to add them by hand. See [Items](./items.md).
+
+4. **NUI build.** `web/build/` is committed. Rebuild only if you change `web/src`:
+
+   ```bash
+   npm --prefix web install
+   npm --prefix web run build
+   ```
+
+5. **Media storage.** Captured and catalog artwork lives under `kora_cards/storage/`. Back up the database and the whole `storage/` directory together. See [Catalog authoring](./features/catalog.md#media-storage-and-http-handler).
+
+## Documentation
+
+- [Configuration](./configuration.md): every `config.lua` option
+- [Commands](./commands.md): `/cards`, `/kora_cards_reload`, `/kora_cards_season`
+- [Items](./items.md): the five registered items and how they are used
+- [Events and callbacks](./events.md): client net events, the server action callback, and the events this resource listens to
+- [Database](./database.md): tables, columns and operation recovery
+- Features:
+  - [Card Studio job](./features/studio.md)
+  - [Collection and decks](./features/collection.md)
+  - [Matches and game rules](./features/matches.md)
+  - [Ranked and seasons](./features/ranked.md)
+  - [Catalog authoring](./features/catalog.md)
+- [User interface](./ui.md): AppShell tabs and the private overlays
+- [Troubleshooting](./troubleshooting.md)
 
 ## Tests
 
-Run:
-
-```sh
+```bash
 ./tests/run.sh
 npm --prefix web run build
 ```
 
-The plain-Lua suites cover catalog/rule schemas, exact starter composition,
-rarity boundaries, deck legality, hidden information, every battle action,
-conditions, knockouts, simultaneous wins, timers, disconnect grace, and durable
-match restoration.
-
-## Quick in-game acceptance
-
-1. Start the dependencies and `kora_cards`, join with a fresh character, and run
-   `/cards`. Confirm the shared AppShell opens on Binder and lets you claim one
-   starter deck.
-2. Assign the `cardstudio` job, clock in at Lifeinvader, buy film, check out the
-   camera, take a photo, edit the portrait, activate it, and print one card.
-3. Open `/cards`, deposit the physical print, build and save a legal 60-card
-   deck, then withdraw a non-deck print and give it through the native
-   inventory.
-4. With a second player within five metres in the duel zone, send a Casual
-   challenge and complete a few turns. Repeat in Ranked to verify the venue
-   lock, timer, result, rating, and eligible bank payout.
-
-Full documentation: see [docs/](docs/index.md).
+`tests/run.sh` runs plain-Lua test suites covering the rules, match engine, NUI, storage and stock. `tests/checklist-activities.feature` holds kora_qa Gherkin checklist scenarios (registered with `qa_feature` in `fxmanifest.lua`).
