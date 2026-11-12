@@ -1,0 +1,26 @@
+name: Documentation Issue
+description: Report missing, outdated or unclear documentation for kora_docs_next.
+title: '[Docs]: '
+labels:
+- documentation
+- needs-triage
+body:
+- type: input
+  id: page
+  attributes:
+    label: Documentation page or file
+    placeholder: URL or path in kora_docs_next
+  validations:
+    required: true
+- type: textarea
+  id: issue
+  attributes:
+    label: What is wrong or missing?
+    description: Name the area that needs clarification, such as Documentation content, Resource versioning, Site build and
+      navigation, Offline importer.
+  validations:
+    required: true
+- type: textarea
+  id: correction
+  attributes:
+    label: Suggested correction
