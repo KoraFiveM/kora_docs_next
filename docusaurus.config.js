@@ -12,6 +12,7 @@ export default {
   url: siteUrl,
   baseUrl,
   favicon: 'img/favicon.svg',
+  staticDirectories: ['static', 'catalog'],
   onBrokenLinks: 'warn',
   markdown: {hooks: {onBrokenMarkdownLinks: 'warn'}},
   presets: [['classic', {
