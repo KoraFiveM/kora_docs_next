@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Installing Kora
 
-There are two ways to install Kora. To run a server, deploy the official txAdmin recipe: txAdmin downloads everything, sets up the database and makes you an admin. To develop Kora itself, use the developer setup script.
+To run a server, deploy the official txAdmin recipe: txAdmin downloads everything, sets up the database and makes you an admin.
 
 ## Install with txAdmin (recommended)
 
@@ -35,20 +35,5 @@ add_principal identifier.fivem:1234567 group.admin #yourname
 ```
 
 `group.admin` is the group `permissions.cfg` builds the Kora admin permissions on, so you are an admin in-game the first time you join. To add more admins, add the same line to `permissions.cfg` with their FiveM identifier and restart the server.
-
-## Developer setup script
-
-`setup-kora-dev.sh`, from the [kora_install](https://github.com/KoraFiveM/kora_install) repo, builds a complete Kora development server in one run: it creates your server folder, downloads the latest recommended FXServer artifacts for your OS, asks for your keys, copies the dev `server.cfg` and clones every resource repo into the right category folder. It needs access to the private KoraFiveM repositories, so it is for Kora developers.
-
-You need bash (Linux, WSL or Git Bash), git, curl, tar and xz (or unzip on Windows), the GitHub CLI signed in with an account that has access to the KoraFiveM organization, MySQL/MariaDB on `127.0.0.1:3306`, about 5 GB of free disk space, and your Cfx.re licence key.
-
-```bash
-gh repo clone KoraFiveM/kora_install
-cd kora_install
-chmod +x setup-kora-dev.sh
-./setup-kora-dev.sh
-```
-
-The script asks for a server name, ports, database name, MySQL login, your licence key and, optionally, your Cfx.re forum username to pre-create your txAdmin admin account. It starts the server when it finishes; run `./start.sh` from the `server` folder to start it again later.
 
 Copyright © 2026 Kora Framework (new contribution guidance).
