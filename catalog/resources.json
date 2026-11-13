@@ -179,36 +179,6 @@
       "description": "Database-backed modular businesses for qblib: built in-game, live on every client, no restart"
     },
     {
-      "id": "kora-cards",
-      "title": "Kora Cards",
-      "repository": "https://github.com/KoraFiveM/kora_cards.git",
-      "docsPath": "README.md",
-      "entryPage": "index",
-      "latest": "0.2.1",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.1",
-          "tag": "v0.2.1",
-          "commit": "cc59f6b6a5e33321cf00962444377164b6f08772",
-          "docsPath": "docs",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.2.0",
-          "tag": "v0.2.0",
-          "commit": "e06d8a829aca6f7b42dd5748ba45e88f09558558",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "6eff5e4c4fb291e7a8aedf35ebc833a0170f34f3"
-        }
-      ],
-      "description": "City Legends photography job, serialized card collection, and server-authoritative TCG for FiveM"
-    },
-    {
       "id": "kora-chat",
       "title": "Kora Chat",
       "repository": "https://github.com/KoraFiveM/kora_chat.git",
@@ -386,23 +356,6 @@
       "description": "Server-authoritative, export-driven crafting for qbcore2"
     },
     {
-      "id": "kora-crypto",
-      "title": "Kora Crypto",
-      "repository": "https://github.com/KoraFiveM/kora_crypto.git",
-      "docsPath": "README.md",
-      "entryPage": "index",
-      "latest": "0.1.0",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "8fb8df9270ac0615525fa25bf404739def8b72f8"
-        }
-      ],
-      "description": "Cryptocurrency functionality for Kora servers."
-    },
-    {
       "id": "kora-customs",
       "title": "Kora Customs",
       "repository": "https://github.com/KoraFiveM/kora_customs.git",
@@ -472,30 +425,6 @@
         }
       ],
       "description": "Job-agnostic dispatch: call lifecycle, keyboard-driven alert feed, and a tablet with a rendered map"
-    },
-    {
-      "id": "kora-diving",
-      "title": "Kora Diving",
-      "repository": "https://github.com/KoraFiveM/kora_diving.git",
-      "docsPath": "README.md",
-      "entryPage": "index",
-      "latest": "0.2.1",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.1",
-          "tag": "v0.2.1",
-          "commit": "769352348138e213dc991664055bcf43467fb81d",
-          "docsPath": "docs",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "dce12565524586bd6581b4d8ff8596bb81bf25b1"
-        }
-      ],
-      "description": "Diving activities and underwater gameplay."
     },
     {
       "id": "kora-doorlock",
@@ -731,30 +660,6 @@
       "description": "Player inventory, items, storage, and shops."
     },
     {
-      "id": "kora-jewellery",
-      "title": "Kora Jewellery",
-      "repository": "https://github.com/KoraFiveM/kora_jewellery.git",
-      "docsPath": "README.md",
-      "entryPage": "index",
-      "latest": "0.2.1",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.1",
-          "tag": "v0.2.1",
-          "commit": "83a64ad9df653d6de2d9477f39495df92b190c7d",
-          "docsPath": "docs",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "3be6dbe91ae8cbf8de25673e6bed41fe3f4fea3b"
-        }
-      ],
-      "description": "Jewellery store robbery gameplay."
-    },
-    {
       "id": "kora-jobcreator",
       "title": "Kora Jobcreator",
       "repository": "https://github.com/KoraFiveM/kora_jobcreator.git",
@@ -776,30 +681,6 @@
         }
       ],
       "description": "qblib-native in-game job and business creator"
-    },
-    {
-      "id": "kora-lib-playground",
-      "title": "Kora Lib Playground",
-      "repository": "https://github.com/KoraFiveM/kora_lib-playground.git",
-      "docsPath": "bot/README.md",
-      "entryPage": "index",
-      "latest": "0.2.0",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.0",
-          "tag": "v0.2.0",
-          "commit": "4427e6d13c6cf067813aa56f30125055cc6022bf",
-          "docsPath": "docs",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "9c96d6f2cc5f33d5f8bcc07a8b0530fd2fc76366"
-        }
-      ],
-      "description": "A playground for exploring Kora library features."
     },
     {
       "id": "kora-loading",
@@ -941,7 +822,7 @@
           "commit": "6781ba08a98d82080df05df6eb2394e116b27f22"
         }
       ],
-      "description": "Management of players\u2019 multiple jobs."
+      "description": "Management of players’ multiple jobs."
     },
     {
       "id": "kora-newsjob",
@@ -996,53 +877,6 @@
         }
       ],
       "description": "Pawn shop transactions and gameplay."
-    },
-    {
-      "id": "kora-phone-stevie",
-      "title": "Kora Phone Stevie",
-      "repository": "https://github.com/KoraFiveM/kora_phone-stevie.git",
-      "docsPath": "docs",
-      "entryPage": "acceptance-tests",
-      "latest": "0.2.1",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.1",
-          "tag": "v0.2.1",
-          "commit": "d970f764b8a98963f1d8d194b362cf156a205ddc",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "1e67437c2e7576b3c74887f1d14d8855afce482f"
-        }
-      ],
-      "description": "Phone services and player interactions."
-    },
-    {
-      "id": "kora-phoneshop-demo",
-      "title": "Kora Phoneshop Demo",
-      "repository": "https://github.com/KoraFiveM/kora_phoneshop_demo.git",
-      "docsPath": null,
-      "entryPage": "index",
-      "latest": "0.2.0",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.0",
-          "tag": "v0.2.0",
-          "commit": "596e7ccc3a2ca73517ac4f08b28edac1e28a02eb",
-          "docsPath": "docs",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "a7c1a966b74ab5c995703b5c9036ad2a9f12af5f"
-        }
-      ],
-      "description": "Example phone shop integration."
     },
     {
       "id": "kora-police",
@@ -1145,30 +979,6 @@
         }
       ],
       "description": "Player scoreboard."
-    },
-    {
-      "id": "kora-scrapyard",
-      "title": "Kora Scrapyard",
-      "repository": "https://github.com/KoraFiveM/kora_scrapyard.git",
-      "docsPath": "README.md",
-      "entryPage": "index",
-      "latest": "0.2.1",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.1",
-          "tag": "v0.2.1",
-          "commit": "28694f3ed3d4b01e4c41335ab89f1e18a8ca8a63",
-          "docsPath": "docs",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "d1770ee3876967da6f7daa119f25fd911344d45c"
-        }
-      ],
-      "description": "Vehicle scrapping activities."
     },
     {
       "id": "kora-skills",
@@ -1336,30 +1146,6 @@
         }
       ],
       "description": "Freight jobs and delivery contracts."
-    },
-    {
-      "id": "kora-truckrobbery",
-      "title": "Kora Truckrobbery",
-      "repository": "https://github.com/KoraFiveM/kora_truckrobbery.git",
-      "docsPath": "README.md",
-      "entryPage": "index",
-      "latest": "0.2.1",
-      "docsAvailable": true,
-      "versions": [
-        {
-          "version": "0.2.1",
-          "tag": "v0.2.1",
-          "commit": "a50ca96b32e7292195143fb7718b16d5fe307506",
-          "docsPath": "docs",
-          "entryPage": "index"
-        },
-        {
-          "version": "0.1.0",
-          "tag": "v0.1.0",
-          "commit": "0e7889dc61b3a508141b047cd08cda8234fedc98"
-        }
-      ],
-      "description": "Armoured truck robbery gameplay."
     },
     {
       "id": "kora-utils",
