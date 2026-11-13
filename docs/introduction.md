@@ -11,6 +11,8 @@ Choose a resource from [Resources](/resources), then select the version installe
 
 Resource reference pages will appear as releases are registered. This new site does not yet contain the existing resource reference content.
 
+To set up a server, follow [Installing Kora](./installation.md).
+
 To contribute, read [Contributing to Kora Framework](./contributing.md),
 [Lua style and local tooling](./lua-tooling.md), and
 [Architecture and ownership](./architecture-standards.md).
