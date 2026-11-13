@@ -1,8 +1,7 @@
 name: Check documentation
 on:
+  # PRs only: the deploy workflow already builds on every push to main, so re-running the checks there just doubled the build time.
   pull_request:
-  push:
-    branches: [main]
 permissions:
   contents: read
 jobs:
