@@ -23,7 +23,7 @@ npm run serve        # Serve build/ locally
 ## What belongs where
 
 - Resource repositories own `docs/`, code, `fxmanifest.lua`, and release tags.
-- `catalog/resources.json` pins the released resource documentation included here.
+- `catalog/resources.json` pins the released resource documentation included here and is published as raw JSON at `/resources.json`.
 - `resource-*_versioned_docs/`, `resource-*_versioned_sidebars/`, and `resource-*_versions.json` are checked-in snapshots of published documentation so public Pages builds do not need access to private resource repositories.
 - `docs/` contains shared, unversioned contributor and publishing guides.
 - `src/css/custom.css` customizes the Cosmos theme with Kora neutral dark surfaces, lime `#95FF00`, and green `#22C55E`/`#4ADE80`.
