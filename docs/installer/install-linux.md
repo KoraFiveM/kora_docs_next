@@ -25,13 +25,13 @@ kora install --code KORA-7F3K-92QX   # or just: kora install
 
 A step-by-step screen asks for the license key, the server folder (default `~/kora/<server-name>`), the database and the options below, shows a review screen, then installs with live progress.
 
-Run it with `sudo` if you want it to do system-level things:
+Run it as your normal user. Kora asks for `sudo` **only when your choices need it** and says why. You can also start it with `sudo` yourself. These are the things that need it:
 
 - `--service` registers a systemd service `kora-<name>` that runs the server under a dedicated unprivileged account `kora-<name>` (created for you, no login shell) and starts it on boot.
 - `--firewall` opens the game port in the active firewall (ufw or firewalld). If no firewall is active, nothing is changed.
 - Installing MariaDB, `git` or `gh` when missing.
 
-Without administrator rights the installer still installs the server; it lists what it skipped. The server folder must be reachable by the service account, so for `--service` do not put it inside a private home directory (the installer refuses up front if it cannot be).
+If you decline (or sudo is not available) the installer still installs the server; it lists what it skipped. Pass `--no-elevate` to never ask. The server folder must be reachable by the service account, so for `--service` do not put it inside a private home directory (the installer refuses up front if it cannot be).
 
 ### Unattended install
 
@@ -48,9 +48,7 @@ Preview first with `--dry-run`: it prints the plan and changes nothing.
 
 ## 4. First start
 
-When the install finishes it prints the connect address and the txAdmin address. With `--service`, start it with `kora start <name>`; otherwise run FXServer from the server folder. Open txAdmin on the printed address (port `40120` by default) and sign in. See [txAdmin and your license key](./txadmin-and-license.md).
-
-Check state any time with `kora status`.
+The installer starts your server when it finishes and shows the connect address and the txAdmin address; see [After the install](./after-install.md). Control it later with `kora start|stop|status`. Sign in to txAdmin on port `40120` (default); see [txAdmin and your license key](./txadmin-and-license.md).
 
 ## Disk space
 

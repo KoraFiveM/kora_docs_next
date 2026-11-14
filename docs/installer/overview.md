@@ -19,6 +19,7 @@ The installer is a pre-release. The Linux path has been run end to end on real m
 4. Creates a database and a database user for this server only (see [Database](./database.md)).
 5. Writes `server.cfg`, `permissions.cfg`, `secrets.cfg` and a txAdmin profile with an admin account (see [txAdmin and your license key](./txadmin-and-license.md)).
 6. Optionally registers a background service and opens the game port in the firewall.
+7. Starts your server and waits for txAdmin (see [After the install](./after-install.md)).
 
 Everything it creates is recorded in a `.kora` folder inside the server folder, so `kora delete` and `kora uninstall` remove only what Kora made.
 
@@ -45,9 +46,13 @@ You choose the mode when you install.
 
 Production is the right choice unless you intend to modify the resources. In development mode your forks have `origin` pointing at your fork and `upstream` at the Kora repository. Kora never pushes to the Kora repositories and never deletes your forks.
 
-If `git` (or `gh` for development mode) is missing, the installer can install it when run as administrator/root; otherwise it tells you what to install.
+In development mode the wizard signs you in to GitHub with a one-time code and lets you choose whether your forks go into your own account or an organisation (including a guided "create a new organisation" step). See [Development mode](./dev-mode.md).
+
+If `git` (or `gh` for development mode) is missing, the installer can install it; Kora asks for administrator permission itself when it needs it (a Windows permission prompt, or `sudo`), so you never have to start it "as administrator" by hand.
 
 ## Next steps
 
 - [Install on Linux](./install-linux.md) or [Install on Windows](./install-windows.md)
+- [Development mode](./dev-mode.md)
+- [After the install](./after-install.md)
 - [Command reference](./commands.md)

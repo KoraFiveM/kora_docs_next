@@ -34,19 +34,32 @@ Installs a new server. With no options in a terminal it opens the guided screens
 | `--db-admin-port <N>` | Port for that login. Default `3306`. |
 | `--service` | Register and enable a background service (needs administrator/root). |
 | `--firewall` | Open the game port in the OS firewall (needs administrator/root). |
-| `--github-owner <OWNER>` | Dev mode: your GitHub user or organisation to fork into. Required for headless dev installs. |
+| `--github-owner <OWNER>` | Dev mode: your GitHub user or organisation to fork into. Required for headless dev installs. `--github-owner list` prints the choices and exits. See [Development mode](./dev-mode.md). |
+| `--auto-ports` | If a port is in use, silently use the next free one and say what changed. |
+| `--start` | Start the server when the install finishes and wait for txAdmin. Off by default in headless installs (the guided installer always does it). |
+| `--no-start` | Do not start the server after installing (start it later with `kora start <name>`). Cannot be combined with `--start`. |
 | `--dry-run` | Print your choices and the full plan, change nothing. |
 | `-y`, `--yes` | Do not ask anything. |
 
-Exit code is `0` on success, `1` on failure and `2` for a usage problem (for example, running without a terminal and without options).
+Exit codes: `0` success (also when you cancel the wizard), `1` failure, `2` usage problem (for example, running without a terminal and without options, or a development install without `--github-owner`), `130` the wizard was interrupted.
+
+## Global option
+
+| Option | Meaning |
+| --- | --- |
+| `--no-elevate` | Do not ask Windows or `sudo` for administrator permission (for developers and CI). By default, on Windows the interactive commands (`kora`, `install`, `delete`, `uninstall`, `start`/`stop`/`restart`, `update`) reopen themselves as administrator after one permission prompt; on Linux `sudo` is requested only when needed. `--version`, `--help`, `status`, dry runs and non-interactive use never ask. |
+
+## `kora github owners`
+
+Lists the GitHub accounts and organisations your forks can go into (same as `kora install --github-owner list`). Needs `gh` installed and signed in. Exit code `0`, or `1` if the list cannot be read.
 
 ## `kora status`
 
-Lists registered servers: name, mode, game port, txAdmin port, state (`running`, `stopped`, or `missing` if the folder is gone) and folder.
+Lists registered servers: name, mode, game port, txAdmin port, state (`running`, `stopped`, or `missing` if the folder is gone), the state of the ports and the folder.
 
 ## `kora start|stop|restart <SERVER>`
 
-Controls the server's background service (systemd on Linux, Windows service on Windows). Only servers installed with `--service` have one.
+Starts, stops or restarts the server. If it has a service (installed with `--service`: systemd on Linux, a Windows service on Windows) that is used; otherwise Kora starts or stops the background process it launched itself. `start` waits for txAdmin and reports a rejected licence key, a port clash or a crash plainly. Exit code `1` if it fails. See [After the install](./after-install.md).
 
 ## `kora update --auto <SERVER>`
 
@@ -78,7 +91,7 @@ Without `--yes` or `--dry-run` it needs a terminal.
 ## Other commands
 
 - `kora service-host <SERVER>` is used by the service itself to run and supervise FXServer. You do not run it by hand.
-- `kora manager` (a multi-server screen) is **not implemented yet**.
+- `kora manager` (a multi-server screen) is **not available yet**.
 
 ## Environment variables
 

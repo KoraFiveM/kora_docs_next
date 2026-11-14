@@ -7,7 +7,7 @@ sidebar_position: 8
 
 ## Read the log
 
-A failed install prints the error and where its log is. The log is `<server folder>/.kora/install.log` (or a `kora-install-<name>.log` file in your temp folder if the server folder was not created yet).
+A failed install shows an error screen with what went wrong and what to do next. Its buttons are **Open log**, **Open folder**, **Copy path** and **Copy details** (copies the last log lines to paste into a message to support). The error is also printed in the terminal with the log location. The log is `<server folder>/.kora/install.log` (or a `kora-install-<name>.log` file in your temp folder if the server folder was not created yet).
 
 ## Resume or start over
 
@@ -18,7 +18,7 @@ An install that stopped keeps what it already did.
 
 ## Ports
 
-The installer checks the game port (default `30120`) and txAdmin port (`40120`) before starting and stops if one is in use. Pick others with `--game-port` and `--txadmin-port`. If players cannot connect, open the **game port for both TCP and UDP** in your firewall and your router/hosting provider's panel (`--firewall` does this on the machine only).
+The installer checks the game port (default `30120`) and txAdmin port (`40120`) and suggests the next free port when one is busy; it checks again just before installing. For scripts, `--auto-ports` picks the next free port for you, or choose with `--game-port` and `--txadmin-port`. See [After the install](./after-install.md#ports). If players cannot connect, open the **game port for both TCP and UDP** in your firewall and your router/hosting provider's panel (`--firewall` does this on the machine only).
 
 ## Firewall
 
@@ -26,7 +26,8 @@ The installer checks the game port (default `30120`) and txAdmin port (`40120`) 
 
 ## The server does not start
 
-- Check the license key: FXServer says `Could not authenticate server license key` for a wrong key. Fix it in `secrets.cfg`.
+- **"Your licence key was rejected"**: Kora saw FXServer refuse the key. Check it at [portal.cfx.re](https://portal.cfx.re), fix it in `secrets.cfg`, then run `kora start <name>`.
+- If the final screen says the server is stopped, use **Start server** there, or `kora start <name>`; the reason and the last log lines are shown.
 - Check `kora status`, then the console in txAdmin.
 - On Linux with `--service`, `journalctl -u kora-<name>` shows the service log.
 
@@ -49,4 +50,15 @@ Codes are single-use, expire, and are replaced when you create a newer one. Crea
 ## Service problems
 
 - Linux: the server folder must be readable by the service account; a folder inside a private home directory is refused.
-- Windows: run PowerShell as Administrator for `--service`, `--firewall` and installing MariaDB.
+- Windows: Kora asks for administrator permission itself (one prompt) for `--service`, `--firewall` and installing MariaDB. If you declined the prompt, run the command again and accept it. If you used `--no-elevate`, those steps are skipped.
+
+## The Windows window closes or the prompt did not appear
+
+Kora reopens itself as administrator and keeps that window open until you press a key. If you used `--no-elevate` or a non-interactive shell, no prompt is shown. If Windows blocked the prompt, run `kora install` again from a normal PowerShell.
+
+## Development mode and GitHub
+
+- **Sign-in:** use the one-time code shown in the wizard (`C` copies it, `O` opens GitHub). `Esc` cancels; you can then type the account name yourself.
+- **An entry is greyed out:** it cannot be used; the reason is shown next to it. Pick another, create an organisation or type a name.
+- **A new organisation does not appear:** GitHub cannot create organisations through its API, so create it on GitHub, then press Refresh.
+- Headless: `kora github owners` shows what is available.
