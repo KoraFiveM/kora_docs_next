@@ -42,6 +42,7 @@
         "latest": {"oneOf": [{"type": "null"}, {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"}]},
         "docsAvailable": {"type": "boolean"},
         "description": {"type": "string"},
+        "dependsOn": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"}, "uniqueItems": true, "description": "Ids of resources this one needs; installers add them automatically."},
         "versions": {"type": "array", "items": {"$ref": "#/$defs/release"}}
       },
       "allOf": [

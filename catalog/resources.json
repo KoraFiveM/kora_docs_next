@@ -13,6 +13,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-theme"],
       "docsAvailable": true,
       "versions": [
         {
