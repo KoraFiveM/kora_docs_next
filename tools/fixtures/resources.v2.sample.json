@@ -1,0 +1,934 @@
+{
+  "schemaVersion": 2,
+  "resources": [
+    {
+      "id": "cfx-default",
+      "repository": "https://github.com/KoraFiveM/-cfx-default-.git",
+      "path": "[cfx-default]",
+      "group": "cfx-default",
+      "kind": "dependency",
+      "branch": "dev",
+      "order": 1,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "default-maps",
+      "repository": "https://github.com/KoraFiveM/-default-maps-.git",
+      "path": "[default-maps]",
+      "group": "default-maps",
+      "kind": "dependency",
+      "branch": "dev",
+      "order": 2,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-phoneshop",
+      "repository": "https://github.com/KoraFiveM/kora_phoneshop.git",
+      "path": "[default-maps]/kora_phoneshop",
+      "group": "default-maps",
+      "kind": "kora",
+      "branch": "main",
+      "order": 3,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-lib",
+      "repository": "https://github.com/KoraFiveM/kora_lib.git",
+      "path": "[pre]/kora_lib",
+      "group": "pre",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 4,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-sql",
+      "repository": "https://github.com/KoraFiveM/kora_sql.git",
+      "path": "[pre]/kora_sql",
+      "group": "pre",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 5,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-scrapyard",
+      "repository": "https://github.com/KoraFiveM/kora_scrapyard.git",
+      "path": "[kora]/kora_scrapyard",
+      "group": "kora",
+      "kind": "internal",
+      "branch": "dev",
+      "order": 6,
+      "latest": "0.1.0",
+      "versions": []
+    },
+    {
+      "id": "kora-inventory",
+      "repository": "https://github.com/KoraFiveM/kora_inventory.git",
+      "path": "[pre]/kora_inventory",
+      "group": "pre",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 7,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-core",
+      "repository": "https://github.com/KoraFiveM/kora_core.git",
+      "path": "[pre]/kora_core",
+      "group": "pre",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 8,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-drugs",
+      "repository": "https://github.com/KoraFiveM/kora_drugs.git",
+      "path": "[kora]/kora_drugs",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 9,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-utils",
+      "repository": "https://github.com/KoraFiveM/kora_utils.git",
+      "path": "[kora]/kora_utils",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 10,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-doorlock",
+      "repository": "https://github.com/KoraFiveM/kora_doorlock.git",
+      "path": "[kora]/kora_doorlock",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 11,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-businesses",
+      "repository": "https://github.com/KoraFiveM/kora_businesses.git",
+      "path": "[kora]/kora_businesses",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 12,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-admin",
+      "repository": "https://github.com/KoraFiveM/kora_admin.git",
+      "path": "[kora]/kora_admin",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 13,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-multijob",
+      "repository": "https://github.com/KoraFiveM/kora_multijob.git",
+      "path": "[kora]/kora_multijob",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 14,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-bossmenu",
+      "repository": "https://github.com/KoraFiveM/kora_bossmenu.git",
+      "path": "[kora]/kora_bossmenu",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 15,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-multichar",
+      "repository": "https://github.com/KoraFiveM/kora_multichar.git",
+      "path": "[kora]/kora_multichar",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 16,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-loading",
+      "repository": "https://github.com/KoraFiveM/kora_loading.git",
+      "path": "[kora]/kora_loading",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 17,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-hud",
+      "repository": "https://github.com/KoraFiveM/kora_hud.git",
+      "path": "[kora]/kora_hud",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 18,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-clothing",
+      "repository": "https://github.com/KoraFiveM/kora_clothing.git",
+      "path": "[kora]/kora_clothing",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 19,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-banking",
+      "repository": "https://github.com/KoraFiveM/kora_banking.git",
+      "path": "[kora]/kora_banking",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 20,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-dispatch",
+      "repository": "https://github.com/KoraFiveM/kora_dispatch.git",
+      "path": "[kora]/kora_dispatch",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 21,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-fuel",
+      "repository": "https://github.com/KoraFiveM/kora_fuel.git",
+      "path": "[kora]/kora_fuel",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 22,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-target",
+      "repository": "https://github.com/KoraFiveM/kora_target.git",
+      "path": "[kora]/kora_target",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 23,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-interior",
+      "repository": "https://github.com/KoraFiveM/kora_interior.git",
+      "path": "[kora]/kora_interior",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 24,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-weathersync",
+      "repository": "https://github.com/KoraFiveM/kora_weathersync.git",
+      "path": "[kora]/kora_weathersync",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 25,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-phone",
+      "repository": "https://github.com/KoraFiveM/kora_phone.git",
+      "path": "[kora]/kora_phone",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 26,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-police",
+      "repository": "https://github.com/KoraFiveM/kora_police.git",
+      "path": "[kora]/kora_police",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 27,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-garages",
+      "repository": "https://github.com/KoraFiveM/kora_garages.git",
+      "path": "[kora]/kora_garages",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 28,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-skills",
+      "repository": "https://github.com/KoraFiveM/kora_skills.git",
+      "path": "[kora]/kora_skills",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 29,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-dealership",
+      "repository": "https://github.com/KoraFiveM/kora_dealership.git",
+      "path": "[kora]/kora_dealership",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 30,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-jobcreator",
+      "repository": "https://github.com/KoraFiveM/kora_jobcreator.git",
+      "path": "[kora]/kora_jobcreator",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 31,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-crafting",
+      "repository": "https://github.com/KoraFiveM/kora_crafting.git",
+      "path": "[kora]/kora_crafting",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 32,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-ambulance",
+      "repository": "https://github.com/KoraFiveM/kora_ambulance.git",
+      "path": "[kora]/kora_ambulance",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 33,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-truckerjob",
+      "repository": "https://github.com/KoraFiveM/kora_truckerjob.git",
+      "path": "[kora]/kora_truckerjob",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 34,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-newsjob",
+      "repository": "https://github.com/KoraFiveM/kora_newsjob.git",
+      "path": "[kora]/kora_newsjob",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 35,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-cityhall",
+      "repository": "https://github.com/KoraFiveM/kora_cityhall.git",
+      "path": "[kora]/kora_cityhall",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 36,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-customs",
+      "repository": "https://github.com/KoraFiveM/kora_customs.git",
+      "path": "[kora]/kora_customs",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 37,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-consumables",
+      "repository": "https://github.com/KoraFiveM/kora_consumables.git",
+      "path": "[kora]/kora_consumables",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 38,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-scoreboard",
+      "repository": "https://github.com/KoraFiveM/kora_scoreboard.git",
+      "path": "[kora]/kora_scoreboard",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 39,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-pawnshop",
+      "repository": "https://github.com/KoraFiveM/kora_pawnshop.git",
+      "path": "[kora]/kora_pawnshop",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 40,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-fishing",
+      "repository": "https://github.com/KoraFiveM/kora_fishing.git",
+      "path": "[kora]/kora_fishing",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 41,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-vehiclekeys",
+      "repository": "https://github.com/KoraFiveM/kora_vehiclekeys.git",
+      "path": "[kora]/kora_vehiclekeys",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 42,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-metaldetecting",
+      "repository": "https://github.com/KoraFiveM/kora_metaldetecting.git",
+      "path": "[kora]/kora_metaldetecting",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 43,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-mdt",
+      "repository": "https://github.com/KoraFiveM/kora_mdt.git",
+      "path": "[kora]/kora_mdt",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 44,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-mining",
+      "repository": "https://github.com/KoraFiveM/kora_mining.git",
+      "path": "[kora]/kora_mining",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 45,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-robberies",
+      "repository": "https://github.com/KoraFiveM/kora_robberies.git",
+      "path": "[kora]/kora_robberies",
+      "group": "kora",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 46,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-queue",
+      "repository": "https://github.com/KoraFiveM/kora_queue.git",
+      "path": "[standalone]/kora_queue",
+      "group": "standalone",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 47,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-chat",
+      "repository": "https://github.com/KoraFiveM/kora_chat.git",
+      "path": "[standalone]/kora_chat",
+      "group": "standalone",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 48,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "compat",
+      "repository": "https://github.com/KoraFiveM/compat.git",
+      "path": "[compat]",
+      "group": "compat",
+      "kind": "dependency",
+      "branch": "main",
+      "order": 49,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-voice",
+      "repository": "https://github.com/KoraFiveM/kora_voice.git",
+      "path": "[standalone]/kora_voice",
+      "group": "standalone",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 50,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-theme",
+      "repository": "https://github.com/KoraFiveM/kora_theme.git",
+      "path": "[standalone]/kora_theme",
+      "group": "standalone",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 51,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-emotemenu",
+      "repository": "https://github.com/KoraFiveM/kora_emotemenu.git",
+      "path": "[standalone]/kora_emotemenu",
+      "group": "standalone",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 52,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "props",
+      "repository": "https://github.com/KoraFiveM/props.git",
+      "path": "[standalone]/props",
+      "group": "props",
+      "kind": "dependency",
+      "branch": "main",
+      "order": 53,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "kora-sound",
+      "repository": "https://github.com/KoraFiveM/kora_sound.git",
+      "path": "[standalone]/kora_sound",
+      "group": "standalone",
+      "kind": "kora",
+      "branch": "dev",
+      "order": 54,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "bob74-ipl",
+      "repository": "https://github.com/Bob74/bob74_ipl.git",
+      "path": "[standalone]/bob74_ipl",
+      "group": "standalone",
+      "kind": "dependency",
+      "branch": "master",
+      "order": 55,
+      "latest": "0.2.1",
+      "versions": [
+        {
+          "version": "0.2.1",
+          "tag": "v0.2.1",
+          "commit": "0000000000000000000000000000000000000000"
+        }
+      ]
+    }
+  ]
+}
