@@ -1,0 +1,5 @@
+{
+  "label": "Installer",
+  "position": 1.5,
+  "link": {"type": "doc", "id": "installer/overview"}
+}
