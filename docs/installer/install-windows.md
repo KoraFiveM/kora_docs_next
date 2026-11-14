@@ -17,7 +17,18 @@ Run the PowerShell command shown on [koraframe.work/installer](https://koraframe
 
 ## 2. Run the installer
 
-Open **PowerShell as Administrator** if you want the service, the firewall rule or an automatic MariaDB installation. A normal terminal works for everything else.
+Double-click `kora.exe`, or run `kora install` (or just `kora`) in a normal PowerShell. You do **not** need to right-click and choose "Run as administrator".
+
+### The permission prompt
+
+Windows asks for permission **once**. Kora relaunches itself as administrator (the standard Windows "Do you want to allow this app to make changes?" prompt) so that, in the same run, it can:
+
+- register the Windows service (`--service`),
+- add the firewall rule for the game port (`--firewall`),
+- install a private MariaDB (`--db install`),
+- and install `git` or `gh` if they are missing.
+
+If you choose **No**, nothing is changed. The elevated window stays open until you press a key, so you can always read the final message. Commands that only look (`kora --version`, `--help`, `status`, `--dry-run`) and non-interactive use (scripts, CI) do not ask. Pass `--no-elevate` to turn the prompt off entirely (for developers and CI); the things that need administrator rights are then skipped or refused.
 
 ```powershell
 kora install --code KORA-7F3K-92QX
@@ -25,7 +36,11 @@ kora install --code KORA-7F3K-92QX
 
 The guided screens ask for your Cfx.re license key, the server folder (default `%USERPROFILE%\kora\<server-name>`), the database and the options.
 
-With administrator rights, the options do the following:
+### Pasting into the wizard
+
+Every text box has **Paste** and **Clear** buttons. You can also paste with `Ctrl+V` or `Shift+Insert`. This is the easiest way to enter your license key.
+
+### Options
 
 - `--service` creates a Windows service `kora-<name>` running under its own virtual account (`NT SERVICE\kora-<name>`, no password), granted modify rights on the server folder only.
 - `--firewall` adds a Windows Firewall rule for the game port.
@@ -35,10 +50,21 @@ Unattended example:
 
 ```powershell
 $env:CFX_LICENSE_KEY = "..."
-kora install --code KORA-7F3K-92QX --dir D:\kora\main --db install --service --firewall --yes
+kora install --code KORA-7F3K-92QX --dir D:\kora\main --db install --service --firewall --start --yes
 ```
 
 Use `--dry-run` to print the plan and change nothing.
+
+### If something fails
+
+The failure screen explains what went wrong and what to do next, with buttons:
+
+- **Open log** opens `install.log`.
+- **Open folder** opens the server folder.
+- **Copy path** copies the folder path.
+- **Copy details** copies the last lines of the log so you can paste them into a message to support.
+
+Then see [Troubleshooting](./troubleshooting.md).
 
 ## 3. Start and manage
 
@@ -48,7 +74,7 @@ kora start <name>
 kora stop <name>
 ```
 
-Open txAdmin at the address printed at the end (port `40120` by default). See [txAdmin and your license key](./txadmin-and-license.md).
+The installer starts the server for you when it finishes: see [After the install](./after-install.md). txAdmin is on port `40120` by default; see [txAdmin and your license key](./txadmin-and-license.md).
 
 ## Not done yet on Windows
 
