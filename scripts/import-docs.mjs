@@ -54,7 +54,7 @@ function normalizeMarkdown(input) {
 }
 
 export function validateCatalog(catalog, {allowLocal = false} = {}) {
-  if (catalog.schemaVersion !== 1 || !Array.isArray(catalog.resources)) throw new Error('Expected catalog schemaVersion 1 and resources array');
+  if (![1, 2].includes(catalog.schemaVersion) || !Array.isArray(catalog.resources)) throw new Error('Expected catalog schemaVersion 1 or 2 and resources array');
   const ids = new Set();
   for (const resource of catalog.resources) {
     if (!/^[a-z][a-z0-9_-]*$/.test(resource.id ?? '') || ids.has(resource.id)) throw new Error('Invalid or duplicate resource id');
@@ -63,6 +63,8 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
     const github = /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\.git$/;
     if (!github.test(resource.repository ?? '') && !(allowLocal && path.isAbsolute(resource.repository ?? ''))) throw new Error('Repository must be a GitHub HTTPS .git URL');
     if ((resource.docsPath !== null && !safePath(resource.docsPath)) || !safePath(resource.entryPage) || /[?#\s]/.test(resource.entryPage)) throw new Error('Unsafe docsPath or entryPage');
+    const releaseless = ['dependency', 'internal'].includes(resource.kind) && Array.isArray(resource.versions) && resource.versions.length === 0 && resource.latest === null;
+    if (releaseless) continue; // schema v2: dependency/internal entries may have no releases
     if (!Array.isArray(resource.versions) || resource.versions.length === 0) throw new Error('Resource needs at least one version');
     const versions = new Set();
     for (const release of resource.versions) {
@@ -84,6 +86,8 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
 export async function importDocs({siteDir = root, catalog, allowLocal = false, sync = allowLocal || process.argv.includes('--sync')} = {}) {
   catalog ??= JSON.parse(await fs.readFile(path.join(siteDir, 'catalog/resources.json'), 'utf8'));
   validateCatalog(catalog, {allowLocal});
+  // The docs site only consumes resources that have releases (v2 dependency/internal entries have none).
+  catalog = {...catalog, resources: catalog.resources.filter(resource => resource.versions.length > 0)};
   if (!sync) {
     for (const resource of catalog.resources) for (const release of resource.versions) {
       const snapshot = path.join(siteDir, `resource-${resource.id}_versioned_docs`, `version-${release.version}`);

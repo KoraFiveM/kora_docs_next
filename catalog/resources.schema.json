@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://koraframe.work/catalog/resources.schema.json",
+  "title": "Kora resource catalog (schema v2)",
+  "type": "object",
+  "required": ["schemaVersion", "resources"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "resources": {"type": "array", "items": {"$ref": "#/$defs/resource"}}
+  },
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "safePath": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))[^?#\\s\\\\]+$"},
+    "release": {
+      "type": "object",
+      "required": ["version", "tag", "commit"],
+      "additionalProperties": false,
+      "properties": {
+        "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"},
+        "tag": {"type": "string", "pattern": "^v\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"},
+        "commit": {"$ref": "#/$defs/sha"},
+        "docsPath": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/safePath"}]},
+        "entryPage": {"$ref": "#/$defs/safePath"}
+      }
+    },
+    "resource": {
+      "type": "object",
+      "required": ["id", "title", "repository", "path", "group", "kind", "branch", "order", "docsPath", "entryPage", "latest", "versions"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+        "title": {"type": "string", "minLength": 1},
+        "repository": {"type": "string", "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\\.git$"},
+        "path": {"type": "string", "description": "Relative to the server's resources/ dir, e.g. [kora]/kora_core.", "pattern": "^(?!/)(?!.*(^|/)\\.\\.(/|$))[^\\s\\\\]+$"},
+        "group": {"enum": ["pre", "kora", "standalone", "cfx-default", "default-maps", "compat", "props", "other"]},
+        "kind": {"enum": ["kora", "dependency", "optional", "internal"]},
+        "branch": {"type": "string", "pattern": "^[A-Za-z0-9._/-]+$", "description": "Default branch ref."},
+        "order": {"type": "integer", "minimum": 1, "description": "Install/download order in generated recipe and manifest; unique per catalog, ascending."},
+        "docsPath": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/safePath"}]},
+        "entryPage": {"$ref": "#/$defs/safePath"},
+        "latest": {"oneOf": [{"type": "null"}, {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"}]},
+        "docsAvailable": {"type": "boolean"},
+        "description": {"type": "string"},
+        "versions": {"type": "array", "items": {"$ref": "#/$defs/release"}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"kind": {"enum": ["kora", "optional"]}}},
+          "then": {"properties": {"versions": {"minItems": 1}, "latest": {"type": "string"}}}
+        },
+        {
+          "if": {"properties": {"kind": {"enum": ["dependency", "internal"]}}},
+          "then": {"anyOf": [
+            {"properties": {"versions": {"maxItems": 0}, "latest": {"type": "null"}}},
+            {"properties": {"versions": {"minItems": 1}, "latest": {"type": "string"}}}
+          ]}
+        }
+      ]
+    }
+  }
+}
