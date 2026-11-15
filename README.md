@@ -90,7 +90,7 @@ MDX is executable build input: catalog changes are trusted-code changes and requ
 
 ## Generated txAdmin recipe
 
-`tools/generate.py` writes `tools/out/recipe.yaml`. The recipe is self-contained: `server.cfg`, `permissions.cfg` and `kora.sql` live in `tools/templates/` and are embedded verbatim as `write_file` steps (txAdmin `{{placeholders}}` stay literal and are resolved by the deployer's `replace_string` steps). It no longer downloads a separate recipe repository. Edit the templates, then run `python3 tools/generate.py --include-internal`; CI uses `--check`.
+`tools/generate.py` writes `tools/out/recipe.yaml`. The recipe is self-contained: `server.cfg`, `permissions.cfg` and `kora.sql` live in `tools/templates/` and are embedded verbatim as `write_file` steps (txAdmin `{{placeholders}}` stay literal and are resolved by the deployer's `replace_string` steps). It no longer downloads a separate recipe repository. `tools/templates/server.cfg` deliberately has no active `ensure` lines (it deviates from the old vendored copy); the generator appends one `ensure [folder]` per folder that holds a generated resource, in the order `[cfx-default]`, `[compat]`, `[pre]`, `[standalone]`, `[default-maps]`, `[kora]`, `[bridges]`, `[creators]`, then `[addons]` and `[streamedassets]` (whose folders it creates with `ensure_dir`). Folders only, never single resources. Edit the templates, then run `python3 tools/generate.py --include-internal`; CI uses `--check`.
 
 ## Publication
 

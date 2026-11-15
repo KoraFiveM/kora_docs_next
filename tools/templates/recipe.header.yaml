@@ -1,3 +1,6 @@
+# NOTE: tools/templates/server.cfg deliberately deviates from the old vendored KoraFiveM recipe copy (a0b64c7):
+# it has NO active `ensure` lines in its startup sections. tools/generate.py appends one `ensure [folder]` per
+# folder that holds a generated resource, plus [addons] and [streamedassets] (folders only, never single resources).
 $engine: 3
 $onesync: 'on'
 name: Kora Framework

@@ -91,6 +91,25 @@ def read(name):
         return f.read()
 
 
+# Folder ensures appended to server.cfg (folders only; mirrors website/src/lib/recipe/generate.ts ensureFolders).
+FOLDER_ORDER = ["[cfx-default]", "[compat]", "[pre]", "[standalone]", "[default-maps]", "[kora]", "[bridges]", "[creators]"]
+LEGACY_FOLDERS = ("[pre]", "[standalone]", "[default-maps]")
+ADDONS_DIR = "[addons]"
+STREAMED_DIRS = ("[cars]", "[maps]", "[props]", "[peds]")
+
+
+def ensure_folders(items):
+    tops = []
+    for r in items:
+        top = r["path"].split("/")[0]
+        if top.startswith("[") and top.endswith("]") and top not in tops:
+            tops.append(top)
+    known = set(FOLDER_ORDER) | {ADDONS_DIR, "[streamedassets]"}
+    extra = [t for t in tops if t not in known]  # unknown bracketed folders: after the legacy ones, before [kora]
+    order = FOLDER_ORDER[:5] + extra + FOLDER_ORDER[5:]
+    return [f for f in order if f in tops] + [ADDONS_DIR, "[streamedassets]"]
+
+
 def inline_file(template, dest):
     """write_file step embedding tools/templates/<template> verbatim (txAdmin {{vars}} stay literal)."""
     body = read(template)
@@ -123,6 +142,12 @@ def gen_recipe(res):
         count += 1
         if count % PAUSE_EVERY == 0 and i != len(items) - 1:
             parts.append(f"- action: waste_time\n  seconds: {PAUSE_SECONDS}\n")
+    parts.append(f"- action: ensure_dir\n  path: ./resources/{ADDONS_DIR}\n")
+    for d in STREAMED_DIRS:
+        parts.append(f"- action: ensure_dir\n  path: ./resources/[streamedassets]/{d}\n")
+    # The template server.cfg has no ensure lines: append each folder ensure exactly once.
+    ensures = "".join(f"    ensure {f}\n" for f in ensure_folders(items))
+    parts.append(f"- action: write_file\n  file: ./server.cfg\n  append: true\n  data: |\n\n{ensures}")
     parts.append(read("recipe.footer.yaml"))
     return "".join(parts)
 

@@ -1,3 +1,6 @@
+# NOTE: tools/templates/server.cfg deliberately deviates from the old vendored KoraFiveM recipe copy (a0b64c7):
+# it has NO active `ensure` lines in its startup sections. tools/generate.py appends one `ensure [folder]` per
+# folder that holds a generated resource, plus [addons] and [streamedassets] (folders only, never single resources).
 $engine: 3
 $onesync: 'on'
 name: Kora Framework
@@ -96,47 +99,20 @@ tasks:
     # -----------------------------------------------------------------------------
     # 6. DEFAULT FIVE M RESOURCES
     # -----------------------------------------------------------------------------
-    # These must exist in your downloaded resources.
-    # Starts FiveM map manager resource.
-    # Docs: https://docs.fivem.net/docs/server-manual/server-commands/
-    ensure mapmanager
-    # Uncomment only if supplied and required by your chosen resource pack.
-    # ensure spawnmanager
-    # ensure sessionmanager
-    # ensure hardcap
+    # The base FiveM resources (mapmanager, spawnmanager, sessionmanager, ...) live
+    # in the [cfx-default] folder, which is ensured first (see section 7).
+    # Do not add per-resource `ensure` lines here.
 
     # -----------------------------------------------------------------------------
-    # 7. KORA STARTUP ORDER
+    # 7. STARTUP ORDER
     # -----------------------------------------------------------------------------
-    # Core dependencies must start before Kora gameplay resources.
-    # Starts Kora shared library before dependent resources.
-    # Docs: https://github.com/KoraFiveM/kora_lib
-    ensure kora_lib
-    # Starts Kora SQL initialization and schema management.
-    # Docs: https://github.com/KoraFiveM/kora_sql
-    ensure kora_sql
-    # Starts Kora inventory.
-    # Docs: https://github.com/KoraFiveM/kora_inventory
-    ensure kora_inventory
-    # Starts the main Kora framework.
-    # Docs: https://github.com/KoraFiveM/kora_core
-    ensure kora_core
-
-    # Compatibility resources (oxmysql, mysql-async, qb-core, PolyZone).
-    # Each declares its kora_sql / kora_core dependency, so they start after those.
-    # Docs: https://github.com/KoraFiveM/compat
-    ensure [compat]
-
-    # Gameplay resources and independent integrations.
-    # Starts all resources in the [kora] resource category.
-    # Docs: https://docs.fivem.net/docs/server-manual/server-commands/
-    ensure [kora]
-    # Starts all resources in the [standalone] category.
-    # Docs: https://docs.fivem.net/docs/server-manual/server-commands/
-    ensure [standalone]
-    # Starts the default map resources category.
-    # Docs: https://docs.fivem.net/docs/server-manual/server-commands/
-    ensure [default-maps]
+    # Startup order is a list of `ensure [folder]` lines appended below by the
+    # txAdmin recipe (folders only, never single resources), in this order:
+    # [cfx-default], [compat], legacy folders ([pre], [standalone],
+    # [default-maps]), [kora], [bridges], [creators], [addons], [streamedassets].
+    # Core libraries (kora_lib, kora_sql, kora_core, kora_inventory) are in [pre]
+    # or [kora]; each resource declares its own dependencies in its fxmanifest.lua.
+    # Put your own resources in [addons]; they start after everything else.
 
     # -----------------------------------------------------------------------------
     # 8. ACCESS CONTROL
@@ -501,6 +477,29 @@ tasks:
   src: https://github.com/Bob74/bob74_ipl
   ref: master
   dest: ./resources/[standalone]/bob74_ipl
+- action: ensure_dir
+  path: ./resources/[addons]
+- action: ensure_dir
+  path: ./resources/[streamedassets]/[cars]
+- action: ensure_dir
+  path: ./resources/[streamedassets]/[maps]
+- action: ensure_dir
+  path: ./resources/[streamedassets]/[props]
+- action: ensure_dir
+  path: ./resources/[streamedassets]/[peds]
+- action: write_file
+  file: ./server.cfg
+  append: true
+  data: |
+
+    ensure [cfx-default]
+    ensure [compat]
+    ensure [pre]
+    ensure [standalone]
+    ensure [default-maps]
+    ensure [kora]
+    ensure [addons]
+    ensure [streamedassets]
 - action: replace_string
   mode: all_vars
   file:

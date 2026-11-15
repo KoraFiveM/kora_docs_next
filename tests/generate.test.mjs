@@ -40,3 +40,47 @@ test('creator folders keep brackets in recipe, manifest and bash output', async 
     assert.doesNotMatch(await read('resources.manifest'), /\[mrnewb\]\/x/); // optional is not default
   } finally { await fs.rm(dir, {recursive: true, force: true}); }
 });
+
+const activeEnsures = text => [...text.matchAll(/^\s*ensure\s+(\S+)\s*$/gm)].map(match => match[1]);
+
+test('template server.cfg has no active ensure lines', async () => {
+  const cfg = await fs.readFile(fileURLToPath(new URL('../tools/templates/server.cfg', import.meta.url)), 'utf8');
+  assert.deepEqual(activeEnsures(cfg), []);
+});
+
+test('recipe appends each folder ensure once, in order, folders only', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen-ensure-'));
+  try {
+    const kind = 'dependency';
+    // FIXTURE only. Deliberately scrambled order; optional/internal resources must not add folders.
+    const catalog = {schemaVersion: 3, creators: [{id: 'mrnewb', name: 'Fake', url: 'https://github.com/example'}], resources: [
+      entry('a-kora', 1, {path: '[kora]/a', group: 'kora', kind}),
+      entry('b-kora', 2, {path: '[kora]/b', group: 'kora', kind}),
+      entry('c-maps', 3, {path: '[default-maps]/c', group: 'default-maps', kind}),
+      entry('d-pre', 4, {path: '[pre]/d', group: 'pre', kind}),
+      entry('e-cfx', 5, {path: '[cfx-default]', group: 'cfx-default', kind}),
+      entry('f-standalone', 6, {path: '[standalone]/f', group: 'standalone', kind}),
+      entry('g-compat', 7, {type: 'compat', path: '[compat]/g', group: 'compat', kind}),
+      entry('h-bridge', 8, {type: 'bridge', path: '[bridges]/h', group: 'bridges', kind}),
+      entry('i-creator', 9, {type: 'creator', creator: 'mrnewb', path: '[creators]/[mrnewb]/i', group: 'creators', kind}),
+      entry('j-optional-compat', 10, {type: 'compat', path: '[compat]/j', group: 'compat', kind: 'optional'}),
+      entry('k-internal', 11, {path: '[other]/k', group: 'other', kind: 'internal'}),
+    ]};
+    const file = path.join(dir, 'resources.json'), out = path.join(dir, 'out');
+    await fs.writeFile(file, JSON.stringify(catalog));
+    const run = spawnSync('python3', ['-I', script, '--catalog', file, '--out', out], {encoding: 'utf8'});
+    assert.equal(run.status, 0, run.stderr);
+    const recipe = await fs.readFile(path.join(out, 'recipe.yaml'), 'utf8');
+    const ensures = activeEnsures(recipe);
+    assert.deepEqual(ensures, ['[cfx-default]', '[compat]', '[pre]', '[standalone]', '[default-maps]', '[kora]', '[bridges]', '[creators]', '[addons]', '[streamedassets]']);
+    assert.ok(ensures.every(name => /^\[[^\]/]+\]$/.test(name)), 'folders only, no single-resource or unbracketed ensure');
+    assert.equal(new Set(ensures).size, ensures.length, 'each folder ensured once');
+    assert.ok(recipe.includes('- action: write_file\n  file: ./server.cfg\n  append: true\n  data: |\n\n    ensure [cfx-default]\n'));
+    for (const dirName of ['[addons]', '[streamedassets]/[cars]', '[streamedassets]/[maps]', '[streamedassets]/[props]', '[streamedassets]/[peds]']) {
+      assert.equal(recipe.split(`- action: ensure_dir\n  path: ./resources/${dirName}\n`).length - 1, 1, dirName);
+    }
+    // Ensures come after every download and before the final variable replacement of server.cfg.
+    assert.ok(recipe.lastIndexOf('action: download_github') < recipe.indexOf('append: true'));
+    assert.ok(recipe.indexOf('append: true') < recipe.lastIndexOf('mode: all_vars'));
+  } finally { await fs.rm(dir, {recursive: true, force: true}); }
+});
