@@ -1929,6 +1929,79 @@
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[config]/server_cfg_test."
+    },
+    {
+      "id": "community-bridge",
+      "title": "Community Bridge",
+      "type": "bridge",
+      "repository": "https://github.com/TheOrderFivem/community_bridge.git",
+      "path": "[bridges]/community_bridge",
+      "group": "bridges",
+      "kind": "optional",
+      "branch": "main",
+      "order": 71,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "0.13.6",
+      "docsAvailable": false,
+      "dependsOn": [
+        "ox-lib",
+        "oxmysql"
+      ],
+      "versions": [
+        {
+          "version": "0.13.6",
+          "tag": "v0.13.6",
+          "commit": "8accf38f974067c89e20d1abe816c004ea826dda"
+        }
+      ],
+      "description": "A universal bridge that connects frameworks, inventories, target systems, notification systems and more behind one API. Third-party library, not supported by Kora; it may need its own setup."
+    },
+    {
+      "id": "sd-lib",
+      "title": "SD Lib",
+      "type": "bridge",
+      "repository": "https://github.com/Samuels-Development/sd_lib.git",
+      "path": "[bridges]/sd_lib",
+      "group": "bridges",
+      "kind": "optional",
+      "branch": "main",
+      "order": 72,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "1.2.0",
+      "docsAvailable": false,
+      "versions": [
+        {
+          "version": "1.2.0",
+          "tag": "v1.2.0",
+          "commit": "a009ce95c1dfe21edd2005ea86a0640ec8544195"
+        }
+      ],
+      "description": "A library of functions that also bridges frameworks and common third-party resources. Third-party library, not supported by Kora; it may need its own setup."
+    },
+    {
+      "id": "loaf-lib",
+      "title": "Loaf Lib",
+      "type": "bridge",
+      "repository": "https://github.com/loaf-scripts/loaf_lib.git",
+      "path": "[bridges]/loaf_lib",
+      "group": "bridges",
+      "kind": "optional",
+      "branch": "main",
+      "order": 73,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "1.0.6",
+      "docsAvailable": false,
+      "versions": [
+        {
+          "version": "1.0.6",
+          "tag": "v1.0.6",
+          "commit": "4c1e77c5a25836762eafd9f1e80accfcbd9dde27"
+        }
+      ],
+      "description": "A shared helper library used by Loaf Scripts resources. Third-party library, not supported by Kora; it may need its own setup."
     }
   ]
 }

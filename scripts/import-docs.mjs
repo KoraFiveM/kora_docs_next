@@ -95,8 +95,9 @@ export function resolveDependencies(catalog, id) {
   walk(id);
   return [...seen];
 }
-// Compat entries are third-party shims; they have no docs snapshots and are not docs plugins.
-export const hasDocs = resource => resource.type !== 'compat' && resource.versions.length > 0;
+// Third-party types (compat, bridge, creator) never have docs on this site: no snapshots, not docs plugins.
+export const THIRD_PARTY_TYPES = ['compat', 'bridge', 'creator'];
+export const hasDocs = resource => !THIRD_PARTY_TYPES.includes(resource.type) && resource.versions.length > 0;
 
 export function validateCatalog(catalog, {allowLocal = false} = {}) {
   if (![1, 2, 3].includes(catalog.schemaVersion) || !Array.isArray(catalog.resources)) throw new Error('Expected catalog schemaVersion 1, 2 or 3 and resources array');

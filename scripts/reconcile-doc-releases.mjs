@@ -2,7 +2,7 @@ import {execFileSync} from 'node:child_process';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import {importDocs, validateCatalog} from './import-docs.mjs';
+import {hasDocs, importDocs, validateCatalog} from './import-docs.mjs';
 
 const root = process.cwd();
 const catalogFile = path.join(root, 'catalog/resources.json');
@@ -69,7 +69,7 @@ async function addSnapshot(resource, repo, tag) {
 }
 
 async function reconcile(resource) {
-  if (resource.type === 'compat' || resource.versions.length === 0) return; // no releases / no docs snapshots: nothing to snapshot
+  if (!hasDocs(resource)) return; // no releases / no docs snapshots: nothing to snapshot
   const repo = path.join(scratch, resource.id);
   await fs.mkdir(repo);
   git(repo, 'init', '--quiet');

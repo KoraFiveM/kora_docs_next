@@ -7,3 +7,6 @@ build/
 *.log
 
 docs-reconcile-errors.txt
+
+__pycache__/
+*.pyc

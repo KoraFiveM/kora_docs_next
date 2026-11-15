@@ -30,6 +30,16 @@ A resource can depend on others (`dependsOn`), across types. Choosing a resource
 
 On the website's resource picker, the compat and bridge sections and each creator have a **Select all** that ticks everything in that section or for that creator. Dependencies come along with it.
 
+### Bridge libraries
+
+The catalog includes these third-party bridge libraries:
+
+- `community_bridge` ([TheOrderFivem/community_bridge](https://github.com/TheOrderFivem/community_bridge)). It needs `ox_lib` and `oxmysql`, which are selected for you.
+- `sd_lib` ([Samuels-Development/sd_lib](https://github.com/Samuels-Development/sd_lib)).
+- `loaf_lib` ([loaf-scripts/loaf_lib](https://github.com/loaf-scripts/loaf_lib)).
+
+Kora does not provide support for these libraries; they are included for convenience, and some of them need their own setup.
+
 ### Pinned, never forked
 
 Bridge and creator resources are installed at an exact commit, never as a fork, even in [development mode](./dev-mode.md), so they cannot change under you. A release without a tag is pinned by its commit.
