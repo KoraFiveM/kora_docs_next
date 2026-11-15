@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "resources": [
     {
       "id": "kora-lib",
@@ -49,6 +49,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -83,6 +84,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -117,6 +119,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -152,6 +155,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -187,6 +191,7 @@
       "docsPath": "docs",
       "entryPage": "CCTV",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -221,6 +226,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -250,6 +256,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -285,6 +292,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -319,6 +327,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -354,6 +363,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql"],
       "docsAvailable": true,
       "versions": [
         {
@@ -393,6 +403,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -428,6 +439,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -457,6 +469,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -486,6 +499,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -514,6 +528,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -543,6 +558,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -568,10 +584,11 @@
       "group": "standalone",
       "kind": "kora",
       "branch": "dev",
-      "order": 51,
+      "order": 55,
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -608,6 +625,7 @@
       "docsPath": "readme.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -637,6 +655,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -672,6 +691,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -701,6 +721,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -729,6 +750,7 @@
       "docsPath": "docs",
       "entryPage": "SHELL_GEOMETRY",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -757,6 +779,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -792,6 +815,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -820,6 +844,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -848,6 +873,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -877,6 +903,7 @@
       "docsPath": null,
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -906,6 +933,7 @@
       "docsPath": "MINING_ITEMS.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -935,6 +963,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -963,6 +992,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -992,6 +1022,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1021,6 +1052,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1056,6 +1088,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1084,6 +1117,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1120,6 +1154,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1149,6 +1184,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1178,6 +1214,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1203,10 +1240,11 @@
       "group": "standalone",
       "kind": "kora",
       "branch": "dev",
-      "order": 53,
+      "order": 57,
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1236,6 +1274,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1271,6 +1310,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1306,7 +1346,7 @@
       "group": "standalone",
       "kind": "kora",
       "branch": "dev",
-      "order": 50,
+      "order": 54,
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
@@ -1346,6 +1386,7 @@
       "docsPath": "README.MD",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1375,6 +1416,7 @@
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1403,6 +1445,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1428,10 +1471,11 @@
       "group": "standalone",
       "kind": "kora",
       "branch": "dev",
-      "order": 49,
+      "order": 53,
       "docsPath": "docs",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1467,6 +1511,7 @@
       "docsPath": "README.md",
       "entryPage": "index",
       "latest": "0.2.1",
+      "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
         {
@@ -1492,7 +1537,7 @@
       "group": "standalone",
       "kind": "dependency",
       "branch": "master",
-      "order": 54,
+      "order": 58,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
@@ -1517,20 +1562,123 @@
       "description": "Dependency installed at resources/[cfx-default]."
     },
     {
-      "id": "compat",
-      "title": "Compat",
-      "repository": "https://github.com/KoraFiveM/compat.git",
-      "path": "[compat]",
+      "id": "ox-lib",
+      "title": "Ox Lib",
+      "type": "compat",
+      "repository": "https://github.com/KoraFiveM/ox_lib.git",
+      "path": "[compat]/ox_lib",
       "group": "compat",
-      "kind": "dependency",
+      "kind": "optional",
       "branch": "main",
       "order": 48,
       "docsPath": null,
       "entryPage": "index",
-      "latest": null,
+      "latest": "3.39.0",
       "docsAvailable": false,
-      "versions": [],
-      "description": "Dependency installed at resources/[compat]."
+      "dependsOn": ["kora-lib"],
+      "versions": [
+        {
+          "version": "3.39.0",
+          "tag": "v3.39.0",
+          "commit": "48e349d0b11ecba9899b8389c26577ad9b3ef670"
+        }
+      ],
+      "description": "Headless ox_lib 3.39.0 compatibility surface backed by kora_lib. Optional: not installed by default. Never run real ox_lib alongside it."
+    },
+    {
+      "id": "oxmysql",
+      "title": "Oxmysql",
+      "type": "compat",
+      "repository": "https://github.com/KoraFiveM/oxmysql.git",
+      "path": "[compat]/oxmysql",
+      "group": "compat",
+      "kind": "dependency",
+      "branch": "main",
+      "order": 49,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "2.7.3",
+      "docsAvailable": false,
+      "dependsOn": ["kora-sql"],
+      "versions": [
+        {
+          "version": "2.7.3",
+          "tag": "v2.7.3",
+          "commit": "efc11a371abdfa869ebdd09a3a163464c96a16c7"
+        }
+      ],
+      "description": "oxmysql placeholder that forwards to kora_sql. Never run real oxmysql alongside it."
+    },
+    {
+      "id": "qb-core",
+      "title": "Qb Core",
+      "type": "compat",
+      "repository": "https://github.com/KoraFiveM/qb-core.git",
+      "path": "[compat]/qb-core",
+      "group": "compat",
+      "kind": "dependency",
+      "branch": "main",
+      "order": 50,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "1.0.0",
+      "docsAvailable": false,
+      "dependsOn": ["kora-core"],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "4caa2496c87d609b845dd217ec31ea9bb15028ea"
+        }
+      ],
+      "description": "Wrapper resolving @qb-core/... includes to Kora's QBCore compatibility layer."
+    },
+    {
+      "id": "compat-polyzone",
+      "title": "PolyZone (compat)",
+      "type": "compat",
+      "repository": "https://github.com/KoraFiveM/PolyZone.git",
+      "path": "[compat]/PolyZone",
+      "group": "compat",
+      "kind": "dependency",
+      "branch": "main",
+      "order": 51,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "2.6.2",
+      "docsAvailable": false,
+      "versions": [
+        {
+          "version": "2.6.2",
+          "tag": "v2.6.2",
+          "commit": "10fad9501189ab5e3b44b26ba7d05d0f64f9c440"
+        }
+      ],
+      "description": "PolyZone zone library used by legacy scripts."
+    },
+    {
+      "id": "mysql-async",
+      "title": "Mysql Async",
+      "type": "compat",
+      "repository": "https://github.com/KoraFiveM/mysql-async.git",
+      "path": "[compat]/mysql-async",
+      "group": "compat",
+      "kind": "dependency",
+      "branch": "main",
+      "order": 52,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "3.3.2",
+      "docsAvailable": false,
+      "dependsOn": ["kora-sql"],
+      "versions": [
+        {
+          "version": "3.3.2",
+          "tag": "v3.3.2",
+          "commit": "0de3c27ad5b5769f5f0a57651a20a693fc9ee70b"
+        }
+      ],
+      "description": "mysql-async placeholder that forwards to kora_sql. Never run real mysql-async alongside it."
     },
     {
       "id": "default-maps",
@@ -1560,6 +1708,7 @@
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Dependency installed at resources/[kora]/kora_phone."
@@ -1588,7 +1737,7 @@
       "group": "props",
       "kind": "dependency",
       "branch": "main",
-      "order": 52,
+      "order": 56,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
@@ -1603,8 +1752,8 @@
       "path": "[standalone]/fft",
       "group": "standalone",
       "kind": "internal",
-      "branch": "main",
-      "order": 55,
+      "branch": "dev",
+      "order": 59,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
@@ -1619,11 +1768,12 @@
       "path": "[kora]/kora_cards",
       "group": "kora",
       "kind": "internal",
-      "branch": "main",
-      "order": 56,
+      "branch": "dev",
+      "order": 60,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_cards."
@@ -1635,11 +1785,12 @@
       "path": "[kora]/kora_crypto",
       "group": "kora",
       "kind": "internal",
-      "branch": "main",
-      "order": 57,
+      "branch": "dev",
+      "order": 61,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_crypto."
@@ -1651,11 +1802,12 @@
       "path": "[kora]/kora_diving",
       "group": "kora",
       "kind": "internal",
-      "branch": "main",
-      "order": 58,
+      "branch": "dev",
+      "order": 62,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_diving."
@@ -1668,10 +1820,11 @@
       "group": "kora",
       "kind": "internal",
       "branch": "main",
-      "order": 59,
+      "order": 63,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_image_maker."
@@ -1683,11 +1836,12 @@
       "path": "[kora]/kora_jewellery",
       "group": "kora",
       "kind": "internal",
-      "branch": "main",
-      "order": 60,
+      "branch": "dev",
+      "order": 64,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_jewellery."
@@ -1699,11 +1853,12 @@
       "path": "[standalone]/kora_lib-playground",
       "group": "standalone",
       "kind": "internal",
-      "branch": "main",
-      "order": 61,
+      "branch": "dev",
+      "order": 65,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[standalone]/kora_lib-playground."
@@ -1715,11 +1870,12 @@
       "path": "[standalone]/kora_phoneshop_demo",
       "group": "standalone",
       "kind": "internal",
-      "branch": "main",
-      "order": 62,
+      "branch": "dev",
+      "order": 66,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[standalone]/kora_phoneshop_demo."
@@ -1731,11 +1887,12 @@
       "path": "[kora]/kora_scrapyard",
       "group": "kora",
       "kind": "internal",
-      "branch": "main",
-      "order": 63,
+      "branch": "dev",
+      "order": 67,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_scrapyard."
@@ -1747,30 +1904,15 @@
       "path": "[kora]/kora_truckrobbery",
       "group": "kora",
       "kind": "internal",
-      "branch": "main",
-      "order": 64,
+      "branch": "dev",
+      "order": 68,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,
+      "dependsOn": ["kora-lib"],
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_truckrobbery."
-    },
-    {
-      "id": "polyzone",
-      "title": "Polyzone",
-      "repository": "https://github.com/KoraFiveM/PolyZone.git",
-      "path": "[standalone]/PolyZone",
-      "group": "standalone",
-      "kind": "internal",
-      "branch": "main",
-      "order": 65,
-      "docsPath": null,
-      "entryPage": "index",
-      "latest": null,
-      "docsAvailable": false,
-      "versions": [],
-      "description": "Internal development-only repository installed at resources/[standalone]/PolyZone."
     },
     {
       "id": "server-cfg-test",
@@ -1780,7 +1922,7 @@
       "group": "other",
       "kind": "internal",
       "branch": "main",
-      "order": 66,
+      "order": 70,
       "docsPath": null,
       "entryPage": "index",
       "latest": null,

@@ -21,5 +21,5 @@ export async function fixture(directory) {
     }
     resources.push({id, title: id, repository, docsPath: 'docs', entryPage: 'index', latest: '1.1.0', versions});
   }
-  return {schemaVersion: 1, resources};
+  return {schemaVersion: 3, resources};
 }

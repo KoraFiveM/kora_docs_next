@@ -12,7 +12,7 @@ test('CI permits new versions but rejects replacing published versions', async (
   const git = (...args) => execFileSync('git', ['-C', directory, ...args], {encoding: 'utf8'}).trim();
   try {
     await fs.mkdir(path.join(directory, 'catalog'));
-    const previous = {schemaVersion: 2, resources: [{id: 'core', title: 'Core', repository: 'https://github.com/KoraFiveM/kora_core.git', path: '[pre]/kora_core', group: 'pre', kind: 'kora', branch: 'dev', order: 1, docsPath: 'docs', entryPage: 'index', latest: '1.0.0', versions: [{version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40)}]}]};
+    const previous = {schemaVersion: 3, resources: [{id: 'core', title: 'Core', repository: 'https://github.com/KoraFiveM/kora_core.git', path: '[pre]/kora_core', group: 'pre', kind: 'kora', branch: 'dev', order: 1, docsPath: 'docs', entryPage: 'index', latest: '1.0.0', versions: [{version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40)}]}]};
     const catalogFile = path.join(directory, 'catalog/resources.json');
     await fs.writeFile(catalogFile, JSON.stringify(previous));
     git('init', '--quiet'); git('config', 'user.email', 'fixture@example.invalid'); git('config', 'user.name', 'Fixture');

@@ -65,7 +65,6 @@ standaloneRepos=(
   fft
   kora_lib-playground
   kora_phoneshop_demo
-  PolyZone
 )
 
 # Other resources: path<TAB>repo URL<TAB>branch
@@ -73,7 +72,10 @@ otherResources=(
   $'resources/cfx-default\thttps://github.com/KoraFiveM/-cfx-default-.git\tdev'
   $'resources/default-maps\thttps://github.com/KoraFiveM/-default-maps-.git\tdev'
   $'resources/default-maps/kora_phoneshop\thttps://github.com/KoraFiveM/kora_phoneshop.git\tmain'
-  $'resources/compat\thttps://github.com/KoraFiveM/compat.git\tmain'
+  $'resources/compat/oxmysql\thttps://github.com/KoraFiveM/oxmysql.git\tmain'
+  $'resources/compat/qb-core\thttps://github.com/KoraFiveM/qb-core.git\tmain'
+  $'resources/compat/PolyZone\thttps://github.com/KoraFiveM/PolyZone.git\tmain'
+  $'resources/compat/mysql-async\thttps://github.com/KoraFiveM/mysql-async.git\tmain'
   $'resources/standalone/props\thttps://github.com/KoraFiveM/props.git\tmain'
   $'resources/config/server_cfg_test\thttps://github.com/KoraFiveM/server_cfg_test.git\tmain'
 )
@@ -127,23 +129,25 @@ declare -A repoBranch=(
   [kora_robberies]=dev
   [kora_queue]=dev
   [kora_chat]=dev
-  [compat]=main
+  [oxmysql]=main
+  [qb-core]=main
+  [PolyZone]=main
+  [mysql-async]=main
   [kora_voice]=dev
   [kora_theme]=dev
   [kora_emotemenu]=dev
   [props]=main
   [kora_sound]=dev
   [bob74_ipl]=master
-  [fft]=main
-  [kora_cards]=main
-  [kora_crypto]=main
-  [kora_diving]=main
+  [fft]=dev
+  [kora_cards]=dev
+  [kora_crypto]=dev
+  [kora_diving]=dev
   [kora_image_maker]=main
-  [kora_jewellery]=main
-  [kora_lib-playground]=main
-  [kora_phoneshop_demo]=main
-  [kora_scrapyard]=main
-  [kora_truckrobbery]=main
-  [PolyZone]=main
+  [kora_jewellery]=dev
+  [kora_lib-playground]=dev
+  [kora_phoneshop_demo]=dev
+  [kora_scrapyard]=dev
+  [kora_truckrobbery]=dev
   [server_cfg_test]=main
 )

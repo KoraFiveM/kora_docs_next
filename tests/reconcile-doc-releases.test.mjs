@@ -22,7 +22,7 @@ test('releases docs-only changes, preserves older snapshots and refuses mixed co
     await fs.writeFile(path.join(work,'docs/index.md'),'# Original\n');
     git(work,'add','.'); git(work,'commit','--quiet','-m','baseline');
     const baseline=git(work,'rev-parse','HEAD'); git(work,'tag','v0.1.0'); git(work,'push','--quiet','origin','dev','v0.1.0');
-    const catalog={schemaVersion:1,resources:[{id:'kora-demo',title:'Kora Demo',repository:origin,docsPath:'docs',entryPage:'index',docsAvailable:true,latest:'0.1.0',versions:[{version:'0.1.0',tag:'v0.1.0',commit:baseline}]}]};
+    const catalog={schemaVersion: 3,resources:[{id:'kora-demo',title:'Kora Demo',repository:origin,docsPath:'docs',entryPage:'index',docsAvailable:true,latest:'0.1.0',versions:[{version:'0.1.0',tag:'v0.1.0',commit:baseline}]}]};
     await fs.writeFile(path.join(site,'catalog/resources.json'),JSON.stringify(catalog));
     const old=path.join(site,'resource-kora-demo_versioned_docs/version-0.1.0'); await fs.mkdir(old,{recursive:true}); await fs.writeFile(path.join(old,'index.md'),'original snapshot');
     await fs.writeFile(path.join(work,'docs/index.md'),'# New documentation\n');

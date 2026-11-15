@@ -53,12 +53,74 @@ function normalizeMarkdown(input) {
   return output.join('\n');
 }
 
+const RESOURCE_TYPES = ['compat', 'bridge', 'creator'];
+const idPattern = /^[a-z][a-z0-9_-]*$/;
+const dirName = /^[A-Za-z0-9_.-]+$/;
+const githubUrl = /^https:\/\/github\.com\/[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)?$/;
+// Folder layout for typed (schema v3) resources: compat -> [compat]/<name>,
+// bridge -> [bridges]/<name>, creator -> [creators]/[<creatorId>]/<name> (bracketed so FiveM scans it).
+// Untyped (Kora/legacy) entries keep their existing v2 paths unchanged.
+function validateFolder(resource) {
+  const layout = {compat: ['[compat]', 1], bridge: ['[bridges]', 1], creator: ['[creators]', 2]}[resource.type];
+  if (!layout) return;
+  const [root, ...rest] = typeof resource.path === 'string' ? resource.path.split('/') : [];
+  if (root !== layout[0] || rest.length !== layout[1] || !rest.every((part, i) => dirName.test(part) || (resource.type === 'creator' && i === 0 && /^\[[a-z][a-z0-9_-]*\]$/.test(part)))) throw new Error(`Invalid path for ${resource.type} ${resource.id}`);
+  if (resource.type === 'creator' && rest[0] !== `[${resource.creator}]`) throw new Error(`Path creator folder must be [<creator>]: ${resource.id}`);
+}
+function validateGraph(catalog) {
+  const byId = new Map(catalog.resources.map(resource => [resource.id, resource]));
+  for (const resource of catalog.resources) {
+    if (resource.dependsOn === undefined) continue;
+    if (!Array.isArray(resource.dependsOn) || new Set(resource.dependsOn).size !== resource.dependsOn.length) throw new Error(`Invalid dependsOn: ${resource.id}`);
+    for (const dependency of resource.dependsOn) {
+      if (dependency === resource.id) throw new Error(`Resource cannot depend on itself: ${resource.id}`);
+      if (!byId.has(dependency)) throw new Error(`Unknown dependency ${dependency} for ${resource.id}`);
+    }
+  }
+  const state = new Map();
+  const visit = (id, trail) => {
+    if (state.get(id) === 'done') return;
+    if (state.get(id) === 'active') throw new Error(`Dependency cycle: ${[...trail, id].join(' -> ')}`);
+    state.set(id, 'active');
+    for (const dependency of byId.get(id).dependsOn ?? []) visit(dependency, [...trail, id]);
+    state.set(id, 'done');
+  };
+  for (const id of byId.keys()) visit(id, []);
+}
+// Transitive dependencies of a resource id (excluding itself), in discovery order.
+export function resolveDependencies(catalog, id) {
+  const byId = new Map(catalog.resources.map(resource => [resource.id, resource]));
+  const seen = new Set();
+  const walk = current => { for (const dependency of byId.get(current)?.dependsOn ?? []) if (!seen.has(dependency)) { seen.add(dependency); walk(dependency); } };
+  walk(id);
+  return [...seen];
+}
+// Compat entries are third-party shims; they have no docs snapshots and are not docs plugins.
+export const hasDocs = resource => resource.type !== 'compat' && resource.versions.length > 0;
+
 export function validateCatalog(catalog, {allowLocal = false} = {}) {
-  if (![1, 2].includes(catalog.schemaVersion) || !Array.isArray(catalog.resources)) throw new Error('Expected catalog schemaVersion 1 or 2 and resources array');
+  if (![1, 2, 3].includes(catalog.schemaVersion) || !Array.isArray(catalog.resources)) throw new Error('Expected catalog schemaVersion 1, 2 or 3 and resources array');
+  const v3 = catalog.schemaVersion >= 3;
+  const creatorIds = new Set();
+  if (catalog.creators !== undefined) {
+    if (!v3 || !Array.isArray(catalog.creators)) throw new Error('creators requires schemaVersion 3 and must be an array');
+    for (const creator of catalog.creators) {
+      if (!idPattern.test(creator?.id ?? '') || creatorIds.has(creator.id)) throw new Error('Invalid or duplicate creator id');
+      creatorIds.add(creator.id);
+      if (typeof creator.name !== 'string' || !creator.name.trim()) throw new Error(`Missing creator name: ${creator.id}`);
+      if (!githubUrl.test(creator.url ?? '')) throw new Error(`Creator url must be a GitHub HTTPS URL: ${creator.id}`);
+      if (creator.description !== undefined && typeof creator.description !== 'string') throw new Error(`Invalid creator description: ${creator.id}`);
+    }
+  }
   const ids = new Set();
   for (const resource of catalog.resources) {
     if (!/^[a-z][a-z0-9_-]*$/.test(resource.id ?? '') || ids.has(resource.id)) throw new Error('Invalid or duplicate resource id');
     ids.add(resource.id);
+    if (!v3 && (resource.type !== undefined || resource.creator !== undefined || resource.subpath !== undefined)) throw new Error(`type/creator/subpath require schemaVersion 3: ${resource.id}`);
+    if (resource.type !== undefined && !RESOURCE_TYPES.includes(resource.type)) throw new Error(`Invalid type: ${resource.id}`);
+    if (resource.type === 'creator' ? !creatorIds.has(resource.creator) : resource.creator !== undefined) throw new Error(`Invalid creator reference: ${resource.id}`);
+    if (resource.subpath !== undefined && !safePath(resource.subpath)) throw new Error(`Unsafe subpath: ${resource.id}`);
+    validateFolder(resource);
     if (typeof resource.title !== 'string' || !resource.title.trim()) throw new Error(`Missing title: ${resource.id}`);
     const github = /^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\.git$/;
     if (!github.test(resource.repository ?? '') && !(allowLocal && path.isAbsolute(resource.repository ?? ''))) throw new Error('Repository must be a GitHub HTTPS .git URL');
@@ -80,14 +142,37 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
     const latestPath = Object.hasOwn(latestRelease, 'docsPath') ? latestRelease.docsPath : resource.docsPath;
     if (!latestPath && resource.docsAvailable !== false) throw new Error('Available docs require a source path');
   }
+  validateGraph(catalog);
   return catalog;
+}
+
+// Compat entries are tagged third-party shims without docs snapshots (not docs plugins). In sync mode confirm each
+// tag resolves to the pinned commit and that its manifest declares the catalogued version.
+async function verifyPinnedCompat(catalog) {
+  const scratch = await fs.mkdtemp(path.join(os.tmpdir(), 'kora-compat-verify-'));
+  try {
+    for (const resource of catalog.resources.filter(item => item.type === 'compat' && item.versions.length > 0)) {
+      const repository = path.join(scratch, resource.id);
+      await fs.mkdir(repository);
+      git(repository, ['init', '--quiet']);
+      git(repository, ['remote', 'add', 'origin', resource.repository]);
+      for (const release of resource.versions) {
+        git(repository, ['fetch', '--quiet', '--depth=1', 'origin', `refs/tags/${release.tag}:refs/tags/${release.tag}`]);
+        if (git(repository, ['rev-parse', `refs/tags/${release.tag}^{commit}`]).trim() !== release.commit) throw new Error(`Tag/commit mismatch: ${resource.id} ${release.version}`);
+        const manifest = git(repository, ['show', `${release.commit}:${resource.subpath ? `${resource.subpath}/` : ''}fxmanifest.lua`]);
+        const declarations = [...manifest.matchAll(/^\s*version\s*(?:\(\s*)?['"]([^'"]+)['"]/gm)];
+        if (declarations.length !== 1 || declarations[0][1] !== release.version) throw new Error(`Manifest version mismatch: ${resource.id} ${release.version}`);
+      }
+    }
+  } finally { await fs.rm(scratch, {recursive: true, force: true}); }
 }
 
 export async function importDocs({siteDir = root, catalog, allowLocal = false, sync = allowLocal || process.argv.includes('--sync')} = {}) {
   catalog ??= JSON.parse(await fs.readFile(path.join(siteDir, 'catalog/resources.json'), 'utf8'));
   validateCatalog(catalog, {allowLocal});
+  if (sync) await verifyPinnedCompat(catalog);
   // The docs site only consumes resources that have releases (v2 dependency/internal entries have none).
-  catalog = {...catalog, resources: catalog.resources.filter(resource => resource.versions.length > 0)};
+  catalog = {...catalog, resources: catalog.resources.filter(hasDocs)};
   if (!sync) {
     for (const resource of catalog.resources) for (const release of resource.versions) {
       const snapshot = path.join(siteDir, `resource-${resource.id}_versioned_docs`, `version-${release.version}`);
@@ -111,12 +196,13 @@ export async function importDocs({siteDir = root, catalog, allowLocal = false, s
       const plugin = `resource-${resource.id}`;
       await fs.mkdir(path.join(staged, '.generated/current', resource.id), {recursive: true});
       for (const release of resource.versions) {
-        const docsPath = Object.hasOwn(release, 'docsPath') ? release.docsPath : resource.docsPath;
+        const rawDocsPath = Object.hasOwn(release, 'docsPath') ? release.docsPath : resource.docsPath;
+        const docsPath = rawDocsPath === null || !resource.subpath ? rawDocsPath : `${resource.subpath}/${rawDocsPath}`;
         const entryPage = release.entryPage ?? resource.entryPage;
         git(repository, ['fetch', '--quiet', '--depth=1', 'origin', `refs/tags/${release.tag}:refs/tags/${release.tag}`]);
         const resolved = git(repository, ['rev-parse', `refs/tags/${release.tag}^{commit}`]).trim();
         if (resolved !== release.commit) throw new Error(`Tag/commit mismatch: ${resource.id} ${release.version}`);
-        const manifest = git(repository, ['show', `${resolved}:fxmanifest.lua`]);
+        const manifest = git(repository, ['show', `${resolved}:${resource.subpath ? `${resource.subpath}/` : ''}fxmanifest.lua`]);
         const declarations = [...manifest.matchAll(/^\s*version\s*(?:\(\s*)?['"]([^'"]+)['"]/gm)];
         if (declarations.length !== 1 || declarations[0][1] !== release.version) throw new Error(`Manifest version mismatch: ${resource.id} ${release.version}`);
         const output = path.join(staged, `${plugin}_versioned_docs`, `version-${release.version}`);
