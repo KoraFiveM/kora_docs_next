@@ -49,3 +49,5 @@ kora install --mode dev --github-owner my-org --code KORA-7F3K-92QX ...
 A headless dev install must have `--github-owner`; the website never decides where your forks go. Kora checks the value against the real list and tells you if it cannot be used. These commands need `gh` installed and signed in (`gh auth login`). Your token needs the `repo` and `read:org` scopes.
 
 Kora never pushes to the Kora repositories and never deletes your forks.
+
+To send a change back, press `p` in `kora manager` (**Open pull request**); see [Report an issue and open a pull request](./report-and-pr.md).

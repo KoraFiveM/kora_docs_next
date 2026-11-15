@@ -27,7 +27,7 @@ Installs a new server. With no options in a terminal it opens the guided screens
 | `--txadmin-public` | Also open the txAdmin port in the firewall. By default the panel is not exposed by the firewall rule. |
 | `--cfx-identifier <ID>` | The Cfx.re account that becomes the txAdmin master, for example `fivem:123456`. Default: a generated local admin. |
 | `--artifact-url <URL>` | A `runtime.fivem.net` FXServer build URL. Default: the recommended build. |
-| `--resources all\|a,b,c` | `all` (default) or a comma-separated list of resource ids. Dependencies and the core resources are always added. |
+| `--resources all\|a,b,c` | `all` (default: every default resource, never compat, bridge or creator resources) or a comma-separated list of resource ids. Dependencies and the core resources are always added. See [Resources and folders](./resources.md). |
 | `--db existing\|install\|skip` | `existing` uses the MariaDB already on the machine (default), `install` installs it if none is found, `skip` creates no database. |
 | `--db-admin-user <USER>` | Database admin account used once to create the server's database and user. |
 | `--db-admin-host <HOST>` | Address of the database server for that login. Default `127.0.0.1`. |
@@ -65,6 +65,10 @@ Starts, stops or restarts the server. If it has a service (installed with `--ser
 
 Unattended update for **development** servers: fast-forward only, with an automatic rollback if the server fails its health check. `<SERVER>` is a registered name or the absolute server folder. Exit code is `1` when anything needs your attention. Details in [Updating](./updating.md).
 
+## `kora add-resources <SERVER>`
+
+Adds resources to an installed server: `--code <CODE>` from the website's **Add resources** tab, or `--resource <ID>` (repeatable), with `--dry-run` and `-y`/`--yes`. Dependencies are added too and existing servers are not rearranged. Details in [Add resources](./add-resources.md).
+
 ## `kora delete <SERVER>`
 
 Removes one server and what the installer created for it: the folder (only if Kora created it), the database and its user, the service, update timer, firewall rules, service account and the list entry. GitHub forks are never deleted. It asks you to type the server name unless `--yes`.
@@ -91,7 +95,7 @@ Without `--yes` or `--dry-run` it needs a terminal.
 ## Other commands
 
 - `kora service-host <SERVER>` is used by the service itself to run and supervise FXServer. You do not run it by hand.
-- `kora manager` (a multi-server screen) is **not available yet**.
+- `kora manager` opens the multi-server screen. Its keys include `g` (add resources), `b` (report an issue) and `p` (open a pull request, development servers only); see [Add resources](./add-resources.md) and [Report an issue and open a pull request](./report-and-pr.md).
 
 ## Environment variables
 
