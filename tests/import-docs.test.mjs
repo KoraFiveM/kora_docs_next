@@ -66,3 +66,30 @@ test('rejects symlinks in resource documentation', async () => {
     await assert.rejects(importDocs({siteDir, catalog, allowLocal: true}), /symlinks/);
   } finally {await fs.rm(directory, {recursive: true, force: true});}
 });
+
+test('third-party bridge and creator entries with versions but no docs snapshots import cleanly', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'docs-test-'));
+  try {
+    const catalog = await fixture(directory);
+    const third = (id, extra) => ({id, title: id, repository: `https://github.com/example/${id}.git`, group: 'bridges', kind: 'optional', branch: 'main', order: 90, docsPath: null, entryPage: 'index', latest: '1.0.0', docsAvailable: false, versions: [{version: '1.0.0', tag: 'v1.0.0', commit: 'b'.repeat(40)}], ...extra});
+    catalog.creators = [{id: 'mrnewb', name: 'MrNewB', url: 'https://github.com/mrnewb'}];
+    catalog.resources.push(
+      third('somebridge', {type: 'bridge', path: '[bridges]/somebridge'}),
+      third('somecreator', {type: 'creator', creator: 'mrnewb', path: '[creators]/[mrnewb]/somecreator', group: 'creators', order: 91}));
+    const siteDir = path.join(directory, 'site'); await fs.mkdir(siteDir);
+    const imported = await importDocs({siteDir, catalog, allowLocal: true});
+    assert.deepEqual(imported.resources.map(r => r.id), ['kora_inventory', 'kora_core']);
+    // Offline (non-sync) mode: no snapshots exist for the third-party entries and nothing may require them.
+    const offline = structuredClone(catalog);
+    offline.resources = offline.resources.map(r => r.type ? r : {...r, repository: 'https://github.com/KoraFiveM/' + r.id + '.git'});
+    for (const resource of offline.resources.filter(r => !r.type)) for (const release of resource.versions) {
+      const snapshot = path.join(siteDir, `resource-${resource.id}_versioned_docs`, `version-${release.version}`);
+      await fs.mkdir(snapshot, {recursive: true}); await fs.writeFile(path.join(snapshot, 'index.md'), '# x\n');
+    }
+    const result = await importDocs({siteDir, catalog: offline, sync: false});
+    assert.deepEqual(result.resources.map(r => r.id), ['kora_inventory', 'kora_core']);
+    // A Kora entry without its snapshot must still fail.
+    await fs.rm(path.join(siteDir, 'resource-kora_core_versioned_docs'), {recursive: true, force: true});
+    await assert.rejects(importDocs({siteDir, catalog: offline, sync: false}), /Entry page missing: index/);
+  } finally {await fs.rm(directory, {recursive: true, force: true});}
+});
