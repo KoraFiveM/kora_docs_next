@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Kora installer
 
-`kora` is a single program that installs a complete Kora server for you on **Linux** or **Windows**: it downloads FXServer, fetches the Kora resources, creates a database, configures txAdmin and writes your server files. It is an alternative to the [txAdmin recipe](../installation.md), with the same end result and a guided, resumable process.
+`kora` is a single program that installs a complete Kora server for you on **Linux** or **Windows**: it downloads FXServer, fetches the Kora resources, creates a database, configures txAdmin and writes your server files. It is an alternative to the [txAdmin recipe](../installation.md) (see [txAdmin recipe or installer](./txadmin-recipe.md)), with the same end result and a guided, resumable process.
 
 :::caution Pre-release
 The installer is a pre-release. The Linux path has been run end to end on real machines. The Windows path is built and tested in CI, and is **being validated on real machines**: expect rough edges and please report them. Windows builds are not code-signed yet, so Windows SmartScreen may warn about them (see [Troubleshooting](./troubleshooting.md)).
@@ -15,7 +15,7 @@ The installer is a pre-release. The Linux path has been run end to end on real m
 
 1. Checks free disk space and that your chosen ports are free.
 2. Downloads the official FXServer build from Cfx.re.
-3. Clones the Kora resources you chose (see [Production and development](#production-and-development)).
+3. Clones the Kora resources you chose into the [folder layout](./resources.md) (see [Production and development](#production-and-development)).
 4. Creates a database and a database user for this server only (see [Database](./database.md)).
 5. Writes `server.cfg`, `permissions.cfg`, `secrets.cfg` and a txAdmin profile with an admin account (see [txAdmin and your license key](./txadmin-and-license.md)).
 6. Optionally registers a background service and opens the game port in the firewall.
@@ -53,6 +53,10 @@ If `git` (or `gh` for development mode) is missing, the installer can install it
 ## Next steps
 
 - [Install on Linux](./install-linux.md) or [Install on Windows](./install-windows.md)
+- [txAdmin recipe or installer](./txadmin-recipe.md), including the one-line install commands
+- [Resources and folders](./resources.md)
+- [Add resources](./add-resources.md)
+- [Report an issue and open a pull request](./report-and-pr.md)
 - [Development mode](./dev-mode.md)
 - [After the install](./after-install.md)
 - [Command reference](./commands.md)
