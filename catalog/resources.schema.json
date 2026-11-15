@@ -6,7 +6,7 @@
   "required": ["schemaVersion", "resources"],
   "additionalProperties": false,
   "properties": {
-    "schemaVersion": {"enum": [2, 3], "description": "3 adds type, creator, subpath, top-level creators and tag-less compat releases."},
+    "schemaVersion": {"enum": [2, 3], "description": "3 adds type, creator, subpath, and top-level creators."},
     "creators": {"type": "array", "items": {"$ref": "#/$defs/creator"}, "description": "Third-party authors referenced by resources of type creator (schema v3)."},
     "resources": {"type": "array", "items": {"$ref": "#/$defs/resource"}}
   },
@@ -26,11 +26,11 @@
     },
     "release": {
       "type": "object",
-      "required": ["version", "commit"],
+      "required": ["version", "tag", "commit"],
       "additionalProperties": false,
       "properties": {
         "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"},
-        "tag": {"type": "string", "description": "Required (v<version>) except for type compat releases, which are pinned by commit alone.", "pattern": "^v\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"},
+        "tag": {"type": "string", "pattern": "^v\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"},
         "commit": {"$ref": "#/$defs/sha"},
         "docsPath": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/safePath"}]},
         "entryPage": {"$ref": "#/$defs/safePath"}
@@ -57,7 +57,7 @@
         "dependsOn": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"}, "uniqueItems": true, "description": "Ids of resources this one needs; installers add them automatically."},
         "type": {"enum": ["compat", "bridge", "creator"], "description": "Schema v3. Omitted = default Kora/legacy resource. kind/group are unchanged."},
         "creator": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$", "description": "Creator id (required for type creator)."},
-        "subpath": {"$ref": "#/$defs/safePath", "description": "Folder inside the repository that holds this resource (e.g. ox_lib in the compat repo)."},
+        "subpath": {"$ref": "#/$defs/safePath", "description": "Folder inside the repository that holds this resource. Currently unused by the catalog (resources live at repo root) but supported by the importer and generator."},
         "versions": {"type": "array", "items": {"$ref": "#/$defs/release"}}
       },
       "allOf": [

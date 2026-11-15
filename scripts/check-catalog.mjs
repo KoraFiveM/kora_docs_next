@@ -53,7 +53,7 @@ export function checkCatalog(catalog) {
     const versions = new Set();
     for (const v of r.versions ?? []) {
       if (versions.has(v.version)) errors.push(`${r.id}: duplicate version ${v.version}`); versions.add(v.version);
-      if (r.type === 'compat' && v.tag === undefined) { /* compat: pinned by commit */ } else if (v.tag !== `v${v.version}`) errors.push(`${r.id}: tag must be v${v.version}`);
+      if (v.tag !== `v${v.version}`) errors.push(`${r.id}: tag must be v${v.version}`);
     }
   }
   try { validateCatalog(catalog); } catch (error) { errors.push(error.message); }

@@ -83,8 +83,8 @@ MDX is executable build input: catalog changes are trusted-code changes and requ
 - `type`: `compat` | `bridge` | `creator`. Omitted = default Kora resource. Typed entries use these folders: compat `[compat]/<name>`, bridge `[bridges]/<name>`, creator `[creators]/[<creatorId>]/<name>` (the creator folder is bracketed so FiveM scans it).
 - top-level `creators`: `[{id, name, url, description}]`; resources of `type: creator` carry `"creator": "<id>"`.
 - `dependsOn` works across types and is resolved transitively (creator -> bridge -> compat `ox-lib`); unknown ids and cycles are rejected.
-- `subpath`: folder inside `repository` holding the resource (used by the per-item `compat` entries). The generated txAdmin recipe emits it as `subpath:`.
-- Compat releases may omit `tag` because `KoraFiveM/compat` has no tags; they are pinned by full `commit`. `docs:sync` verifies the commit exists and that `<subpath>/fxmanifest.lua` declares the catalogued version. Compat entries have `docsAvailable: false` and are not docs plugins.
+- `subpath`: folder inside `repository` holding the resource (currently unused: the compat entries now each have their own repository with the manifest at the root, but the importer and generator still support it). The generated txAdmin recipe emits it as `subpath:`.
+- `compat` entries are third-party shims with their own tagged repositories (`KoraFiveM/ox_lib`, `oxmysql`, `qb-core`, `PolyZone`, `mysql-async`), folder `[compat]/<name>`. Like every resource they pin `tag` and `commit`; `docs:sync` verifies the tag resolves to the commit and the manifest version matches. They have `docsAvailable: false` and are not docs plugins.
 - `kind: optional` entries (e.g. `ox-lib`) are excluded from the generated default recipe/manifest/arrays.
 - Third-party bridge/creator entries must pin real verified tags/commits.
 

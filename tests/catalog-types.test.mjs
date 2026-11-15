@@ -13,14 +13,14 @@ const catalog = () => ({
   schemaVersion: 3,
   creators: [{id: 'mrnewb', name: 'MrNewb', url: 'https://github.com/example', description: 'fixture'}],
   resources: [
-    base('ox-lib', {type: 'compat', path: '[compat]/ox_lib', subpath: 'ox_lib', versions: [{version: '1.0.0', commit: 'a'.repeat(40)}]}),
+    base('ox-lib', {type: 'compat', path: '[compat]/ox_lib'}),
     base('mrnewbbridge', {type: 'bridge', path: '[bridges]/mrnewbbridge', dependsOn: ['ox-lib']}),
     base('mrnewbsvehiclekeys', {type: 'creator', creator: 'mrnewb', path: '[creators]/[mrnewb]/mrnewbsvehiclekeys', dependsOn: ['mrnewbbridge']}),
     base('kora-thing', {path: '[pre]/kora_thing'}),
   ],
 });
 
-test('accepts typed resources, tag-less compat releases and transitive dependsOn', () => {
+test('accepts typed resources and transitive dependsOn', () => {
   const value = validateCatalog(catalog());
   assert.deepEqual(resolveDependencies(value, 'mrnewbsvehiclekeys'), ['mrnewbbridge', 'ox-lib']);
 });
@@ -34,7 +34,7 @@ test('schema v2 catalogs still validate but cannot use v3 fields', () => {
 test('rejects invalid types, tags, creators, paths and dependency graphs', () => {
   const mutations = [
     c => { c.resources[0].type = 'other'; },
-    c => { c.resources[1].versions = [{version: '1.0.0', commit: 'a'.repeat(40)}]; }, // tag-less only for compat
+    c => { c.resources[0].versions = [{version: '1.0.0', commit: 'a'.repeat(40)}]; }, // every entry needs a tag again, compat included
     c => { c.resources[2].creator = 'nobody'; },
     c => { delete c.resources[2].creator; },
     c => { c.resources[0].creator = 'mrnewb'; },
@@ -51,21 +51,22 @@ test('rejects invalid types, tags, creators, paths and dependency graphs', () =>
   for (const mutate of mutations) { const c = catalog(); mutate(c); assert.throws(() => validateCatalog(c)); }
 });
 
-test('sync verifies tag-less compat pins by commit and subpath manifest version', async () => {
+test('sync verifies compat tags resolve to the pinned commit and the manifest version', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'compat-test-'));
   const git = (...args) => execFileSync('git', ['-C', path.join(directory, 'compat'), ...args], {encoding: 'utf8'}).trim();
   try {
     const repo = path.join(directory, 'compat');
-    await fs.mkdir(path.join(repo, 'ox_lib'), {recursive: true});
+    await fs.mkdir(repo, {recursive: true});
     git('init', '--quiet', '-b', 'main'); git('config', 'user.email', 'f@example.invalid'); git('config', 'user.name', 'F');
-    await fs.writeFile(path.join(repo, 'ox_lib/fxmanifest.lua'), "fx_version 'cerulean'\nversion '3.39.0'\n");
-    git('add', '.'); git('commit', '--quiet', '-m', 'c');
+    await fs.writeFile(path.join(repo, 'fxmanifest.lua'), "fx_version 'cerulean'\nversion '3.39.0'\n");
+    git('add', '.'); git('commit', '--quiet', '-m', 'c'); git('tag', 'v3.39.0');
     const commit = git('rev-parse', 'HEAD');
-    const make = (version, sha) => ({schemaVersion: 3, resources: [base('ox-lib', {type: 'compat', repository: repo, subpath: 'ox_lib', path: '[compat]/ox_lib', latest: version, versions: [{version, commit: sha}]})]});
+    const make = (version, sha) => ({schemaVersion: 3, resources: [base('ox-lib', {type: 'compat', repository: repo, path: '[compat]/ox_lib', latest: version, versions: [{version, tag: `v${version}`, commit: sha}]})]});
     const siteDir = path.join(directory, 'site'); await fs.mkdir(siteDir);
     const result = await importDocs({siteDir, catalog: make('3.39.0', commit), allowLocal: true, sync: true});
     assert.equal(result.resources.length, 0); // compat entries are not docs plugins
+    await assert.rejects(importDocs({siteDir, catalog: make('3.39.0', 'b'.repeat(40)), allowLocal: true, sync: true}), /Tag\/commit mismatch/);
+    git('tag', 'v9.9.9');
     await assert.rejects(importDocs({siteDir, catalog: make('9.9.9', commit), allowLocal: true, sync: true}), /Manifest version mismatch/);
-    await assert.rejects(importDocs({siteDir, catalog: make('3.39.0', 'b'.repeat(40)), allowLocal: true, sync: true}), /Pinned commit not found/);
   } finally { await fs.rm(directory, {recursive: true, force: true}); }
 });

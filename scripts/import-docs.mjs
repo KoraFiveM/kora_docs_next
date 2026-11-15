@@ -95,7 +95,7 @@ export function resolveDependencies(catalog, id) {
   walk(id);
   return [...seen];
 }
-// Compat entries are third-party shims pinned by commit; they have no docs snapshots and are not docs plugins.
+// Compat entries are third-party shims; they have no docs snapshots and are not docs plugins.
 export const hasDocs = resource => resource.type !== 'compat' && resource.versions.length > 0;
 
 export function validateCatalog(catalog, {allowLocal = false} = {}) {
@@ -133,9 +133,7 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
       if (!semver.test(release.version ?? '') || versions.has(release.version)) throw new Error('Invalid or duplicate version');
       versions.add(release.version);
       if (!/^[a-f0-9]{40}$/.test(release.commit ?? '')) throw new Error('Commit must be a full lowercase SHA');
-      // Compat releases may be tag-less (the upstream compat repo has no tags): they are pinned by commit alone.
-      if (resource.type === 'compat' && !Object.hasOwn(release, 'tag')) { /* pinned by commit */ }
-      else if (release.tag !== `v${release.version}`) throw new Error('Tag must match v<version>');
+      if (release.tag !== `v${release.version}`) throw new Error('Tag must match v<version>');
       if (Object.hasOwn(release, 'docsPath') && release.docsPath !== null && !safePath(release.docsPath)) throw new Error('Unsafe release docsPath');
       if (Object.hasOwn(release, 'entryPage') && (!safePath(release.entryPage) || /[?#\s]/.test(release.entryPage))) throw new Error('Unsafe release entryPage');
     }
@@ -148,8 +146,8 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
   return catalog;
 }
 
-// Compat entries are pinned by commit (no tags): confirm the commit is reachable from the repository's
-// branches and that its manifest at `subpath` declares the catalogued version.
+// Compat entries are tagged third-party shims without docs snapshots (not docs plugins). In sync mode confirm each
+// tag resolves to the pinned commit and that its manifest declares the catalogued version.
 async function verifyPinnedCompat(catalog) {
   const scratch = await fs.mkdtemp(path.join(os.tmpdir(), 'kora-compat-verify-'));
   try {
@@ -158,9 +156,9 @@ async function verifyPinnedCompat(catalog) {
       await fs.mkdir(repository);
       git(repository, ['init', '--quiet']);
       git(repository, ['remote', 'add', 'origin', resource.repository]);
-      git(repository, ['fetch', '--quiet', 'origin', '+refs/heads/*:refs/remotes/origin/*']);
       for (const release of resource.versions) {
-        try { git(repository, ['cat-file', '-e', `${release.commit}^{commit}`]); } catch { throw new Error(`Pinned commit not found: ${resource.id} ${release.version}`); }
+        git(repository, ['fetch', '--quiet', '--depth=1', 'origin', `refs/tags/${release.tag}:refs/tags/${release.tag}`]);
+        if (git(repository, ['rev-parse', `refs/tags/${release.tag}^{commit}`]).trim() !== release.commit) throw new Error(`Tag/commit mismatch: ${resource.id} ${release.version}`);
         const manifest = git(repository, ['show', `${release.commit}:${resource.subpath ? `${resource.subpath}/` : ''}fxmanifest.lua`]);
         const declarations = [...manifest.matchAll(/^\s*version\s*(?:\(\s*)?['"]([^'"]+)['"]/gm)];
         if (declarations.length !== 1 || declarations[0][1] !== release.version) throw new Error(`Manifest version mismatch: ${resource.id} ${release.version}`);

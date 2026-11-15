@@ -69,7 +69,7 @@ async function addSnapshot(resource, repo, tag) {
 }
 
 async function reconcile(resource) {
-  if (resource.type === 'compat' || resource.versions.length === 0) return; // pinned by commit / no releases: nothing to snapshot
+  if (resource.type === 'compat' || resource.versions.length === 0) return; // no releases / no docs snapshots: nothing to snapshot
   const repo = path.join(scratch, resource.id);
   await fs.mkdir(repo);
   git(repo, 'init', '--quiet');

@@ -46,10 +46,10 @@ resources/kora/kora_mining	https://github.com/KoraFiveM/kora_mining.git
 resources/kora/kora_robberies	https://github.com/KoraFiveM/kora_robberies.git
 resources/standalone/kora_queue	https://github.com/KoraFiveM/kora_queue.git
 resources/standalone/kora_chat	https://github.com/KoraFiveM/kora_chat.git
-resources/compat/oxmysql	https://github.com/KoraFiveM/compat.git	oxmysql
-resources/compat/qb-core	https://github.com/KoraFiveM/compat.git	qb-core
-resources/compat/PolyZone	https://github.com/KoraFiveM/compat.git	PolyZone
-resources/compat/mysql-async	https://github.com/KoraFiveM/compat.git	mysql-async
+resources/compat/oxmysql	https://github.com/KoraFiveM/oxmysql.git
+resources/compat/qb-core	https://github.com/KoraFiveM/qb-core.git
+resources/compat/PolyZone	https://github.com/KoraFiveM/PolyZone.git
+resources/compat/mysql-async	https://github.com/KoraFiveM/mysql-async.git
 resources/standalone/kora_voice	https://github.com/KoraFiveM/kora_voice.git
 resources/standalone/kora_theme	https://github.com/KoraFiveM/kora_theme.git
 resources/standalone/kora_emotemenu	https://github.com/KoraFiveM/kora_emotemenu.git

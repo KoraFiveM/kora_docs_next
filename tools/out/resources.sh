@@ -62,10 +62,10 @@ otherResources=(
   $'resources/cfx-default\thttps://github.com/KoraFiveM/-cfx-default-.git\tdev'
   $'resources/default-maps\thttps://github.com/KoraFiveM/-default-maps-.git\tdev'
   $'resources/default-maps/kora_phoneshop\thttps://github.com/KoraFiveM/kora_phoneshop.git\tmain'
-  $'resources/compat/oxmysql\thttps://github.com/KoraFiveM/compat.git\tmain\toxmysql'
-  $'resources/compat/qb-core\thttps://github.com/KoraFiveM/compat.git\tmain\tqb-core'
-  $'resources/compat/PolyZone\thttps://github.com/KoraFiveM/compat.git\tmain\tPolyZone'
-  $'resources/compat/mysql-async\thttps://github.com/KoraFiveM/compat.git\tmain\tmysql-async'
+  $'resources/compat/oxmysql\thttps://github.com/KoraFiveM/oxmysql.git\tmain'
+  $'resources/compat/qb-core\thttps://github.com/KoraFiveM/qb-core.git\tmain'
+  $'resources/compat/PolyZone\thttps://github.com/KoraFiveM/PolyZone.git\tmain'
+  $'resources/compat/mysql-async\thttps://github.com/KoraFiveM/mysql-async.git\tmain'
   $'resources/standalone/props\thttps://github.com/KoraFiveM/props.git\tmain'
 )
 
@@ -118,10 +118,10 @@ declare -A repoBranch=(
   [kora_robberies]=dev
   [kora_queue]=dev
   [kora_chat]=dev
-  [compat]=main
-  [compat]=main
-  [compat]=main
-  [compat]=main
+  [oxmysql]=main
+  [qb-core]=main
+  [PolyZone]=main
+  [mysql-async]=main
   [kora_voice]=dev
   [kora_theme]=dev
   [kora_emotemenu]=dev

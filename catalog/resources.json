@@ -1565,8 +1565,7 @@
       "id": "ox-lib",
       "title": "Ox Lib",
       "type": "compat",
-      "repository": "https://github.com/KoraFiveM/compat.git",
-      "subpath": "ox_lib",
+      "repository": "https://github.com/KoraFiveM/ox_lib.git",
       "path": "[compat]/ox_lib",
       "group": "compat",
       "kind": "optional",
@@ -1580,7 +1579,8 @@
       "versions": [
         {
           "version": "3.39.0",
-          "commit": "27a2346a1d485b484c9d645489d8192323c50be2"
+          "tag": "v3.39.0",
+          "commit": "48e349d0b11ecba9899b8389c26577ad9b3ef670"
         }
       ],
       "description": "Headless ox_lib 3.39.0 compatibility surface backed by kora_lib. Optional: not installed by default. Never run real ox_lib alongside it."
@@ -1589,8 +1589,7 @@
       "id": "oxmysql",
       "title": "Oxmysql",
       "type": "compat",
-      "repository": "https://github.com/KoraFiveM/compat.git",
-      "subpath": "oxmysql",
+      "repository": "https://github.com/KoraFiveM/oxmysql.git",
       "path": "[compat]/oxmysql",
       "group": "compat",
       "kind": "dependency",
@@ -1604,7 +1603,8 @@
       "versions": [
         {
           "version": "2.7.3",
-          "commit": "27a2346a1d485b484c9d645489d8192323c50be2"
+          "tag": "v2.7.3",
+          "commit": "efc11a371abdfa869ebdd09a3a163464c96a16c7"
         }
       ],
       "description": "oxmysql placeholder that forwards to kora_sql. Never run real oxmysql alongside it."
@@ -1613,8 +1613,7 @@
       "id": "qb-core",
       "title": "Qb Core",
       "type": "compat",
-      "repository": "https://github.com/KoraFiveM/compat.git",
-      "subpath": "qb-core",
+      "repository": "https://github.com/KoraFiveM/qb-core.git",
       "path": "[compat]/qb-core",
       "group": "compat",
       "kind": "dependency",
@@ -1628,7 +1627,8 @@
       "versions": [
         {
           "version": "1.0.0",
-          "commit": "27a2346a1d485b484c9d645489d8192323c50be2"
+          "tag": "v1.0.0",
+          "commit": "4caa2496c87d609b845dd217ec31ea9bb15028ea"
         }
       ],
       "description": "Wrapper resolving @qb-core/... includes to Kora's QBCore compatibility layer."
@@ -1637,8 +1637,7 @@
       "id": "compat-polyzone",
       "title": "PolyZone (compat)",
       "type": "compat",
-      "repository": "https://github.com/KoraFiveM/compat.git",
-      "subpath": "PolyZone",
+      "repository": "https://github.com/KoraFiveM/PolyZone.git",
       "path": "[compat]/PolyZone",
       "group": "compat",
       "kind": "dependency",
@@ -1651,7 +1650,8 @@
       "versions": [
         {
           "version": "2.6.2",
-          "commit": "27a2346a1d485b484c9d645489d8192323c50be2"
+          "tag": "v2.6.2",
+          "commit": "10fad9501189ab5e3b44b26ba7d05d0f64f9c440"
         }
       ],
       "description": "PolyZone zone library used by legacy scripts."
@@ -1660,8 +1660,7 @@
       "id": "mysql-async",
       "title": "Mysql Async",
       "type": "compat",
-      "repository": "https://github.com/KoraFiveM/compat.git",
-      "subpath": "mysql-async",
+      "repository": "https://github.com/KoraFiveM/mysql-async.git",
       "path": "[compat]/mysql-async",
       "group": "compat",
       "kind": "dependency",
@@ -1675,7 +1674,8 @@
       "versions": [
         {
           "version": "3.3.2",
-          "commit": "27a2346a1d485b484c9d645489d8192323c50be2"
+          "tag": "v3.3.2",
+          "commit": "0de3c27ad5b5769f5f0a57651a20a693fc9ee70b"
         }
       ],
       "description": "mysql-async placeholder that forwards to kora_sql. Never run real mysql-async alongside it."
@@ -1913,22 +1913,6 @@
       "docsAvailable": false,
       "versions": [],
       "description": "Internal development-only repository installed at resources/[kora]/kora_truckrobbery."
-    },
-    {
-      "id": "polyzone",
-      "title": "Polyzone",
-      "repository": "https://github.com/KoraFiveM/PolyZone.git",
-      "path": "[standalone]/PolyZone",
-      "group": "standalone",
-      "kind": "internal",
-      "branch": "main",
-      "order": 69,
-      "docsPath": null,
-      "entryPage": "index",
-      "latest": null,
-      "docsAvailable": false,
-      "versions": [],
-      "description": "Internal development-only repository installed at resources/[standalone]/PolyZone."
     },
     {
       "id": "server-cfg-test",

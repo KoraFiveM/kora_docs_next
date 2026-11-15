@@ -250,26 +250,22 @@ tasks:
 - action: waste_time
   seconds: 5
 - action: download_github
-  src: https://github.com/KoraFiveM/compat
+  src: https://github.com/KoraFiveM/oxmysql
   ref: main
-  subpath: oxmysql
   dest: ./resources/[compat]/oxmysql
 - action: download_github
-  src: https://github.com/KoraFiveM/compat
+  src: https://github.com/KoraFiveM/qb-core
   ref: main
-  subpath: qb-core
   dest: ./resources/[compat]/qb-core
 - action: download_github
-  src: https://github.com/KoraFiveM/compat
+  src: https://github.com/KoraFiveM/PolyZone
   ref: main
-  subpath: PolyZone
   dest: ./resources/[compat]/PolyZone
 - action: waste_time
   seconds: 5
 - action: download_github
-  src: https://github.com/KoraFiveM/compat
+  src: https://github.com/KoraFiveM/mysql-async
   ref: main
-  subpath: mysql-async
   dest: ./resources/[compat]/mysql-async
 - action: download_github
   src: https://github.com/KoraFiveM/kora_voice
