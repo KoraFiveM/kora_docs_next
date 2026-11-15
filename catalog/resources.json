@@ -2002,6 +2002,33 @@
         }
       ],
       "description": "A shared helper library used by Loaf Scripts resources. Third-party library, not supported by Kora; it may need its own setup."
+    },
+    {
+      "id": "newb-bridge",
+      "title": "Newb Bridge",
+      "type": "bridge",
+      "repository": "https://github.com/MrNewb/Newb_Bridge.git",
+      "path": "[bridges]/Newb_Bridge",
+      "group": "bridges",
+      "kind": "optional",
+      "branch": "main",
+      "order": 74,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "0.0.3",
+      "docsAvailable": false,
+      "dependsOn": [
+        "ox-lib",
+        "oxmysql"
+      ],
+      "versions": [
+        {
+          "version": "0.0.3",
+          "tag": "v0.0.3",
+          "commit": "e8a19f4f70c0b3869531dedee71bdb8acea502ee"
+        }
+      ],
+      "description": "A framework-agnostic bridge that connects your resources to frameworks, inventories and other resources through one API. Third-party library, not supported by Kora; it may need its own setup."
     }
   ]
 }

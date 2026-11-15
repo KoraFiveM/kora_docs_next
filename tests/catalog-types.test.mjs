@@ -70,3 +70,11 @@ test('sync verifies compat tags resolve to the pinned commit and the manifest ve
     await assert.rejects(importDocs({siteDir, catalog: make('9.9.9', commit), allowLocal: true, sync: true}), /Manifest version mismatch/);
   } finally { await fs.rm(directory, {recursive: true, force: true}); }
 });
+
+test('real catalog: newb-bridge and community-bridge resolve to the same transitive set', async () => {
+  const value = validateCatalog(JSON.parse(await fs.readFile(new URL('../catalog/resources.json', import.meta.url), 'utf8')));
+  const expected = ['kora-lib', 'kora-sql', 'kora-theme', 'ox-lib', 'oxmysql'];
+  assert.deepEqual([...resolveDependencies(value, 'newb-bridge')].sort(), expected);
+  assert.deepEqual([...resolveDependencies(value, 'community-bridge')].sort(), expected);
+  assert.equal(value.resources.find(r => r.id === 'newb-bridge').kind, 'optional');
+});
