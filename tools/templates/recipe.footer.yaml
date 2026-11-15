@@ -3,5 +3,3 @@
   file:
   - ./server.cfg
   - ./permissions.cfg
-- action: remove_path
-  path: ./tmp

@@ -88,6 +88,10 @@ MDX is executable build input: catalog changes are trusted-code changes and requ
 - `kind: optional` entries (e.g. `ox-lib`) are excluded from the generated default recipe/manifest/arrays.
 - Third-party bridge/creator entries must pin real verified tags/commits.
 
+## Generated txAdmin recipe
+
+`tools/generate.py` writes `tools/out/recipe.yaml`. The recipe is self-contained: `server.cfg`, `permissions.cfg` and `kora.sql` live in `tools/templates/` and are embedded verbatim as `write_file` steps (txAdmin `{{placeholders}}` stay literal and are resolved by the deployer's `replace_string` steps). It no longer downloads a separate recipe repository. Edit the templates, then run `python3 tools/generate.py --include-internal`; CI uses `--check`.
+
 ## Publication
 
 CI runs offline tests, the multi-resource fixture build, and the actual site build. GitHub Pages deploys the built site on pushes to `main`. The site and source repository are public.

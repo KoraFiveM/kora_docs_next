@@ -91,9 +91,29 @@ def read(name):
         return f.read()
 
 
+def inline_file(template, dest):
+    """write_file step embedding tools/templates/<template> verbatim (txAdmin {{vars}} stay literal)."""
+    body = read(template)
+    if not body.endswith("\n") or body[:1] in " \t\n":
+        sys.exit(f"templates/{template}: must end with a newline and not start with whitespace")
+    lines = "".join(("    " + l if l.strip() else l) for l in body.splitlines(True))
+    return f"- action: write_file\n  file: {dest}\n  data: |\n{lines}"
+
+
+def render_header():
+    out = []
+    for line in read("recipe.header.yaml").splitlines(True):
+        if line.startswith("# @inline "):
+            _, _, template, dest = line.split()
+            out.append(inline_file(template, dest))
+        else:
+            out.append(line)
+    return "".join(out)
+
+
 def gen_recipe(res):
-    parts = [read("recipe.header.yaml")]
-    count = 1  # header already downloads the recipe repo
+    parts = [render_header()]
+    count = 0  # the header downloads nothing; only resource downloads count toward GitHub rate limiting
     items = [r for r in ordered(res) if is_default(r)]
     for i, r in enumerate(items):
         sub = f"  subpath: {r['subpath']}\n" if r.get("subpath") else ""

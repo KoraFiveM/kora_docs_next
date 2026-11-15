@@ -23,7 +23,17 @@ test('creator folders keep brackets in recipe, manifest and bash output', async 
     const run = spawnSync('python3', ['-I', script, '--catalog', file, '--out', out], {encoding: 'utf8'});
     assert.equal(run.status, 0, run.stderr);
     const read = name => fs.readFile(path.join(out, name), 'utf8');
-    assert.match(await read('recipe.yaml'), /dest: \.\/resources\/\[creators\]\/\[mrnewb\]\/y\n/);
+    const recipe = await read('recipe.yaml');
+    assert.match(recipe, /dest: \.\/resources\/\[creators\]\/\[mrnewb\]\/y\n/);
+    // The recipe is self-contained: the three files are embedded verbatim, placeholders stay literal, nothing is downloaded for them.
+    assert.doesNotMatch(recipe, /txAdmin[R]ecipe|kora-recipe/);
+    const templates = fileURLToPath(new URL('../tools/templates/', import.meta.url));
+    for (const [name, dest] of [['server.cfg', './server.cfg'], ['permissions.cfg', './permissions.cfg'], ['kora.sql', './kora.sql']]) {
+      const body = await fs.readFile(path.join(templates, name), 'utf8');
+      const block = body.split('\n').slice(0, -1).map(line => line ? `    ${line}` : '').join('\n') + '\n';
+      assert.ok(recipe.includes(`- action: write_file\n  file: ${dest}\n  data: |\n${block}`), `${name} embedded verbatim`);
+    }
+    for (const placeholder of ['{{serverEndpoints}}', '{{maxClients}}', '{{svLicense}}', '{{dbConnectionString}}', '{{addPrincipalsMaster}}']) assert.ok(recipe.includes(placeholder), placeholder);
     assert.match(await read('resources.manifest'), /^resources\/\[creators\]\/\[mrnewb\]\/y\t/m);
     assert.match(await read('resources.sh'), /\$'resources\/\[creators\]\/\[mrnewb\]\/y\\t/);
     assert.match(await read('resources.manifest'), /^resources\/kora\/kora_thing\t/m); // other folders unchanged

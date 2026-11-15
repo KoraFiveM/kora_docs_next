@@ -5,20 +5,10 @@ version: 0.2.0-alpha
 author: KoraFiveM
 description: Official txAdmin recipe for Kora Framework Alpha.
 tasks:
-- action: download_github
-  src: https://github.com/KoraFiveM/txAdminRecipe
-  ref: main
-  dest: ./tmp/kora-recipe
-- action: move_path
-  src: ./tmp/kora-recipe/server.cfg
-  dest: ./server.cfg
-- action: move_path
-  src: ./tmp/kora-recipe/permissions.cfg
-  dest: ./permissions.cfg
+# @inline server.cfg ./server.cfg
+# @inline permissions.cfg ./permissions.cfg
 - action: connect_database
-- action: move_path
-  src: ./tmp/kora-recipe/kora.sql
-  dest: ./kora.sql
+# @inline kora.sql ./kora.sql
 - action: replace_string
   file: ./kora.sql
   search: KORA_DATABASE_NAME
