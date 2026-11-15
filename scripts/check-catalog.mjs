@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
+import {validateCatalog} from './import-docs.mjs';
 
 const catalogFile = 'catalog/resources.json';
 const catalog = JSON.parse(fs.readFileSync(catalogFile, 'utf8'));
@@ -45,14 +46,17 @@ export function checkCatalog(catalog) {
     if (ids.has(r.id)) errors.push(`duplicate id ${r.id}`); ids.add(r.id);
     if (paths.has(r.path)) errors.push(`duplicate path ${r.path}`); paths.add(r.path);
     if (Number.isInteger(r.order)) { if (orders.has(r.order)) errors.push(`duplicate order ${r.order} (${orders.get(r.order)}, ${r.id})`); else orders.set(r.order, r.id); }
-    if (repos.has(r.repository)) errors.push(`duplicate repository ${r.repository}`); repos.add(r.repository);
+    // Several resources may live in one repository when each has its own subpath (e.g. compat).
+    const repoKey = `${r.repository}#${r.subpath ?? ''}`;
+    if (repos.has(repoKey)) errors.push(`duplicate repository ${r.repository}${r.subpath ? ` (subpath ${r.subpath})` : ''}`); repos.add(repoKey);
     if (r.latest !== null && !(r.versions ?? []).some(v => v.version === r.latest)) errors.push(`${r.id}: latest ${r.latest} is not a registered version`);
     const versions = new Set();
     for (const v of r.versions ?? []) {
       if (versions.has(v.version)) errors.push(`${r.id}: duplicate version ${v.version}`); versions.add(v.version);
-      if (v.tag !== `v${v.version}`) errors.push(`${r.id}: tag must be v${v.version}`);
+      if (r.type === 'compat' && v.tag === undefined) { /* compat: pinned by commit */ } else if (v.tag !== `v${v.version}`) errors.push(`${r.id}: tag must be v${v.version}`);
     }
   }
+  try { validateCatalog(catalog); } catch (error) { errors.push(error.message); }
   return errors;
 }
 const schemaErrors = checkCatalog(catalog);
@@ -71,8 +75,11 @@ try {
       const previous = JSON.parse(execFileSync('git', ['show', `${before}:catalog/resources.json`], {encoding: 'utf8'}));
       for (const resource of previous.resources) {
         const next = current.resources.find(item => item.id === resource.id);
-        if (!next) throw new Error(`Cannot remove published resource ${resource.id}`);
-        for (const field of ['repository', 'docsPath', 'entryPage', ...(Object.hasOwn(resource, 'path') ? ['path', 'group', 'kind'] : [])]) {
+        if (!next) {
+          if (resource.versions.length === 0) continue; // nothing was published (e.g. compat umbrella split into per-item entries)
+          throw new Error(`Cannot remove published resource ${resource.id}`);
+        }
+        for (const field of ['repository', 'docsPath', 'entryPage', ...(Object.hasOwn(resource, 'path') ? ['path', 'group', 'kind'] : []), 'type', 'creator', 'subpath']) {
           if (resource[field] !== next[field]) throw new Error(`Cannot change published ${resource.id}.${field}`);
         }
         for (const release of resource.versions) {

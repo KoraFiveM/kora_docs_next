@@ -51,7 +51,7 @@ async function addSnapshot(resource, repo, tag) {
   const release = {version, tag, commit, docsPath:source.docsPath, entryPage:source.entryPage};
   const snapshotSite = await fs.mkdtemp(path.join(scratch, 'snapshot-'));
   const single = {...resource, docsPath:source.docsPath, entryPage:source.entryPage, docsAvailable:source.docsAvailable, latest:version, versions:[release]};
-  await importDocs({siteDir:snapshotSite, catalog:{schemaVersion:1,resources:[single]}, sync:true, allowLocal});
+  await importDocs({siteDir:snapshotSite, catalog:{schemaVersion:3,resources:[single]}, sync:true, allowLocal});
   const plugin = `resource-${resource.id}`;
   for (const file of [`${plugin}_versioned_docs/version-${version}`, `${plugin}_versioned_sidebars/version-${version}-sidebars.json`]) {
     const destination = path.join(root, file);
@@ -69,6 +69,7 @@ async function addSnapshot(resource, repo, tag) {
 }
 
 async function reconcile(resource) {
+  if (resource.type === 'compat' || resource.versions.length === 0) return; // pinned by commit / no releases: nothing to snapshot
   const repo = path.join(scratch, resource.id);
   await fs.mkdir(repo);
   git(repo, 'init', '--quiet');

@@ -41,7 +41,7 @@ Example structure (replace the placeholder SHA with the real release commit):
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 3,
   "resources": [
     {
       "id": "kora_inventory",
@@ -75,6 +75,18 @@ List versions newest first; `latest` explicitly selects a stable release. Each r
 The sync importer fetches release tags into temporary Git repositories and verifies each tag against its full pinned commit and `fxmanifest.lua` version. It copies committed regular files only; it rejects symlinks and submodules. It never executes resource install/build scripts or changes local resource checkouts. Only GitHub HTTPS source URLs are accepted by the CLI. The versioned Markdown snapshots are checked in so CI builds are self-contained.
 
 MDX is executable build input: catalog changes are trusted-code changes and require review. Public repositories work without credentials. Private repositories require CI Git credentials with access to those repositories; the docs repository's default token alone usually cannot read other private repos. Never put tokens in the catalog or clone URLs.
+
+## Catalog schema v3: types, creators, subpaths
+
+`schemaVersion` 3 (v2 files still read) adds optional fields; `kind`/`group` are unchanged:
+
+- `type`: `compat` | `bridge` | `creator`. Omitted = default Kora resource. Typed entries use these folders: compat `[compat]/<name>`, bridge `[bridges]/<name>`, creator `[creators]/[<creatorId>]/<name>` (the creator folder is bracketed so FiveM scans it).
+- top-level `creators`: `[{id, name, url, description}]`; resources of `type: creator` carry `"creator": "<id>"`.
+- `dependsOn` works across types and is resolved transitively (creator -> bridge -> compat `ox-lib`); unknown ids and cycles are rejected.
+- `subpath`: folder inside `repository` holding the resource (used by the per-item `compat` entries). The generated txAdmin recipe emits it as `subpath:`.
+- Compat releases may omit `tag` because `KoraFiveM/compat` has no tags; they are pinned by full `commit`. `docs:sync` verifies the commit exists and that `<subpath>/fxmanifest.lua` declares the catalogued version. Compat entries have `docsAvailable: false` and are not docs plugins.
+- `kind: optional` entries (e.g. `ox-lib`) are excluded from the generated default recipe/manifest/arrays.
+- Third-party bridge/creator entries must pin real verified tags/commits.
 
 ## Publication
 

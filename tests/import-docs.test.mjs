@@ -19,7 +19,7 @@ test('imports independent versions, assets and exact committed content; cleans r
     const archived = path.join(siteDir, 'resource-kora_inventory_versioned_docs/version-1.0.0');
     assert.match(await fs.readFile(path.join(archived, 'index.md'), 'utf8'), /1\.0\.0/);
     assert.match(await fs.readFile(path.join(archived, 'images/mark.svg'), 'utf8'), /<svg/);
-    await importDocs({siteDir, catalog: {schemaVersion: 1, resources: []}, sync: true});
+    await importDocs({siteDir, catalog: {schemaVersion: 3, resources: []}, sync: true});
     await assert.rejects(fs.access(archived));
   } finally {await fs.rm(directory, {recursive: true, force: true});}
 });
@@ -43,15 +43,15 @@ test('rejects moved tags and manifest mismatches without replacing the last impo
 });
 
 test('rejects unsafe paths, duplicate resources and unsupported repositories', () => {
-  assert.throws(() => validateCatalog({schemaVersion: 9, resources: []}));
+  assert.throws(() => validateCatalog({schemaVersion: 4, resources: []}));
   const resource = {id: 'kora_core', title: 'Core', repository: 'https://github.com/KoraFiveM/kora_core.git', docsPath: 'docs', entryPage: 'index', latest: '1.0.0', versions: [{version: '1.0.0', tag: 'v1.0.0', commit: 'a'.repeat(40)}]};
   for (const changes of [{docsPath: '../secret'}, {entryPage: '/index'}, {repository: 'ext::command'}, {latest: '2.0.0'}]) {
-    assert.throws(() => validateCatalog({schemaVersion: 1, resources: [{...resource, ...changes}]}));
+    assert.throws(() => validateCatalog({schemaVersion: 3, resources: [{...resource, ...changes}]}));
   }
-  assert.throws(() => validateCatalog({schemaVersion: 1, resources: [resource, resource]}));
+  assert.throws(() => validateCatalog({schemaVersion: 3, resources: [resource, resource]}));
   const firstDocs = {...resource, docsPath: null, docsAvailable: true, versions: [{...resource.versions[0], docsPath: 'docs'}]};
-  assert.doesNotThrow(() => validateCatalog({schemaVersion: 1, resources: [firstDocs]}));
-  assert.throws(() => validateCatalog({schemaVersion: 1, resources: [{...firstDocs, versions: resource.versions}]}));
+  assert.doesNotThrow(() => validateCatalog({schemaVersion: 3, resources: [firstDocs]}));
+  assert.throws(() => validateCatalog({schemaVersion: 3, resources: [{...firstDocs, versions: resource.versions}]}));
 });
 
 test('rejects symlinks in resource documentation', async () => {
