@@ -14,13 +14,13 @@ export default {
   favicon: 'img/favicon.svg',
   staticDirectories: ['static', 'catalog'],
   onBrokenLinks: 'warn',
-  markdown: {hooks: {onBrokenMarkdownLinks: 'warn'}},
+  markdown: {mermaid: true, hooks: {onBrokenMarkdownLinks: 'warn'}},
   presets: [['classic', {
     docs: {path: 'docs', routeBasePath: 'guides', sidebarPath: './sidebars.js'},
     blog: false,
     theme: {customCss: './src/css/custom.css'},
   }]],
-  themes: [['@easyops-cn/docusaurus-search-local', {
+  themes: ['@docusaurus/theme-mermaid', ['@easyops-cn/docusaurus-search-local', {
     hashed: true, indexBlog: false, docsRouteBasePath: ['guides', 'resources'],
     docsDir: ['docs', ...resources.flatMap(resource => resource.versions.map(release => `resource-${resource.id}_versioned_docs/version-${release.version}`))],
   }]],
