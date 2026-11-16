@@ -24,4 +24,10 @@ kora uninstall               # asks before each item
 
 `kora uninstall` removes services, update timers, firewall rules, service accounts, the shared program copy (once no server uses it) and the server list entry, **asking before each item**. Server folders and databases are kept by default (add `--delete-files` / `--delete-databases` to remove them). Kept files are given back to their previous owner before a service account is removed. Run it as administrator/root so system items can be removed.
 
-To remove the `kora` program itself, delete the file the install script placed (`/usr/local/bin/kora` or `~/.local/bin/kora` on Linux, `%LOCALAPPDATA%\Kora\bin` on Windows), and the `kora.previous` copy beside it.
+In [Kora Panel](./panel.md), **Settings → Uninstall Kora** does the same: it shows exactly what would be removed and asks you to type `uninstall`.
+
+## Remove the panel and the program
+
+- `kora panel --remove-service` stops and removes the background panel.
+- `kora uninstall --app` (or `kora app uninstall`) removes the Kora app: shortcuts, `PATH` entry and the installed copy. Servers and databases are never touched.
+- To remove the `kora` program the install script placed, delete it (`~/.local/bin/kora` or `/usr/local/bin/kora` on Linux, `%LOCALAPPDATA%\Kora\bin\kora.exe` on Windows) and the `.previous` copy beside it.

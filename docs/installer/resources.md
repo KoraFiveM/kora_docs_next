@@ -5,10 +5,6 @@ sidebar_position: 1.7
 
 # Resources and folders
 
-:::caution Pre-release
-This is the behaviour of installer v0.3.0, which is still a pre-release. v0.3.0 reads the new resource catalog format (schema v3); older installers do not. Update with `kora self-update` or the install command on [koraframe.work/installer](https://koraframe.work/installer).
-:::
-
 ## Resource types
 
 Every resource in the catalog has a type.
@@ -24,11 +20,7 @@ Compat, bridge and creator resources are **never selected by default**. `--resou
 
 ### Dependencies
 
-A resource can depend on others (`dependsOn`), across types. Choosing a resource selects everything it needs, and those dependencies stay selected for as long as something needs them. On the website, a dependency that something selected still needs cannot be unticked, and the page tells you which selected item needs it. On the command line, dependencies are added for you too (see [`--resources`](./commands.md#kora-install) and [Add resources](./add-resources.md)).
-
-### Select all
-
-On the website's resource picker, the compat and bridge sections and each creator have a **Select all** that ticks everything in that section or for that creator. Dependencies come along with it.
+A resource can depend on others (`dependsOn`), across types. Choosing a resource selects everything it needs, and those dependencies stay selected for as long as something needs them. On the command line, dependencies are added for you too (see [`--resources`](./commands.md#kora-install) and [Add resources](./add-resources.md)).
 
 ### Bridge libraries
 
@@ -47,7 +39,7 @@ Bridge and creator resources are installed at an exact commit, never as a fork, 
 
 ## Folder layout of a new server
 
-A server installed with v0.3.0 has these folders under `resources/`:
+A new server has these folders under `resources/`:
 
 | Folder | Holds |
 | --- | --- |
@@ -58,6 +50,7 @@ A server installed with v0.3.0 has these folders under `resources/`:
 | `[creators]/[<creator>]` | Creator resources, one folder per creator. |
 | `[addons]` | Empty, for your own scripts. |
 | `[streamedassets]/[cars]`, `[maps]`, `[props]`, `[peds]` | Empty, for your own streamed assets. |
+| `[paid]` | [Paid assets](./paid-assets.md) from the Cfx.re Portal, created when you import the first one. Each gets its own `ensure <name>` line. |
 
 `server.cfg` starts whole folders, not single resources. It contains one `ensure [folder]` line per folder, in this order:
 
@@ -75,8 +68,8 @@ A folder that holds no installed resource is left out, so for a default install 
 
 ### Where your own scripts and assets go
 
-Put your own scripts in `resources/[addons]`, and your own streamed assets (vehicles, maps, props, peds) in the matching folder under `resources/[streamedassets]`. Because `server.cfg` already ensures those two folders, anything you put there starts with the server and you do not need to edit `server.cfg`. Keep your own work out of `[kora]`, `[compat]`, `[bridges]` and `[creators]`, which belong to the installer.
+Put your own scripts in `resources/[addons]`, and your own streamed assets (vehicles, maps, props, peds) in the matching folder under `resources/[streamedassets]`. Because `server.cfg` already ensures those two folders, anything you put there starts with the server and you do not need to edit `server.cfg`. Keep your own work out of `[kora]`, `[compat]`, `[bridges]`, `[creators]` and `[paid]`, which belong to the installer. Install paid assets with Kora rather than copying them into `[addons]` by hand (see [Paid assets](./paid-assets.md)).
 
 ### Existing servers
 
-Servers installed by an older version are **not rearranged**. Their folders and `server.cfg` stay as they are. When you [add resources](./add-resources.md) to such a server, nothing already installed is moved, renamed or removed; only the `ensure` lines that the new resources need are appended.
+Servers installed by a version before v0.3.0 are **not rearranged**. Their folders and `server.cfg` stay as they are. When you [add resources](./add-resources.md) to such a server, nothing already installed is moved, renamed or removed; only the `ensure` lines that the new resources need are appended.

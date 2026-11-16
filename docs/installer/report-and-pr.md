@@ -5,12 +5,16 @@ sidebar_position: 5.5
 
 # Report an issue and open a pull request
 
-Both actions are in `kora manager` (select a server first) and use the GitHub CLI (`gh`). If `gh` is not signed in, Kora offers to sign you in with the browser first.
+Both actions use the GitHub CLI (`gh`). If `gh` is not signed in, Kora offers to sign you in with the browser first.
+
+In `kora manager`, select a server first:
 
 | Action | Key | Available in |
 | --- | --- | --- |
 | **Report an issue** | `b` | production and development servers |
 | **Open pull request** | `p` | development servers only |
+
+In [Kora Panel](./panel.md), development servers have a **GitHub** tab with the same two actions.
 
 ## Report an issue
 
