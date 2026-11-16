@@ -5,6 +5,9 @@ sidebar_position: 6
 
 # Kora Framework architecture and ownership
 
+For server-specific extensions, see [monkey patching and resource customisation](./monkey-patching.md),
+including the separately maintained Coffee Banking example.
+
 New features use Kora Framework APIs. Thin adapters translate genuine external
 or legacy contracts into one owning implementation. Do not require every feature
 to support interchangeable frameworks.
