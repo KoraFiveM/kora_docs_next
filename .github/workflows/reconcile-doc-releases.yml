@@ -32,17 +32,17 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
         run: gh auth setup-git
-      - name: Create patch releases and import snapshots
+      - name: Create patch releases and update catalog
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
         run: node scripts/reconcile-doc-releases.mjs
-      - name: Publish successful snapshots
+      - name: Publish successful catalog updates
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
         run: |
           git config user.name 'Kora Docs Automation'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- catalog/resources.json resource-*_versions.json resource-*_versioned_docs resource-*_versioned_sidebars
+          git add -- catalog/resources.json
           if ! git diff --cached --quiet; then
             git commit -m 'docs: publish resource releases'
             git push origin HEAD:main

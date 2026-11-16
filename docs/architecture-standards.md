@@ -48,6 +48,14 @@ unrelated features or enforcing arbitrary file sizes. Declare dependencies and
 explicit load order where it matters. Existing independent module globs may remain.
 Shared code is available to clients: secrets and server-only policy do not belong there.
 
+## Server-specific customisation
+
+[Coffee Banking](https://github.com/KoraFiveM/coffee-banking) is a small example of
+keeping custom presentation in a separate resource. It uses `kora_banking`’s
+supported presentation hook to apply yen labels and a desktop skin; banking keeps
+ownership of accounts, validation and money mutations. See its GitHub README for
+requirements, load order and lifecycle checks.
+
 ## Thin adapters and handlers
 
 A handler validates intent, resolves authority, calls domain logic, then translates

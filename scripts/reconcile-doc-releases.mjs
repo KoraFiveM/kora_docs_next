@@ -45,31 +45,23 @@ async function sourceFor(repo, tag, resource) {
   return markdownFile ? {docsPath:markdownFile,entryPage:'index',docsAvailable:true} : {docsPath:null,entryPage:'index',docsAvailable:false};
 }
 
-async function addSnapshot(resource, repo, tag) {
+async function addRelease(resource, repo, tag) {
   const version = tag.slice(1), commit = git(repo, 'rev-parse', `${tag}^{commit}`);
   const source = await sourceFor(repo, tag, resource);
   const release = {version, tag, commit, docsPath:source.docsPath, entryPage:source.entryPage};
-  const snapshotSite = await fs.mkdtemp(path.join(scratch, 'snapshot-'));
+  const validationSite = await fs.mkdtemp(path.join(scratch, 'validate-'));
   const single = {...resource, docsPath:source.docsPath, entryPage:source.entryPage, docsAvailable:source.docsAvailable, latest:version, versions:[release]};
-  await importDocs({siteDir:snapshotSite, catalog:{schemaVersion:3,resources:[single]}, sync:true, allowLocal});
-  const plugin = `resource-${resource.id}`;
-  for (const file of [`${plugin}_versioned_docs/version-${version}`, `${plugin}_versioned_sidebars/version-${version}-sidebars.json`]) {
-    const destination = path.join(root, file);
-    try { await fs.access(destination); throw new Error(`Snapshot already exists: ${file}`); } catch (error) { if (error.code !== 'ENOENT') throw error; }
-    await fs.mkdir(path.dirname(destination), {recursive:true});
-    await fs.cp(path.join(snapshotSite, file), destination, {recursive:true});
-  }
+  await importDocs({siteDir:validationSite, catalog:{schemaVersion:3,resources:[single]}, sync:true, allowLocal});
   resource.versions.unshift(release);
   resource.versions.sort((a,b) => compare(b.version,a.version));
   resource.latest = resource.versions[0].version;
   resource.docsAvailable = source.docsAvailable;
-  await fs.writeFile(path.join(root, `${plugin}_versions.json`), JSON.stringify(resource.versions.map(item=>item.version),null,2)+'\n');
   changed = true;
   console.log(`${resource.id}: imported ${tag} at ${commit}`);
 }
 
 async function reconcile(resource) {
-  if (!hasDocs(resource)) return; // no releases / no docs snapshots: nothing to snapshot
+  if (!hasDocs(resource)) return; // no releases / no site docs: nothing to register
   const repo = path.join(scratch, resource.id);
   await fs.mkdir(repo);
   git(repo, 'init', '--quiet');
@@ -80,7 +72,7 @@ async function reconcile(resource) {
     if (!tags.includes(release.tag)) throw new Error(`catalog tag ${release.tag} missing`);
     if (git(repo, 'rev-parse', `${release.tag}^{commit}`) !== release.commit) throw new Error(`catalog tag ${release.tag} moved`);
   }
-  for (const tag of tags.filter(tag => compare(tag, resource.latest)>0)) await addSnapshot(resource, repo, tag);
+  for (const tag of tags.filter(tag => compare(tag, resource.latest)>0)) await addRelease(resource, repo, tag);
   const base = `v${resource.latest}`;
   const files = git(repo, 'diff', '--name-only', `${base}..refs/remotes/origin/dev`).split('\n').filter(Boolean);
   if (!files.some(file => docsFile(file, resource))) return;
@@ -104,7 +96,7 @@ async function reconcile(resource) {
   // Atomic push ensures the version commit and tag appear together; a concurrent push fails safely.
   git(repo, 'push', '--atomic', 'origin', 'HEAD:refs/heads/dev', `refs/tags/${nextTag}:refs/tags/${nextTag}`);
   console.log(`${resource.id}: released ${nextTag}`);
-  await addSnapshot(resource, repo, nextTag);
+  await addRelease(resource, repo, nextTag);
 }
 
 try {
@@ -115,6 +107,6 @@ try {
   if (changed) await fs.writeFile(catalogFile, JSON.stringify(catalog,null,2)+'\n');
   if (failures.length) {
     await fs.writeFile(path.join(root, 'docs-reconcile-errors.txt'), failures.join('\n')+'\n');
-    console.error(`${failures.length} resource(s) need attention; successful snapshots can still be published.`);
+    console.error(`${failures.length} resource(s) need attention; successful catalog updates can still be published.`);
   }
 } finally { await fs.rm(scratch,{recursive:true,force:true}); }

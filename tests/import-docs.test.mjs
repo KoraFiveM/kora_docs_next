@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {execFileSync, spawnSync} from 'node:child_process';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -8,6 +8,51 @@ import {importDocs, validateCatalog} from '../scripts/import-docs.mjs';
 const git = (repo, ...args) => execFileSync('git', ['-C', repo, ...args], {encoding: 'utf8'}).trim();
 
 import {fixture} from './fixture.mjs';
+
+test('default import fetches pinned GitHub sources without snapshots and refuses stale fallback', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'docs-test-'));
+  try {
+    const catalog = await fixture(directory);
+    const siteDir = path.join(directory, 'site');
+    await fs.mkdir(path.join(siteDir, 'catalog'), {recursive: true});
+    const env = {...process.env, GIT_CONFIG_COUNT: String(catalog.resources.length)};
+    for (const [index, resource] of catalog.resources.entries()) {
+      const url = `https://github.com/KoraFiveM/${resource.id}.git`;
+      // Rewrite only these fixture URLs inside the subprocess; no real network or Git config changes.
+      env[`GIT_CONFIG_KEY_${index}`] = `url.${resource.repository}.insteadOf`;
+      env[`GIT_CONFIG_VALUE_${index}`] = url;
+      resource.repository = url;
+    }
+    await fs.writeFile(path.join(siteDir, 'catalog/resources.json'), JSON.stringify(catalog));
+    const importer = new URL('../scripts/import-docs.mjs', import.meta.url).href;
+    const run = (sync = false) => spawnSync(process.execPath, ['--input-type=module', '-e',
+      `import {importDocs} from ${JSON.stringify(importer)}; await importDocs({siteDir: process.argv[1], sync: process.argv.includes('--sync')});`,
+      siteDir, ...(sync ? ['--sync'] : [])],
+    {encoding: 'utf8', env, timeout: 60000});
+    let result = run();
+    assert.equal(result.status, 0, result.stderr);
+    const entry = path.join(siteDir, 'resource-kora_inventory_versioned_docs/version-1.1.0/index.md');
+    assert.match(await fs.readFile(entry, 'utf8'), /kora_inventory 1\.1\.0/);
+    await fs.writeFile(entry, 'stale local copy');
+    result = run();
+    assert.equal(result.status, 0, result.stderr);
+    const content = await fs.readFile(entry, 'utf8');
+    assert.match(content, /kora_inventory 1\.1\.0/);
+    const metadata = await fs.readFile(path.join(siteDir, '.generated/catalog.json'), 'utf8');
+    git(path.join(directory, 'kora_core'), 'tag', '-d', 'v1.0.0');
+    result = run();
+    assert.equal(result.status, 0, 'Missing historical tag can use the exact pinned commit');
+    result = run(true);
+    assert.notEqual(result.status, 0, '--sync must still require release tags');
+    assert.match(result.stderr, /v1\.0\.0/);
+    await fs.rename(path.join(directory, 'kora_core'), path.join(directory, 'unavailable'));
+    result = run();
+    assert.notEqual(result.status, 0, 'Unavailable source must fail even when local docs exist');
+    assert.match(result.stderr, /kora_core/);
+    assert.equal(await fs.readFile(entry, 'utf8'), content);
+    assert.equal(await fs.readFile(path.join(siteDir, '.generated/catalog.json'), 'utf8'), metadata);
+  } finally {await fs.rm(directory, {recursive: true, force: true});}
+});
 
 test('imports independent versions, assets and exact committed content; cleans removed resources', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'docs-test-'));
@@ -67,7 +112,7 @@ test('rejects symlinks in resource documentation', async () => {
   } finally {await fs.rm(directory, {recursive: true, force: true});}
 });
 
-test('third-party bridge and creator entries with versions but no docs snapshots import cleanly', async () => {
+test('third-party bridge and creator entries are excluded from documentation imports', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'docs-test-'));
   try {
     const catalog = await fixture(directory);
@@ -79,17 +124,5 @@ test('third-party bridge and creator entries with versions but no docs snapshots
     const siteDir = path.join(directory, 'site'); await fs.mkdir(siteDir);
     const imported = await importDocs({siteDir, catalog, allowLocal: true});
     assert.deepEqual(imported.resources.map(r => r.id), ['kora_inventory', 'kora_core']);
-    // Offline (non-sync) mode: no snapshots exist for the third-party entries and nothing may require them.
-    const offline = structuredClone(catalog);
-    offline.resources = offline.resources.map(r => r.type ? r : {...r, repository: 'https://github.com/KoraFiveM/' + r.id + '.git'});
-    for (const resource of offline.resources.filter(r => !r.type)) for (const release of resource.versions) {
-      const snapshot = path.join(siteDir, `resource-${resource.id}_versioned_docs`, `version-${release.version}`);
-      await fs.mkdir(snapshot, {recursive: true}); await fs.writeFile(path.join(snapshot, 'index.md'), '# x\n');
-    }
-    const result = await importDocs({siteDir, catalog: offline, sync: false});
-    assert.deepEqual(result.resources.map(r => r.id), ['kora_inventory', 'kora_core']);
-    // A Kora entry without its snapshot must still fail.
-    await fs.rm(path.join(siteDir, 'resource-kora_core_versioned_docs'), {recursive: true, force: true});
-    await assert.rejects(importDocs({siteDir, catalog: offline, sync: false}), /Entry page missing: index/);
   } finally {await fs.rm(directory, {recursive: true, force: true});}
 });
