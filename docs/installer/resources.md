@@ -27,7 +27,6 @@ A resource can depend on others (`dependsOn`), across types. Choosing a resource
 The catalog includes these third-party bridge libraries:
 
 - `community_bridge` ([TheOrderFivem/community_bridge](https://github.com/TheOrderFivem/community_bridge)). It needs `ox_lib` and `oxmysql`, which are selected for you.
-- `sd_lib` ([Samuels-Development/sd_lib](https://github.com/Samuels-Development/sd_lib)).
 - `loaf_lib` ([loaf-scripts/loaf_lib](https://github.com/loaf-scripts/loaf_lib)).
 - `Newb_Bridge` ([MrNewb/Newb_Bridge](https://github.com/MrNewb/Newb_Bridge)). It needs `ox_lib` and `oxmysql`, which are selected for you.
 

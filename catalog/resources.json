@@ -1978,6 +1978,7 @@
           "commit": "a009ce95c1dfe21edd2005ea86a0640ec8544195"
         }
       ],
+      "retired": true,
       "description": "A library of functions that also bridges frameworks and common third-party resources. Third-party library, not supported by Kora; it may need its own setup."
     },
     {
