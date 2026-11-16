@@ -65,7 +65,7 @@ call sites.
 
 ## Worked example: Coffee Banking
 
-`coffee-banking` is a separately maintained example resource. It uses banking's
+[Coffee Banking](https://github.com/KoraFiveM/coffee-banking) is a separately maintained example resource. It uses banking's
 presentation hook to display whole yen and apply a classic Windows desktop skin.
 This is an example of extending a resource through its owner, rather than replacing
 banking's private functions. Its source, stylesheet and installation README belong
