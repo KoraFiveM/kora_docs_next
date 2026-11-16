@@ -11,7 +11,7 @@ npm ci
 npm start
 ```
 
-`npm start` prepares site metadata from committed documentation snapshots, then starts Docusaurus. It works without resource GitHub access.
+`npm start` fetches resource documentation directly from the pinned GitHub releases, then starts Docusaurus. Starting or building the site requires internet access; the public resource repositories need no credentials. No resource checkout or committed documentation cache is needed.
 
 ```sh
 npm test             # Offline importer tests with temporary local Git repositories
@@ -24,12 +24,11 @@ npm run serve        # Serve build/ locally
 
 - Resource repositories own `docs/`, code, `fxmanifest.lua`, and release tags.
 - `catalog/resources.json` pins the released resource documentation included here and is published as raw JSON at `/resources.json`.
-- `resource-*_versioned_docs/`, `resource-*_versioned_sidebars/`, and `resource-*_versions.json` are checked-in snapshots of published documentation so public Pages builds do not need access to private resource repositories.
 - `docs/` contains shared, unversioned contributor and publishing guides.
 - `src/css/custom.css` customizes the Cosmos theme with Kora neutral dark surfaces, lime `#95FF00`, and green `#22C55E`/`#4ADE80`.
 - `src/pages/` contains the landing page and resource/version directory.
 - `src/theme/DocVersionBadge/` wraps stock components to show a version dropdown for the active resource. Docusaurus handles version navigation and page matching.
-- `.generated/` and `resource-*_versioned_*` are generated and ignored. Do not edit or commit them.
+- `.generated/`, `resource-*_versioned_docs/`, `resource-*_versioned_sidebars/`, and `resource-*_versions.json` are generated build inputs and ignored. Do not edit or commit them; they may be deleted when the site is stopped and are regenerated on the next start/build.
 
 The favicon is a simple K monogram, not an official logo asset. Branding colours come from the original site's `src/styles.css`. Change appearance without changing the catalog or importer. Avoid replacing the stock router, sidebar, Markdown renderer, or syntax highlighter.
 
@@ -72,9 +71,9 @@ List versions newest first; `latest` explicitly selects a stable release. Each r
 
 `entryPage` is the Markdown document ID, normally `index`, without an extension. Use filename-based document IDs; do not override `id` in front matter. Relative Markdown and image links are resolved by Docusaurus. Keep assets inside the resource's `docsPath`.
 
-The sync importer fetches release tags into temporary Git repositories and verifies each tag against its full pinned commit and `fxmanifest.lua` version. It copies committed regular files only; it rejects symlinks and submodules. It never executes resource install/build scripts or changes local resource checkouts. Only GitHub HTTPS source URLs are accepted by the CLI. The versioned Markdown snapshots are checked in so CI builds are self-contained.
+The importer fetches the catalogued releases into temporary Git repositories on every start/build. It verifies available tags against the full pinned commit and checks the `fxmanifest.lua` version. If a historical tag has been removed, it fetches that exact commit SHA directly from GitHub; it never substitutes a branch or newer release. It copies committed regular files only; it rejects symlinks and submodules. It never executes resource install/build scripts or changes local resource checkouts. Only GitHub HTTPS source URLs are accepted by the CLI. Temporary Git repositories are removed after importing, and the generated Docusaurus inputs are ignored. A failed fetch or verification stops the build without replacing the last successful import; cached documentation is never used as a fallback. `npm run docs:sync` additionally requires every release tag to exist and verifies pinned compatibility resources that have no site docs.
 
-MDX is executable build input: catalog changes are trusted-code changes and require review. Public repositories work without credentials. Private repositories require CI Git credentials with access to those repositories; the docs repository's default token alone usually cannot read other private repos. Never put tokens in the catalog or clone URLs.
+MDX is executable build input: catalog changes are trusted-code changes and require review. Public repositories work without credentials. If a catalog source becomes private, local builds and CI need Git credentials with access to that repository; the docs repository's default token alone usually cannot read other private repos. Never put tokens in the catalog or clone URLs.
 
 ## Catalog schema v3: types, creators, subpaths
 
@@ -94,7 +93,7 @@ MDX is executable build input: catalog changes are trusted-code changes and requ
 
 ## Publication
 
-CI runs offline tests, the multi-resource fixture build, and the actual site build. GitHub Pages deploys the built site on pushes to `main`. The site and source repository are public.
+CI runs offline tests, the multi-resource fixture build, and the actual site build from GitHub sources. Resource Markdown and Docusaurus version files are never committed by CI or release automation. GitHub Pages deploys the built site on pushes to `main`. The site and source repository are public.
 
 Publish `build/` to your preferred static host. Set `DOCS_URL` to the real origin and `DOCS_BASE_URL` to the hosting path before building. The production site is served from the custom domain `https://docs.koraframe.work` at the root path, which is the default and what the deploy workflow sets (`DOCS_URL=https://docs.koraframe.work`, `DOCS_BASE_URL=/`). Only use `DOCS_BASE_URL=/kora_docs_next/` when publishing to a GitHub project Pages URL without the custom domain.
 

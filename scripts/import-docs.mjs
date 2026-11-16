@@ -95,7 +95,7 @@ export function resolveDependencies(catalog, id) {
   walk(id);
   return [...seen];
 }
-// Third-party types (compat, bridge, creator) never have docs on this site: no snapshots, not docs plugins.
+// Third-party types (compat, bridge, creator) never have docs on this site and are not docs plugins.
 export const THIRD_PARTY_TYPES = ['compat', 'bridge', 'creator'];
 export const hasDocs = resource => !THIRD_PARTY_TYPES.includes(resource.type) && resource.versions.length > 0;
 
@@ -147,7 +147,7 @@ export function validateCatalog(catalog, {allowLocal = false} = {}) {
   return catalog;
 }
 
-// Compat entries are tagged third-party shims without docs snapshots (not docs plugins). In sync mode confirm each
+// Compat entries are tagged third-party shims without docs (not docs plugins). In sync mode confirm each
 // tag resolves to the pinned commit and that its manifest declares the catalogued version.
 async function verifyPinnedCompat(catalog) {
   const scratch = await fs.mkdtemp(path.join(os.tmpdir(), 'kora-compat-verify-'));
@@ -168,22 +168,23 @@ async function verifyPinnedCompat(catalog) {
   } finally { await fs.rm(scratch, {recursive: true, force: true}); }
 }
 
-export async function importDocs({siteDir = root, catalog, allowLocal = false, sync = allowLocal || process.argv.includes('--sync')} = {}) {
+function fetchRelease(repository, resource, release, tags, requireTag) {
+  const tagRef = `refs/tags/${release.tag}`;
+  // Historical tags may be removed while their immutable commits remain on GitHub.
+  // Existing tags must still match; --sync additionally requires the tag to exist.
+  const useTag = requireTag || tags.has(tagRef);
+  git(repository, ['fetch', '--quiet', '--depth=1', 'origin', useTag ? `${tagRef}:${tagRef}` : release.commit]);
+  const resolved = git(repository, ['rev-parse', 'FETCH_HEAD^{commit}']).trim();
+  if (resolved !== release.commit) throw new Error(`Tag/commit mismatch: ${resource.id} ${release.version}`);
+  return resolved;
+}
+
+export async function importDocs({siteDir = root, catalog, allowLocal = false, sync = false} = {}) {
   catalog ??= JSON.parse(await fs.readFile(path.join(siteDir, 'catalog/resources.json'), 'utf8'));
   validateCatalog(catalog, {allowLocal});
   if (sync) await verifyPinnedCompat(catalog);
   // The docs site only consumes resources that have releases (v2 dependency/internal entries have none).
   catalog = {...catalog, resources: catalog.resources.filter(hasDocs)};
-  if (!sync) {
-    for (const resource of catalog.resources) for (const release of resource.versions) {
-      const snapshot = path.join(siteDir, `resource-${resource.id}_versioned_docs`, `version-${release.version}`);
-      const entryPage = release.entryPage ?? resource.entryPage;
-      if (!await hasEntry(snapshot, entryPage)) throw new Error(`Entry page missing: ${entryPage}`);
-    }
-    await fs.mkdir(path.join(siteDir, '.generated'), {recursive: true});
-    await fs.writeFile(path.join(siteDir, '.generated/catalog.json'), JSON.stringify(catalog, null, 2) + '\n');
-    return catalog;
-  }
   const scratch = await fs.mkdtemp(path.join(os.tmpdir(), 'kora-docs-import-'));
   const staged = path.join(scratch, 'output');
   await fs.mkdir(path.join(staged, '.generated/current'), {recursive: true});
@@ -194,15 +195,14 @@ export async function importDocs({siteDir = root, catalog, allowLocal = false, s
       await fs.mkdir(repository);
       git(repository, ['init', '--quiet']);
       git(repository, ['remote', 'add', 'origin', resource.repository]);
+      const tags = new Set(git(repository, ['ls-remote', '--tags', 'origin']).trim().split('\n').map(line => line.split('\t')[1]));
       const plugin = `resource-${resource.id}`;
       await fs.mkdir(path.join(staged, '.generated/current', resource.id), {recursive: true});
       for (const release of resource.versions) {
         const rawDocsPath = Object.hasOwn(release, 'docsPath') ? release.docsPath : resource.docsPath;
         const docsPath = rawDocsPath === null || !resource.subpath ? rawDocsPath : `${resource.subpath}/${rawDocsPath}`;
         const entryPage = release.entryPage ?? resource.entryPage;
-        git(repository, ['fetch', '--quiet', '--depth=1', 'origin', `refs/tags/${release.tag}:refs/tags/${release.tag}`]);
-        const resolved = git(repository, ['rev-parse', `refs/tags/${release.tag}^{commit}`]).trim();
-        if (resolved !== release.commit) throw new Error(`Tag/commit mismatch: ${resource.id} ${release.version}`);
+        const resolved = fetchRelease(repository, resource, release, tags, sync);
         const manifest = git(repository, ['show', `${resolved}:${resource.subpath ? `${resource.subpath}/` : ''}fxmanifest.lua`]);
         const declarations = [...manifest.matchAll(/^\s*version\s*(?:\(\s*)?['"]([^'"]+)['"]/gm)];
         if (declarations.length !== 1 || declarations[0][1] !== release.version) throw new Error(`Manifest version mismatch: ${resource.id} ${release.version}`);
@@ -251,7 +251,7 @@ export async function importDocs({siteDir = root, catalog, allowLocal = false, s
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    const catalog = await importDocs();
+    const catalog = await importDocs({sync: process.argv.includes('--sync')});
     console.log(`Imported ${catalog.resources.length} resource(s).`);
   } catch (error) {
     console.error(error.message);

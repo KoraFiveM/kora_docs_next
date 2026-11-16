@@ -10,3 +10,8 @@ docs-reconcile-errors.txt
 
 __pycache__/
 *.pyc
+
+# Resource docs are imported from pinned GitHub releases before start/build.
+/resource-*_versioned_docs/
+/resource-*_versioned_sidebars/
+/resource-*_versions.json
