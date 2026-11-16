@@ -24,14 +24,14 @@ The installer needs an account that is allowed to create databases and users, us
 
 - **Linux:** by default `root` over the local socket (works when you run the installer with `sudo`). If your root account uses a password, or the database is elsewhere, pass `--db-admin-user`, `--db-admin-host`, `--db-admin-port` and set `KORA_DB_ADMIN_PASSWORD`.
 - **Windows:** for a MariaDB that Kora installed, the generated admin password is used automatically. For an existing server, use the same flags and variable as above.
-- The guided screens ask for the login if they need it.
+- The install wizards (panel and terminal) ask for the login if they need it, and test it before the install starts. The password is used once and never stored.
 
 `--db skip` creates no database. You then have to set `mysql_connection_string` in `secrets.cfg` yourself before starting the server.
 
 ## Installing MariaDB
 
-Only with `--db install` (or by agreeing in the guided screens), and only when no MariaDB/MySQL service is found:
+Only with `--db install` (or by choosing it in the wizard), and only when no MariaDB/MySQL service is found:
 
 - **Debian / Ubuntu:** `apt-get install mariadb-server`, then enabled and started (needs root).
-- **Windows:** a **private** MariaDB owned by Kora: the official zip is downloaded from archive.mariadb.org, verified against MariaDB's published SHA-256 list and run as a separate service (`KoraMariaDB_xxxx`) on `127.0.0.1` only, on a free port (needs Administrator).
+- **Windows:** a **private** MariaDB owned by Kora: MariaDB 11.4.13 is downloaded from the official mirrors (falling back to archive.mariadb.org), checked against a pinned SHA-256, and run as a separate service (`KoraMariaDB_xxxx`) on `127.0.0.1` only, on a free port (needs Administrator; Kora asks for it). A download that does not match the checksum is deleted and never installed.
 - **Other Linux distributions:** not automated; install MariaDB with your package manager and use `--db existing`.

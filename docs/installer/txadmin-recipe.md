@@ -5,19 +5,37 @@ sidebar_position: 2.5
 
 # txAdmin recipe or installer
 
-[koraframe.work/installer](https://koraframe.work/installer) has three tabs: **Use installer**, **txAdmin recipe** and **Add resources** (see [Add resources](./add-resources.md)). Choose between the first two by how you run your server.
+There are two ways to set up a Kora server. Choose by how you run your server.
 
-| | Use installer | txAdmin recipe |
+| | Kora installer | txAdmin recipe |
 | --- | --- | --- |
-| Needs | The `kora` program on the machine; you also link Discord, GitHub and Cfx.re on the site | A txAdmin you already run; no account needed |
+| Needs | The `kora` program on the machine | A txAdmin you already run; no account needed |
 | Production or development | You choose | No choice: always pinned releases |
-| Result | A guided, resumable install that also sets up database, service and firewall | txAdmin downloads the resources and writes your `server.cfg` |
+| Result | A guided, resumable install that also sets up database, service and firewall, then [Kora Panel](./panel.md) to manage and update the server | txAdmin downloads the resources and writes your `server.cfg` |
 
 If you are not sure, the installer is the guided way. The recipe is for people who already run txAdmin. For the plain recipe with every default resource, see [Installation](../installation.md).
 
+## Getting the installer
+
+Linux:
+
+```sh
+curl -fsSL https://github.com/KoraFiveM/kora-installer/releases/download/v0.5.0/install.sh | sh
+```
+
+Windows (PowerShell):
+
+```powershell
+irm https://github.com/KoraFiveM/kora-installer/releases/download/v0.5.0/install.ps1 | iex
+```
+
+The scripts check the download's SHA-256, keep the previous version as `kora.previous` (`kora.exe.previous` on Windows) and then open Kora Panel. Each [release](https://github.com/KoraFiveM/kora-installer/releases) has its own scripts; use an explicit version number. Details in [Install on Linux](./install-linux.md) and [Install on Windows](./install-windows.md).
+
+Setup codes from the website no longer exist (removed in installer v0.4.0).
+
 ## Getting the recipe
 
-Pick your resources (compat, bridges and creator resources are never selected by default, see [Resources and folders](./resources.md)). Then use any of:
+On [koraframe.work/installer](https://koraframe.work/installer), pick your resources (compat, bridges and creator resources are never selected by default, see [Resources and folders](./resources.md)). Then use any of:
 
 - **Remote URL.** Copy the link and paste it into txAdmin's **Deploy server**, **Remote URL**. The link carries your selection, so it works without an account.
 - **Download.** Download `recipe.yaml` and use it in txAdmin.
@@ -28,25 +46,3 @@ The recipe writes the same [folder layout](./resources.md#folder-layout-of-a-new
 ## Pauses between downloads
 
 The recipe waits 5 seconds (`waste_time`) after every download. This keeps txAdmin from hitting GitHub's rate limits, so a deployment with many resources takes a few minutes.
-
-## One-line install commands
-
-After you create a setup code on the **Use installer** tab, the page shows a one-line command for Linux and one for Windows (PowerShell). Each one:
-
-- downloads `kora` only if it is not installed yet;
-- asks for your Cfx.re license key, hidden, and passes it in the `CFX_LICENSE_KEY` environment variable, never on the command line and never to the website;
-- runs `kora install --code <code>` into a **new** folder (`~/kora/server-<timestamp>`, `%USERPROFILE%\kora\server-<timestamp>` on Windows) with `--db install -y`, so an existing server is never touched.
-
-The code and the release address are checked before a command is shown. On the **Add resources** tab the command is `kora add-resources YOUR-SERVER-NAME --code <code>`, with no license key.
-
-To install `kora` only, the scripts are in each [release](https://github.com/KoraFiveM/kora-installer/releases); use an explicit version number:
-
-```sh
-curl -fsSL https://github.com/KoraFiveM/kora-installer/releases/download/v0.3.0/install.sh | sh
-```
-
-```powershell
-irm https://github.com/KoraFiveM/kora-installer/releases/download/v0.3.0/install.ps1 | iex
-```
-
-Then run `kora install`. The scripts check the download's SHA-256 and keep the previous version as `kora.previous`.
