@@ -1,0 +1,30 @@
+name: Notify txAdmin recipe
+# Tell the recipe repo to regenerate recipe.yaml, only when the catalog changes.
+on:
+  push:
+    branches: [main]
+    paths:
+      - catalog/resources.json
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: notify-recipe
+  cancel-in-progress: true
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
+        id: app
+        with:
+          app-id: ${{ secrets.KORA_DOCS_APP_ID }}
+          private-key: ${{ secrets.KORA_DOCS_APP_PRIVATE_KEY }}
+          owner: KoraFiveM
+          repositories: txAdminRecipe
+          permission-contents: write
+      - name: Dispatch catalog-updated
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: gh api repos/KoraFiveM/txAdminRecipe/dispatches -f event_type=catalog-updated
