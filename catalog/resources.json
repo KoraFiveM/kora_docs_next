@@ -12,10 +12,16 @@
       "order": 4,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-theme"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "f4342e28a80f3ba0fb6b91573889005a31261501",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -48,10 +54,16 @@
       "order": 12,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "696a68a71aac787a37da4fca7eb78b5bd0cda422",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -83,10 +95,16 @@
       "order": 32,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "11e1c0ef619dfb74b3b82d480d635805a91fb5a0",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -118,10 +136,17 @@
       "order": 19,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "b6d84cfcad3d5a7a42712bdb8305eea42e969464",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -154,10 +179,17 @@
       "order": 14,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "4b9d7ec13713750e642f77ec43590a2515bc4898",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -190,10 +222,16 @@
       "order": 11,
       "docsPath": "docs",
       "entryPage": "CCTV",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "0223170e915ad576da57d19431b7be8dc0f252e5",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -225,10 +263,17 @@
       "order": 47,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "48377d0b52cbb5ac3186f93f6b5c7523d85951a6",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -255,10 +300,17 @@
       "order": 35,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "d61289781dd8c576004dcd15dcb35b2fad5c5477",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -291,10 +343,16 @@
       "order": 18,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "76808b8e50a3c8f3fa3604005cb9f953467f519d",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -326,10 +384,17 @@
       "order": 37,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "97b40f14c97755a27686ce1d467ee04592e28da7",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -362,10 +427,16 @@
       "order": 7,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "0630d6bc2ac187728deacdf04df5f5cbfc84a996",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -402,10 +473,17 @@
       "order": 31,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "cf080281325407b2b02c92325c05035ceb5c8e75",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -438,10 +516,17 @@
       "order": 36,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "5b9c593023ebc4a2690a76806612036016b0cd30",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -468,10 +553,17 @@
       "order": 29,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "6e1acbc8fac8fff6f700df21cdcdaa0ec4db5bbc",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -498,10 +590,16 @@
       "order": 20,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "b5f7dc7868416408c38d622d4dd2970748f022b6",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -527,10 +625,17 @@
       "order": 10,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "d497ef298b7ff2c877463ae0a150b47c2c4df232",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -557,10 +662,17 @@
       "order": 8,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "6ec76b9ca918da2d8709c60b8cc14d1daf288571",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -587,10 +699,17 @@
       "order": 55,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "ecc25c168c6352d7e50b59104f5d81f22c5a283b",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -624,10 +743,17 @@
       "order": 40,
       "docsPath": "readme.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "df0a4e01e1d0adae338deda75ae2325700b5fe25",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -654,10 +780,17 @@
       "order": 21,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "7a1d1fce41a909b7c021817543a11ca1e9d2093d",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -690,10 +823,17 @@
       "order": 27,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "5c362f21275b78c5f666981605491c7d0da311e8",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -720,10 +860,16 @@
       "order": 17,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "f84f93f31e9df6f6e9c725c5504b3b04ba330b65",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -749,10 +895,16 @@
       "order": 23,
       "docsPath": "docs",
       "entryPage": "SHELL_GEOMETRY",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "075addd378b23a50b44aad8bcb41cd00d9f61169",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -778,10 +930,16 @@
       "order": 6,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "4c0b82cbedcebae7fa66e1132642b8f45038ba0b",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -814,10 +972,16 @@
       "order": 30,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "6dabec923d4710d4755c5f7a5033551c93837cdc",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -843,10 +1007,16 @@
       "order": 16,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "3e4d3930b5d35e474a45b5538246cfe36e3c84c5",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -872,10 +1042,17 @@
       "order": 43,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "2547c9937254624939520eace2fbd2a7c8d0caf4",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -902,10 +1079,17 @@
       "order": 42,
       "docsPath": null,
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "2141127573a8937d2c89cf1a0a31814e3b90db2c",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -932,10 +1116,17 @@
       "order": 44,
       "docsPath": "MINING_ITEMS.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "4760c98f4483947f793425796f263f8a12897c72",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -962,10 +1153,16 @@
       "order": 15,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "ba7e471c386384ff66e4a19fd2b4501f2fd1e7ac",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -991,10 +1188,17 @@
       "order": 13,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "4de3bfaaf2e4995edef5a5b293ad224ea4f88aa3",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1021,10 +1225,17 @@
       "order": 34,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "bf3fc6a9e7fb1daa9332b235e62fe9b4af43003d",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1051,10 +1262,17 @@
       "order": 39,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "5007b2c1236f644bd3a43725b8d498a0d24cdc9c",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1087,10 +1305,16 @@
       "order": 26,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "2973dba57f21ca16a5ad49b944dbd2319a44cd22",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1116,10 +1340,17 @@
       "order": 46,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "9492406ebc6fa43e3bdd709c5089f64ad712f87f",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1153,10 +1384,17 @@
       "order": 45,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "bc55366658fec2fc72fb2c86646082181d2974b9",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1183,10 +1421,17 @@
       "order": 38,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "bf268cb562c60eaa2754fcbb55b53fa5835dcf01",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1213,10 +1458,17 @@
       "order": 28,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-sql", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "5d4052b6c934bb22598a703988e66705320d68d5",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1243,10 +1495,17 @@
       "order": 57,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "5c81d005dc0ea632dac1d16a71f62cc6df3845b1",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1273,10 +1532,16 @@
       "order": 5,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "9c3ea7f787030d95964184aaa6e78cf3237ba9f2",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1309,10 +1574,16 @@
       "order": 22,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "10df4695a93b45607886103777647d331bcec0db",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1349,9 +1620,16 @@
       "order": 54,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "116968319c6bf23786f04ddbf3e7a92fed644e47",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1385,10 +1663,17 @@
       "order": 33,
       "docsPath": "README.MD",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "b79c2836a28f4697e13b15b7a7e8b9d845e584eb",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1415,10 +1700,16 @@
       "order": 9,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "27b2939253746323448e7b09262c22a8235b612d",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1444,10 +1735,17 @@
       "order": 41,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "0e94102428b65bc844b907984a2646b3126e928a",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1474,10 +1772,16 @@
       "order": 53,
       "docsPath": "docs",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib", "kora-core"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "b308babd91733e7f724cf6cbc2ba49e297fa97e9",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
@@ -1510,10 +1814,17 @@
       "order": 24,
       "docsPath": "README.md",
       "entryPage": "index",
-      "latest": "0.2.1",
+      "latest": "0.2.2",
       "dependsOn": ["kora-lib"],
       "docsAvailable": true,
       "versions": [
+        {
+          "version": "0.2.2",
+          "tag": "v0.2.2",
+          "commit": "ebc8ba3c2349a1c45ee50579ab8884d72707a0a4",
+          "docsPath": "docs",
+          "entryPage": "index"
+        },
         {
           "version": "0.2.1",
           "tag": "v0.2.1",
