@@ -61,8 +61,13 @@ def ordered(res):
 
 
 def is_default(r, include_internal=False):
-    """Default install set: optional resources (e.g. compat ox-lib) are never installed by default."""
-    return r["kind"] != "optional" and (include_internal or r["kind"] != "internal")
+    """Default install set: optional resources (e.g. compat ox-lib) are not installed by default
+    unless they carry `defaultOn: true` (optional but pre-selected, e.g. kora-peds). Retired entries are never offered."""
+    if r.get("retired"):
+        return False
+    if r["kind"] == "optional":
+        return bool(r.get("defaultOn"))
+    return include_internal or r["kind"] != "internal"
 
 
 def repo_url(r):

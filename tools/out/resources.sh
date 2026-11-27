@@ -67,6 +67,7 @@ otherResources=(
   $'resources/compat/PolyZone\thttps://github.com/KoraFiveM/PolyZone.git\tmain'
   $'resources/compat/mysql-async\thttps://github.com/KoraFiveM/mysql-async.git\tmain'
   $'resources/standalone/props\thttps://github.com/KoraFiveM/props.git\tmain'
+  $'resources/peds/kora_peds\thttps://github.com/KoraFiveM/kora_peds.git\tmain'
 )
 
 # Branch per repo name (default: dev)
@@ -128,4 +129,5 @@ declare -A repoBranch=(
   [props]=main
   [kora_sound]=dev
   [bob74_ipl]=master
+  [kora_peds]=main
 )

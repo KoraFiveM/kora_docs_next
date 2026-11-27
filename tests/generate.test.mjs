@@ -84,3 +84,23 @@ test('recipe appends each folder ensure once, in order, folders only', async () 
     assert.ok(recipe.indexOf('append: true') < recipe.lastIndexOf('mode: all_vars'));
   } finally { await fs.rm(dir, {recursive: true, force: true}); }
 });
+
+test('optional resources install by default only with defaultOn (retired never)', async () => {
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'gen-default-on-'));
+  try {
+    const catalog = {schemaVersion: 3, resources: [
+      entry('kora-thing', 1, {path: '[kora]/kora_thing', group: 'kora', kind: 'dependency'}),
+      entry('opt-on', 2, {path: '[peds]/opt_on', group: 'other', kind: 'optional', defaultOn: true}),
+      entry('opt-off', 3, {path: '[peds]/opt_off', group: 'other', kind: 'optional'}),
+      entry('opt-retired', 4, {path: '[peds]/opt_retired', group: 'other', kind: 'optional', defaultOn: true, retired: true}),
+    ]};
+    const file = path.join(dir, 'resources.json'), out = path.join(dir, 'out');
+    await fs.writeFile(file, JSON.stringify(catalog));
+    const run = spawnSync('python3', ['-I', script, '--catalog', file, '--out', out], {encoding: 'utf8'});
+    assert.equal(run.status, 0, run.stderr);
+    const manifest = await fs.readFile(path.join(out, 'resources.manifest'), 'utf8');
+    assert.match(manifest, /opt_on\t/);
+    assert.doesNotMatch(manifest, /opt_off|opt_retired/);
+    assert.match(await fs.readFile(path.join(out, 'recipe.yaml'), 'utf8'), /dest: \.\/resources\/\[peds\]\/opt_on\n/);
+  } finally { await fs.rm(dir, {recursive: true, force: true}); }
+});

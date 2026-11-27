@@ -2341,6 +2341,29 @@
         }
       ],
       "description": "A framework-agnostic bridge that connects your resources to frameworks, inventories and other resources through one API. Third-party library, not supported by Kora; it may need its own setup."
+    },
+    {
+      "id": "kora-peds",
+      "title": "Kora Peds",
+      "repository": "https://github.com/KoraFiveM/kora_peds.git",
+      "path": "[peds]/kora_peds",
+      "group": "other",
+      "kind": "optional",
+      "defaultOn": true,
+      "branch": "main",
+      "order": 75,
+      "docsPath": null,
+      "entryPage": "index",
+      "latest": "1.0.0",
+      "docsAvailable": false,
+      "versions": [
+        {
+          "version": "1.0.0",
+          "tag": "v1.0.0",
+          "commit": "2044a562af599cd876bd8a7a7294c67cc71e5a50"
+        }
+      ],
+      "description": "Kora android fox add-on peds (female and male) with animated tails. Optional, installed by default."
     }
   ]
 }

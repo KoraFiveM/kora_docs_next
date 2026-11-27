@@ -477,6 +477,12 @@ tasks:
   src: https://github.com/Bob74/bob74_ipl
   ref: master
   dest: ./resources/[standalone]/bob74_ipl
+- action: waste_time
+  seconds: 5
+- action: download_github
+  src: https://github.com/KoraFiveM/kora_peds
+  ref: main
+  dest: ./resources/[peds]/kora_peds
 - action: ensure_dir
   path: ./resources/[addons]
 - action: ensure_dir
@@ -497,6 +503,7 @@ tasks:
     ensure [pre]
     ensure [standalone]
     ensure [default-maps]
+    ensure [peds]
     ensure [kora]
     ensure [addons]
     ensure [streamedassets]
