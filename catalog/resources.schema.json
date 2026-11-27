@@ -53,6 +53,7 @@
         "entryPage": {"$ref": "#/$defs/safePath"},
         "latest": {"oneOf": [{"type": "null"}, {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"}]},
         "docsAvailable": {"type": "boolean"},
+        "defaultOn": {"type": "boolean", "description": "Only meaningful for kind optional: the resource is installed by default (pre-selected in installers, included in the generated txAdmin recipe) but the user may opt out."},
         "retired": {"type": "boolean", "description": "No longer offered by installers. Published entries are append-only, so a resource is retired instead of removed."},
         "description": {"type": "string"},
         "dependsOn": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"}, "uniqueItems": true, "description": "Ids of resources this one needs; installers add them automatically."},
@@ -65,6 +66,10 @@
         {
           "if": {"required": ["type"], "properties": {"type": {"const": "creator"}}},
           "then": {"required": ["creator"], "properties": {"path": {"pattern": "^\\[creators\\]/\\[[a-z][a-z0-9_-]*\\]/[A-Za-z0-9_.-]+$"}}}
+        },
+        {
+          "if": {"required": ["defaultOn"], "properties": {"defaultOn": {"const": true}}},
+          "then": {"properties": {"kind": {"const": "optional"}}}
         },
         {
           "if": {"properties": {"kind": {"enum": ["kora", "optional"]}}},

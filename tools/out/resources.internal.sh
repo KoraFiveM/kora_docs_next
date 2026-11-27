@@ -78,6 +78,7 @@ otherResources=(
   $'resources/compat/mysql-async\thttps://github.com/KoraFiveM/mysql-async.git\tmain'
   $'resources/standalone/props\thttps://github.com/KoraFiveM/props.git\tmain'
   $'resources/config/server_cfg_test\thttps://github.com/KoraFiveM/server_cfg_test.git\tmain'
+  $'resources/peds/kora_peds\thttps://github.com/KoraFiveM/kora_peds.git\tmain'
 )
 
 # Branch per repo name (default: dev)
@@ -150,4 +151,5 @@ declare -A repoBranch=(
   [kora_scrapyard]=dev
   [kora_truckrobbery]=dev
   [server_cfg_test]=main
+  [kora_peds]=main
 )
